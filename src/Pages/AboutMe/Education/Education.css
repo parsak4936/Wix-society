@@ -1,0 +1,128 @@
+.education-container {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .education-section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  .education-card-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .education-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .education-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .education-card-avatar {
+    height: 150px;
+    overflow: hidden;
+  }
+  
+  .education-card-avatar img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+  
+  .education-card-info {
+    padding: 20px;
+    color: black;
+  }
+  
+  .education-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .education-card-subtitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .education-card-description {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+
+/* ..................Modal Css...................... */
+
+  .education-modal-overlay {
+    position: fixed;
+    color: black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .education-modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .education-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .education-modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .education-modal-close-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .education-modal-close-btn:hover {
+    color: #aaa;
+  }
+  
+  .education-modal-body {
+    line-height: 1.5;
+  }
+  
+  .education-modal-school {
+    font-weight: bold;
+  }
+  
+  .education-modal-grade {
+    margin-bottom: 20px;
+  }
+  

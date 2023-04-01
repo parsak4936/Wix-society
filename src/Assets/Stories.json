@@ -1,0 +1,15 @@
+[
+    {
+      "title": "My First Story",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla tortor ac odio auctor, eu mollis ipsum laoreet. Nunc quis nibh sapien.",
+      "thumbnailUrl": "/assets/images/story1-thumbnail.jpg",
+      "contentUrl": "/assets/images/story1.jpg"
+    },
+    {
+      "title": "My Second Story",
+      "description": "Ut vel magna mi. Aliquam laoreet magna euismod eros scelerisque imperdiet. Duis lacinia augue vel nunc tristique rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+      "thumbnailUrl": "/assets/images/story2-thumbnail.jpg",
+      "contentUrl": "/assets/images/story2.jpg"
+    }
+   ]
+  
