@@ -1,0 +1,95 @@
+.content-container {
+  overflow: hidden !important;
+}
+
+.aoverlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 10.7); /* Semi-transparent black overlay */
+  opacity: 1;
+  z-index: -1;
+}
+ 
+.section-a2 {
+  position: relative;
+   overflow: hidden;
+}
+
+.video-awrapper {
+  overflow: hidden;
+}
+@media (max-width: 450px) {
+  .section-a1 {
+    height: 110vh;
+  }
+  .section-a2 {
+    height: 100vh;
+  }
+}
+@media (max-width: 280px) {
+  .section-a1 {
+    height: 110vh;
+  }
+  .section-a2 {
+    height: 190vh;
+  }
+}
+.overlay2 {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 1); /* Semi-transparent black overlay */
+  opacity: 1;
+  z-index: -1;
+}
+.video-wrapper {
+  overflow: hidden;
+}
+
+.glow-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.section-a1 {
+  position: relative;
+   overflow: hidden;
+}
+
+.section-a1 video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glow-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #01be96, #3f88c5);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.glow-background::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #01be96 0%, 3f88c5 40%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: pulse 2s infinite;
+  z-index: -1;
+}

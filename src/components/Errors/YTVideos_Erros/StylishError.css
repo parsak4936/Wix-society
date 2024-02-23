@@ -1,0 +1,26 @@
+/* StylishError.css */
+
+.stylish-error-container {
+  display: flex;
+  margin: 40px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f8d7da; /* Light red background color */
+  color: #721c24; /* Dark red text color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #721c24; /* Dark red icon color */
+}
+
+.error-message {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}

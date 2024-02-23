@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Book 1",
+    "date": "2022-01-01",
+    "genre": "Fiction",
+    "image": "path/to/book1.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "details": "More details about Book 1."
+  },
+  {
+    "id": 2,
+    "title": "Book 2",
+    "date": "2022-02-01",
+    "genre": "Mystery",
+    "image": "path/to/book2.jpg",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "details": "More details about Book 2."
+  }
+ ]
