@@ -1,0 +1,23 @@
+.scroll-up {
+  position: fixed;
+  z-index: 2;
+  bottom: 5%; /* Default bottom position for larger screens */
+  right: 20px;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.scroll-up.show {
+  opacity: 1;
+}
+ 

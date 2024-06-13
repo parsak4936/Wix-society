@@ -1,0 +1,44 @@
+.aboutme-container {
+  overflow: hidden;
+}
+
+.video-wrapper {
+  position: relative;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -999;
+}
+
+.overlay23 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.49); /* Dark overlay */
+  z-index: -1;
+}
+
+.section-a1 {
+  position: relative;
+}
+
+.section-a2 {
+  padding: 20px; /* Add padding for better readability */
+}
+
+@media (max-width: 768px) {
+  .section-a1 {
+    height: 100%; /* Adjust height for smaller screens */
+  }
+  .section-a2 {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}

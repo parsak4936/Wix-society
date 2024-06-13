@@ -1,0 +1,53 @@
+import {
+    FaMusic,
+    FaPencilAlt,
+    FaGamepad,
+    FaBook,
+    FaVideo,
+    FaTwitch,
+    FaPen,
+    FaUser,
+    FaBrain,
+    FaLayerGroup,
+    FaPalette,
+    FaCompass,
+    FaTree,
+    FaUsers,
+    FaDumbbell,
+    FaBasketballBall,
+    FaTrophy,
+    FaFileWord,
+    FaFileExcel,
+    FaFilePowerpoint,
+    FaFirstAid,
+  } from "react-icons/fa";
+  import { GiPawHeart, GiFamilyTree } from "react-icons/gi";
+  
+  export const PersonalSkills = [
+    { icon: FaMusic, name: "Music", level: "Intermediate" },
+    { icon: FaPencilAlt, name: "Writing", level: "Advanced" },
+    { icon: FaGamepad, name: "Video Game", level: "Intermediate" },
+    { icon: FaBook, name: "Reading Book", level: "Intermediate" },
+    { icon: FaVideo, name: "Editing Video", level: "Advanced" },
+    { icon: FaTwitch, name: "Streaming", level: "Intermediate" },
+    { icon: FaPen, name: "Content Creation", level: "Advanced" },
+    { icon: FaUser, name: "INFJ", level: "Expert" },
+    { icon: FaBrain, name: "Logic", level: "Advanced" },
+    { icon: FaLayerGroup, name: "Multi Aspect", level: "Intermediate" },
+    { icon: FaPalette, name: "Art", level: "Advanced" },
+    { icon: FaCompass, name: "Adventure", level: "Intermediate" },
+    { icon: FaTree, name: "Nature Lover", level: "Advanced" },
+    { icon: GiPawHeart, name: "Animal Lover", level: "Advanced" },
+    { icon: FaUsers, name: "Psychology", level: "Intermediate" },
+    { icon: FaDumbbell, name: "Workout", level: "Intermediate" },
+    { icon: FaBasketballBall, name: "Basketball", level: "Intermediate" },
+    { icon: FaTrophy, name: "Challenger", level: "Advanced" },
+    { icon: GiFamilyTree, name: "Family Lover", level: "Expert" },
+    { icon: FaFirstAid, name: "Survivalist", level: "Advanced" },
+    { icon: FaFileWord, name: "Word", level: "Expert" },
+    { icon: FaFileExcel, name: "Excel", level: "Expert" },
+    { icon: FaFilePowerpoint, name: "Power Point", level: "Expert" },
+  ];
+  
+  export default PersonalSkills;
+  
