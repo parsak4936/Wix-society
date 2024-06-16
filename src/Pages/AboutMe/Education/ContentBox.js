@@ -79,7 +79,7 @@ export default ContentBox;
 
 const ContentContainer = styled(motion.div)`
   position: relative;
-  background: #fff;
+  background: linear-gradient(159deg, rgb(45, 45, 58) 0%, rgb(43, 43, 53) 100%);
   padding: 20px;
   border-radius: 8px;
   width: 90%;
@@ -150,24 +150,27 @@ const ContentDetails = styled(motion.div)`
 const Title = styled.h3`
   font-size: 1.8rem;
   font-weight: bold;
-  color: #01be96;
-  margin: 10px 0;
+    color:#fff;
+
+   margin: 10px 0;
 `;
 
 const SchoolYear = styled.p`
   font-size: 1.2rem;
   font-weight: bold;
   margin: 10px 0;
+      color:#01be96;
+
 `;
 
 const Details = styled.div`
   text-align: left;
   width: 100%;
+    
 
   p {
     margin: 10px 0;
-    color: #333;
-  }
+color:#fff;  }
 `;
 
 const LinksContainer = styled(motion.div)`

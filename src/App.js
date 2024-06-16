@@ -5,7 +5,10 @@ import RandomIcon from "./components/RandomIcon/RandomIcon ";
 import ScrollUp from "./components/ScrollUp/ScrollUp";
 import Aboutme from "./Pages/AboutMe/Aboutme";
 import Home from "./Pages/Home";
-import { AudioProvider } from "./Context/AudioContext";
+import Archive from "./Pages/Archive/Archive";
+
+
+import { AudioProvider } from "./Context/AudioContext"; 
 import GlobalAudioPlayer from "./components/AudioPlayer/GlobalAudioPlayer";
 import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
@@ -91,6 +94,19 @@ const AnimatedRoutes = () => {
                   variants={pageTransition}
                 >
                   <Home />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/archive"
+              element={
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                  <Archive />
                 </motion.div>
               }
             />

@@ -107,7 +107,7 @@ const TimelineDot = styled.div`
   width: 120px;
   height: 120px;
   background: #fff;
-  border: 3px solid ${props => props.isSelected ? '#01be96' : '#ccc'};
+  border: 3px solid ${props => props.isSelected ? '#01be96' : '#191923'};
   border-radius: 10%;
   display: flex;
   justify-content: center;

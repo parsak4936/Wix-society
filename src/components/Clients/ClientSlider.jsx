@@ -116,6 +116,8 @@ const StarOutlined = styled(AiOutlineStar)`
 const Body = styled.div`
   font-size: 1rem;
   color: #ddd;
+    text-align: justify;
+ line-height: 1.7;
   margin-bottom: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;

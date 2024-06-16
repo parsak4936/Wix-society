@@ -62,11 +62,14 @@ const Header = () => {
           <StyledLink to="/" className={location.pathname === "/" ? "active" : ""}>Home</StyledLink>
         </span>
         <span>
+          <StyledLink to="/archive" className={location.pathname === "/archive" ? "active" : ""}>archive</StyledLink>
+        </span>
+        <span>
           <StyledLink to="/aboutme" className={location.pathname === "/aboutme" ? "active" : ""}>About Me</StyledLink>
         </span>
       </Nav>
       <div onClick={() => setBar(!bar)} className="bars">
-        <div className="bar"></div>
+        <div className={`bar ${bar ? 'active' : ''}`}></div>
       </div>
     </Container>
   );
@@ -105,14 +108,14 @@ const Container = styled.div`
         position: absolute;
         width: 100%;
         height: 2px;
-        background-color: ${(props) => (props.bar ? "transparent" : "#fff")};
+        background-color: ${(props) => (props.bar ? "#fff" : "#fff")};
         transition: all 400ms ease-in-out;
         :before,
         :after {
           content: "";
           width: 100%;
           height: 2px;
-          background-color: #fff;
+          background-color: ${(props) => (props.bar ? "#fff" : "#fff")};
           position: absolute;
         }
 
@@ -149,11 +152,12 @@ const Logo = styled.div`
 `;
 
 const Nav = styled.div`
+  color: #fff;
   @media (max-width: 640px) {
     position: fixed;
     display: flex;
     flex-direction: column;
-    background-color: #01be96;
+    background-color: #f0f0f0;
     inset: 0;
     justify-content: center;
     align-items: center;
@@ -168,7 +172,7 @@ const Nav = styled.div`
   span {
     margin-left: 1rem;
     a {
-      color: #fff;
+      color: ${(props) => (props.bar ? "#000" : "#fff")}; /* رنگ لینک‌ها در حالت لپ‌تاپ و موبایل */
       text-decoration: none;
       font-weight: 400;
       position: relative;
@@ -179,7 +183,7 @@ const Nav = styled.div`
         right: 0;
         bottom: -5px;
         height: 2px;
-        background-color: #fff;
+        background-color: #000;
         transform: scale(0);
         transform-origin: right;
         transition: transform 400ms ease-in-out;
