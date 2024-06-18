@@ -1,52 +1,97 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLink } from 'react-icons/fa';
-import ProjectData from './ProjectData';
-import { useTranslation } from 'react-i18next';
-  
+ import { useTranslation } from 'react-i18next';
+import Image1 from "../../../Assets/backgrounds/Header5.png";
+import Image2 from "../../../Assets/Profile/Parsa.jpg";
+import Image3 from "../../../Assets/Profile/WixProfile2.jpeg";
+
 const Projects = ({ searchQuery, sortOrder }) => {
   const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = useState([]);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const projectData = ProjectData();
-
-  useEffect(() => {
-    let filteredData = projectData.filter(item =>
-      t(item.title)?.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      t(item.description)?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    if (sortOrder === 'newest') {
-      filteredData = filteredData.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
-    } else if (sortOrder === 'oldest') {
-      filteredData = filteredData.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-    }
-
-    setVisibleItems(filteredData.slice(0, 6));
-  }, [searchQuery, sortOrder, t,projectData]);
-
-  const loadMoreItems = useCallback(() => {
-    setVisibleItems((prevItems) => [
-      ...prevItems,
-      ...projectData.slice(prevItems.length, prevItems.length + 6),
-    ]);
-  }, [projectData]);
-
-  const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY) {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-        loadMoreItems();
-      }
-    }
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY, loadMoreItems]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+ 
+  
+  const ProjectsData = useMemo(() => [
+    {
+        id: 1,
+        image: Image1,
+        title: t('Project Alpha'),
+        description: t("Get access to quick and reliable cash loans with Project Alpha, the online lending platform that's..."),
+        startDate: t('July 14, 2022'),
+        endDate: t('July 10, 2022'),
+        totalFundraising: 250000,
+        totalFundsRaised: 238800,
+        maxAllocation: 250,
+        numberOfPeopleFunded: 9262,
+        link: 'https://example.com/project-alpha'
+      },
+      {
+        id: 2,
+        image: Image2,
+        title: t('Project Beta'),
+        description: t('Decentralized platform that enables content creators to monetize their work using Basic Att...'),
+        startDate: t('March 8, 2022'),
+        endDate: t('July 10, 2022'),
+        totalFundraising: 250000,
+        totalFundsRaised: 242800,
+        maxAllocation: 260,
+        numberOfPeopleFunded: 8769,
+        link: 'https://example.com/project-beta'
+      },
+      {
+        id: 3,
+        image: Image3,
+        title: t('Project Gamma'),
+        description: t('Effortless and Secure Transactions: Project Gamma, Powered by Basic Attention Token...'),
+        startDate: t('June 12, 2022'),
+        endDate: t('July 12, 2022'),
+        totalFundraising: 250000,
+        totalFundsRaised: 250000,
+        maxAllocation: 300,
+        numberOfPeopleFunded: 9245,
+        link: 'https://example.com/project-gamma'}
+      ], [t]);
+     
+      useEffect(() => {
+        let filteredData = ProjectsData.filter(
+          (item) =>
+            t(item.title).toLowerCase().includes(searchQuery.toLowerCase()) ||
+            t(item.summary).toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      
+        if (sortOrder === 'newest') {
+          filteredData = filteredData.sort((a, b) => parseInt(b.date) - parseInt(a.date));
+        } else if (sortOrder === 'oldest') {
+          filteredData = filteredData.sort((a, b) => parseInt(a.date) - parseInt(b.date));
+        }
+      
+        setVisibleItems(filteredData.slice(0, 6));
+      }, [searchQuery, sortOrder, t, ProjectsData]);
+      
+      const loadMoreItems = useCallback(() => {
+        setVisibleItems((prevItems) => [
+          ...prevItems,
+          ...ProjectsData.slice(prevItems.length, prevItems.length + 6),
+        ]);
+      }, [ProjectsData]);
+      
+      const handleScroll = useCallback(() => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY) {
+          if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+            loadMoreItems();
+          }
+        }
+        setLastScrollY(currentScrollY);
+      }, [lastScrollY, loadMoreItems]);
+      
+      useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+      }, [handleScroll]);
+      
 
   return (
     <ProjectsContainer>

@@ -1,10 +1,24 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
-import PhotoData from '../Photoes/PhotoData';
-import { useTranslation } from "react-i18next";
+  import { useTranslation } from "react-i18next";
+ 
 
+ 
+
+ const images = [];
+ 
+ for (let i = 1; i <= 43; i++) {
+  try {
+    images.push(require(`../../../Assets/Archive/Photoes/${i}.jpg`));
+  } catch (e) {
+    console.error(`Could not load image: ../../../Assets/Archive/Photoes/${i}.jpg`);
+    images.push(null); // push null if image is not found
+  }
+}
+
+ 
 const Photos = ({ searchQuery, sortOrder }) => {
   const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = useState([]);
@@ -12,58 +26,411 @@ const Photos = ({ searchQuery, sortOrder }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageInfo, setSelectedImageInfo] = useState({});
   const [loadedImages, setLoadedImages] = useState({});
-  const photoData = PhotoData();
 
-  useEffect(() => {
-    let filteredData = photoData.filter(item =>
-      (t(item.title)?.toLowerCase().includes(searchQuery.toLowerCase()) || 
-       t(item.summary)?.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+  const PhotoData = useMemo(() => [
+  {
+    id: 1,
+    image: images[0],
+    date: "2022",
+    age: 45,
+    title: t("Zanjan Camping"),
+    summary: t("Last day of university in Zanjan, Iran"),
+  },
+  {
+    id: 2,
+    image: images[1],
+    date: "2002",
+    age: 15,
+    title: t("Bros Before Hoes"),
+    summary: t("Daily hangout with the boys and practicing photography"),
+  },
+  {
+    id: 3,
+    image: images[2],
+    date: "2005",
+    age: 27,
+    title: t("Sky on My Last Birthday in Iran"),
+    summary: t("My 24th birthday was the last one I had with the boys"),
+  },
+  {
+    id: 4,
+    image: images[3],
+    date: "2002",
+    age: 15,
+    title: t("A Bit of Beauty"),
+    summary: t("Mr. Nima is a true gentleman"),
+  },
+  {
+    id: 5,
+    image: images[4],
+    date: "1999",
+    age: 25,
+    title: t("Ocean of Clouds #1"),
+    summary: t("Random adventure in the middle of nowhere around Qazvin"),
+  },
+  {
+    id: 6,
+    image: images[5],
+    date: "2005",
+    age: 25,
+    title: t("Ocean of Clouds #2"),
+    summary: t("Random adventure in the middle of nowhere around Qazvin"),
+  },
+  {
+    id: 7,
+    image: images[6],
+    date: "2006",
+    age: 25,
+    title: t("Ocean of Clouds #3"),
+    summary: t("Random adventure in the middle of nowhere around Qazvin"),
+  },
+  {
+    id: 8,
+    image: images[7],
+    date: "2005",
+    age: 25,
+    title: t("Anzali Ocean - Iran"),
+    summary: t("Random adventure in the middle of nowhere around Qazvin"),
+  },
+  {
+    id: 9,
+    image: images[8],
+    date: "2005",
+    age: 25,
+    title: t("Ocean of Clouds #4"),
+    summary: t("Random adventure in the middle of nowhere around Qazvin"),
+  },
+  {
+    id: 10,
+    image: images[9],
+    date: "2005",
+    age: 25,
+    title: t("A Bit of Me"),
+    summary: t("Mr. Nima was trying to mimic my photography style"),
+  },
+  {
+    id: 11,
+    image: images[10],
+    date: "2005",
+    age: 25,
+    title: t("Ocean of Clouds #5"),
+    summary: t("An adventure in the wild"),
+  },
+  {
+    id: 12,
+    image: images[11],
+    date: "2023",
+    age: 25,
+    title: t("Messina Food Festival 2023"),
+    summary: t("Best food I have ever tried"),
+  },
+  {
+    id: 13,
+    image: images[12],
+    date: "2023",
+    age: 25,
+    title: t("Sadegh Portrait"),
+    summary: t("First day of moving to Messina"),
+  },
+  {
+    id: 14,
+    image: images[13],
+    date: "2023",
+    age: 25,
+    title: t("Mysterious Church"),
+    summary: t("Hiking led to a famous church in the north of Messina"),
+  },
+  {
+    id: 15,
+    image: images[14],
+    date: "2023",
+    age: 25,
+    title: t("Christmas 2023"),
+    summary: t("First experience of Christmas, season of love and new decorations"),
+  },
+  {
+    id: 16,
+    image: images[15],
+    date: "2023",
+    age: 25,
+    title: t("Cyberpunk IRL"),
+    summary: t("Bike exhibition in Messina, 2023"),
+  },
+  {
+    id: 17,
+    image: images[16],
+    date: "2023",
+    age: 25,
+    title: t("Poor in Look - Rich in Experience"),
+    summary: t("Driver was old and poor, but kind and famous"),
+  },
+  {
+    id: 18,
+    image: images[17],
+    date: "2023",
+    age: 25,
+    title: t("Cozy House"),
+    summary: t("Helping Sia move to a new place, saw this lovely house"),
+  },
+  {
+    id: 19,
+    image: images[18],
+    date: "2023",
+    age: 25,
+    title: t("Papardo in Anime #1"),
+    summary: t("Papardo showing me some anime vibes"),
+  },
+  {
+    id: 20,
+    image: images[19],
+    date: "2023",
+    age: 25,
+    title: t("Papardo in Anime #2"),
+    summary: t("Papardo showing me some anime vibes"),
+  },
+  {
+    id: 21,
+    image: images[20],
+    date: "2023",
+    age: 25,
+    title: t("Mana - Daughter of Messina"),
+    summary: t("Adventuring new places with my friend Mana, Christmas 2023"),
+  },
+  {
+    id: 22,
+    image: images[21],
+    date: "2023",
+    age: 25,
+    title: t("Kind Ghost"),
+    summary: t("A bus decorated for Christmas vibes"),
+  },
+  {
+    id: 23,
+    image: images[22],
+    date: "2023",
+    age: 25,
+    title: t("My Christmas Gift 2023"),
+    summary: t("A bus decorated for Christmas vibes"),
+  },
+  {
+    id: 24,
+    image: images[23],
+    date: "2023",
+    age: 25,
+    title: t("Redbull Secret Study Room #1"),
+    summary: t("The day after a breakup, time for new adventures and challenging my comfort zone"),
+  },
+  {
+    id: 25,
+    image: images[24],
+    date: "2023",
+    age: 25,
+    title: t("Redbull Secret Study Room #2"),
+    summary: t("Books really work, hung out with Maviva, a famous Italian influencer"),
+  },
+  {
+    id: 26,
+    image: images[25],
+    date: "2023",
+    age: 25,
+    title: t("Wall of Memories"),
+    summary: t("This image was an achievement for me, I won - a day with a famous guy, as Mr. Nobody"),
+  },
+  {
+    id: 27,
+    image: images[26],
+    date: "2023",
+    age: 25,
+    title: t("Dreams - AI Generated"),
+    summary: t("Wanderer in the outland, daydreaming of the apocalypse"),
+  },
+  {
+    id: 28,
+    image: images[27],
+    date: "2023",
+    age: 25,
+    title: t("Hamid in Fallout - AI Generated"),
+    summary: t("Cyberpunk + Hamid + my imagination + GPT = masterpiece"),
+  },
+  {
+    id: 29,
+    image: images[28],
+    date: "2023",
+    age: 25,
+    title: t("Solaris in Wonderland - AI Generated"),
+    summary: t("Just playing with my favorite stream photos"),
+  },
+  {
+    id: 30,
+    image: images[29],
+    date: "2023",
+    age: 25,
+    title: t("Mahmood the Door Breaker"),
+    summary: t("He will be mad at me, but that night was the beginning of everything new for all of us"),
+  },
+  {
+    id: 31,
+    image: images[30],
+    date: "2023",
+    age: 25,
+    title: t("Hamid's Moment"),
+    summary: t("First image someone took of me - Hamid"),
+  },
+  {
+    id: 32,
+    image: images[31],
+    date: "2023",
+    age: 25,
+    title: t("Lost in Thoughts"),
+    summary: t("My father, thinking of how he should get rid of us :)"),
+  },
+  {
+    id: 33,
+    image: images[32],
+    date: "2023",
+    age: 25,
+    title: t("My First Love - I Miss You - AI Generated"),
+    summary: t("Image generated by my diary on the first day of my breakup"),
+  },
+  {
+    id: 34,
+    image: images[33],
+    date: "2017",
+    age: 25,
+    title: t("ZNU"),
+    summary: t("Beginning of a new adventure in Zanjan"),
+  },
+  {
+    id: 35,
+    image: images[34],
+    date: "2023",
+    age: 25,
+    title: t("My Poor Little Self - AI Generated"),
+    summary: t("Image of my loneliness in Messina, created from my diary by AI"),
+  },
+  {
+    id: 36,
+    image: images[35],
+    date: "2023",
+    age: 25,
+    title: t("Two Lovers"),
+    summary: t("Do you see the lovers? Those who are trying to get to each other"),
+  },
+  {
+    id: 37,
+    image: images[36],
+    date: "2023",
+    age: 25,
+    title: t("God is Love"),
+    summary: t("I believe in every god, the one entity who owns us"),
+  },
+  {
+    id: 38,
+    image: images[37],
+    date: "2023",
+    age: 25,
+    title: t("Tell Her"),
+    summary: t("Capture the moments that they will forget"),
+  },
+  {
+    id: 39,
+    image: images[38],
+    date: "2023",
+    age: 25,
+    title: t("ZNU Water"),
+    summary: t(""),
+  },
+  {
+    id: 40,
+    image: images[39],
+    date: "2023",
+    age: 25,
+    title: t("Parham"),
+    summary: t("My best companion in ZNU till the 3rd year"),
+  },
+  {
+    id: 41,
+    image: images[40],
+    date: "2023",
+    age: 25,
+    title: t("Annunziata Photography #1"),
+    summary: t("Additia's birthday was the reason I was there, one of the best memories of Messina"),
+  },
+  {
+    id: 42,
+    image: images[41],
+    date: "2023",
+    age: 25,
+    title: t("Annunziata Photography #2"),
+    summary: t("Additia's birthday was the reason I was there, one of the best memories of Messina"),
+  },
+  {
+    id: 43,
+    image: images[42],
+    date: "2023",
+    age: 25,
+    title: t("A Bit of Me Before Disaster"),
+    summary: t("Sometimes I feel pity for my old self, for the pain he went through"),
+  },
+], [t]);
+useEffect(() => {
+  let filteredData = PhotoData.filter(
+    (item) =>
+      t(item.title).toLowerCase().includes(searchQuery.toLowerCase()) ||
+      t(item.summary).toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-    if (sortOrder === 'newest') {
-      filteredData = filteredData.sort((a, b) => parseInt(b.date) - parseInt(a.date));
-    } else if (sortOrder === 'oldest') {
-      filteredData = filteredData.sort((a, b) => parseInt(a.date) - parseInt(b.date));
+  if (sortOrder === 'newest') {
+    filteredData = filteredData.sort((a, b) => parseInt(b.date) - parseInt(a.date));
+  } else if (sortOrder === 'oldest') {
+    filteredData = filteredData.sort((a, b) => parseInt(a.date) - parseInt(b.date));
+  }
+
+  setVisibleItems(filteredData.slice(0, 6));
+}, [searchQuery, sortOrder, t, PhotoData]);
+
+const loadMoreItems = useCallback(() => {
+  setVisibleItems((prevItems) => [
+    ...prevItems,
+    ...PhotoData.slice(prevItems.length, prevItems.length + 6),
+  ]);
+}, [PhotoData]);
+
+const handleScroll = useCallback(() => {
+  const currentScrollY = window.scrollY;
+  if (currentScrollY > lastScrollY) {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+      loadMoreItems();
     }
+  }
+  setLastScrollY(currentScrollY);
+}, [lastScrollY, loadMoreItems]);
 
-    setVisibleItems(filteredData.slice(0, 6));
-  }, [searchQuery, sortOrder, t,photoData]);
+useEffect(() => {
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [handleScroll]);
 
-  const loadMoreItems = useCallback(() => {
-    setVisibleItems((prevItems) => [
-      ...prevItems,
-      ...photoData.slice(prevItems.length, prevItems.length + 6),
-    ]);
-  }, [photoData]);
+const handleImageClick = (image, info) => {
+  setSelectedImage(image);
+  setSelectedImageInfo(info);
+};
 
-  const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY) {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-        loadMoreItems();
-      }
-    }
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY, loadMoreItems]);
+const closeModal = () => {
+  setSelectedImage(null);
+  setSelectedImageInfo({});
+};
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+const handleBackdropClick = (e) => {
+  if (e.target === e.currentTarget) {
+    closeModal();
+  }
+};
 
-  const handleImageClick = (image, info) => {
-    setSelectedImage(image);
-    setSelectedImageInfo(info);
-  };
+const handleImageLoad = (id) => {
+  setLoadedImages(prevState => ({ ...prevState, [id]: true }));
+};
 
-  const closeModal = () => {
-    setSelectedImage(null);
-    setSelectedImageInfo({});
-  };
-
-  const handleImageLoad = (id) => {
-    setLoadedImages(prevState => ({ ...prevState, [id]: true }));
-  };
 
   return (
     <div>
@@ -107,6 +474,8 @@ const Photos = ({ searchQuery, sortOrder }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            onClick={handleBackdropClick}
+
           >
             <ModalContent
               initial={{ opacity: 0, scale: 0.8 }}
@@ -127,12 +496,13 @@ const Photos = ({ searchQuery, sortOrder }) => {
           </Backdrop>
         )}
       </AnimatePresence>
-      
     </div>
   );
 };
 
 export default Photos;
+
+
 
 const loadingAnimation = keyframes`
   0% {

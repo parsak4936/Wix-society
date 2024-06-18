@@ -18,7 +18,7 @@ const ProgressIndicator = ({ sections, iconSize = '1.2rem', position = 'left' })
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5 // 50% of the section is visible
+      threshold: 0.3 // تنظیم حساسیت به مقدار پایین‌تر
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -47,6 +47,12 @@ const ProgressIndicator = ({ sections, iconSize = '1.2rem', position = 'left' })
   }, [sections]);
 
   const handleClick = (id) => {
+    setActiveSection(id);
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleTouch = (id) => {
+    setActiveSection(id);
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
   };
 
@@ -61,9 +67,10 @@ const ProgressIndicator = ({ sections, iconSize = '1.2rem', position = 'left' })
         <Dot
           key={index}
           onClick={() => handleClick(section.id)}
+          onTouchStart={() => handleTouch(section.id)}
           isActive={activeSection === section.id}
           initial={{ scale: 1 }}
-          animate={{ scale: activeSection === section.id ? 1.2 : 1 }} // انیمیشن تغییر اندازه برای دایره فعال
+          animate={{ scale: activeSection === section.id ? 1.2 : 1 }}
           transition={{ duration: 0.3 }}
         >
           <IconContainer style={{ fontSize: iconSize }}>
@@ -79,10 +86,10 @@ export default ProgressIndicator;
 
 const IndicatorContainer = styled(motion.div)`
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.7); /* Low opacity black background */
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 0.5rem;
-  border-top-right-radius: 20px; /* Rounded corner top right */
-  border-bottom-right-radius: 20px; /* Rounded corner bottom right */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
   ${(props) => (props.position === 'left' ? 'left: 0;' : 'right: 20px;')}
   top: 30%;
   transform: translateY(-50%);
@@ -112,8 +119,13 @@ const Dot = styled(motion.div)`
   box-shadow: ${(props) => (props.isActive ? '0 0 10px 5px rgba(1, 190, 150, 0.5)' : 'none')};
   transition: background-color 0.3s, color 0.3s;
 
-  &:hover {
-    background-color: #028f75;
+ 
+
+  &:focus,
+  &:active {
+    outline: none;
+    background-color: #f0ab0c;
+    box-shadow: 0 0 10px 5px rgba(1, 190, 150, 0.5);
   }
 
   @media (max-width: 768px) {

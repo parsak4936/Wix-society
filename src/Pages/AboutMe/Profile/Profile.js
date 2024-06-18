@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 export default function Profile() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const waveVariants = {
     initial: { opacity: 0 },
@@ -29,7 +29,7 @@ export default function Profile() {
 
   return (
     <ProfileContainer>
-      <ProfileInfo>
+      <ProfileInfo lang={i18n.language}>
         <h1>
           {t("Hello!")} <br /> {t("I'm")}{" "}
           <motion.span
@@ -51,10 +51,10 @@ export default function Profile() {
             {t("Book worm and science nerd")}
           </span>
         </h1>
-        <ProfileDescription>
+        <ProfileDescription lang={i18n.language}>
           <p>
             {t(
-              "Welcome! I'm Parsa, a product designer and Webflow developer. I intertwine my love for literature, art, and technology to craft unique digital experiences. I’m passionate about data science, storytelling, travel, and creating impactful content."
+              "With a specialized focus in computer engineering, I have dedicated the past two years to mastering React JS/ Native. I blend my passions for literature, art, and technology to create distinctive digital experiences. My journey is driven by an insatiable curiosity and a commitment to exploring and demystifying the complexities of the digital world.."
             )}
           </p>
 
@@ -71,23 +71,24 @@ export default function Profile() {
                 ease: "easeInOut",
               }}
             />
-            <p>
-              {t("Based in")}{" "}
-              <span className="highlight-text">{t("Bangladesh")}</span>
+            <SmallProfileText lang={i18n.language}>
+              {t("based in ,")}{" "}
+              <span className="highlight-text">{t("Italy")}</span>
               <br />
-              {t("I'm also a")}{" "}
-              <span className="highlight-text">{t("Webflow developer")}</span>.
-            </p>
+              {t("with a focus onfront-end development and graphic design")}{" "}
+              <span className="highlight-text">{t("And obsessed with Data Analysis ")}</span>.
+            </SmallProfileText>
           </SmallImageSection>
         </ProfileDescription>
       </ProfileInfo>
 
       <ProfileImage>
         <img src={Profileimage1} alt={t("Profile")} />
-        <Experience>
+        <Experience lang={i18n.language}>
           <h2>{t("Content creator")}</h2>
-          <p>{t("Web Developer")}</p>
           <p>{t("Data Science")}</p>
+
+          <p>{t("Web Developer")}</p>
 
           <Line />
           <Social>
@@ -126,14 +127,13 @@ export default function Profile() {
 }
 
 const ProfileContainer = styled.div`
-  direction: ltr; /* اضافه کردن direction: ltr */
-
+  direction: ltr;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 20px;
-  gap: 20px; /* Add gap between items */
+  gap: 20px;
 
   @media screen and (min-width: 998px) {
     flex-direction: row;
@@ -152,12 +152,12 @@ const ProfileImage = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  flex: 1; /* Add flex property */
+  flex: 1;
 
   img {
-    width: 100%; /* Make image responsive */
-    max-width: 20rem; /* Set maximum width */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
     border-radius: 10%;
     animation: wave1 3s infinite alternate, wave2 4s infinite alternate,
       wave3 5s infinite alternate;
@@ -171,15 +171,16 @@ const ProfileImage = styled.div`
 const Experience = styled.div`
   text-align: center;
   margin-top: 1rem;
-
   h2 {
     font-size: 1.5rem;
     margin: 0;
+    text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
   }
 
   p {
     font-size: 1rem;
     margin: 0;
+    text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
   }
 `;
 
@@ -193,17 +194,13 @@ const Line = styled.div`
 const ProfileInfo = styled.div`
   max-width: 100%;
   padding: 20px;
-
-  body.lang-fa  {
-    direction: rtl;
-    text-align: right;
-  }
   margin: 20px;
-  flex: 1; /* Add flex property */
+  flex: 1;
 
   h1 {
     padding-left: 20px;
     margin: 20px;
+    text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
   }
 
   @media screen and (min-width: 1000px) {
@@ -215,17 +212,9 @@ const ProfileInfo = styled.div`
 
 const ProfileDescription = styled.div`
   padding: 20px;
-body.lang-fa p,
-body.lang-fa h1,
-body.lang-fa h2,
-body.lang-fa h3,
-body.lang-fa h4,
-body.lang-fa h5,
-body.lang-fa h6 {
-  direction: rtl;
-  text-align: right;
-}
+  line-height: 1.8;
   margin: 20px;
+  text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
 `;
 
 const BackgroundShape = styled.div`
@@ -238,7 +227,7 @@ const BackgroundShape = styled.div`
 const SmallImageSection = styled.div`
   display: flex;
   align-items: center;
-
+  line-height: 1.8;
   margin-top: 20px;
   position: relative;
 
@@ -251,9 +240,22 @@ const SmallImageSection = styled.div`
     animation: wave1 3s infinite alternate, wave3 5s infinite alternate;
   }
 
-  p {
-    margin: 0;
-    font-size: 1rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    img {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+`;
+
+const SmallProfileText = styled.p`
+  margin: 0;
+  font-size: 1rem;
+  text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
+  @media screen and (max-width: 768px) {
+    text-align: center;
   }
 `;
 

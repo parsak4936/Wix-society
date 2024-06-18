@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import HeaderLogo from "../../Assets/Logo/Logo1.png";
 import { motion } from "framer-motion";
- import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [isInitialAnimationDone, setIsInitialAnimationDone] = useState(false);
   const [bar, setBar] = useState(false);
-  const location = useLocation(); // گرفتن مسیر فعلی
-  const { t } = useTranslation();
+  const location = useLocation();
+  const { t, i18n } = useTranslation();
 
   const initialAnimation = {
     hidden: { x: "-100%", opacity: 0, rotate: 0 },
@@ -32,33 +32,37 @@ const Header = () => {
     }
   }, [isInitialAnimationDone]);
 
-  
+  const handleLinkClick = () => {
+    setBar(false);
+  };
 
   return (
-    <Container bar={bar}>
+    <Container bar={bar} lang={i18n.language}>
       <Logo>
-        <motion.span
-          className="green"
-          initial="hidden"
-          animate="visible"
-          variants={initialAnimation}
-          transition={{ duration: 1 }}
-          onAnimationComplete={() => setIsInitialAnimationDone(true)}
-        >
-          <motion.img
-            src={HeaderLogo}
-            alt="BigCo Inc. logo"
-            style={{ height: "60px" }}
-            animate={isInitialAnimationDone ? repeatAnimation : {}}
-            transition={{
-              duration: 8,
-              repeat: isInitialAnimationDone ? Infinity : 0,
-              repeatType: "loop",
-            }}
-          />
-        </motion.span>
+        <StyledLink to="/" onClick={handleLinkClick}>
+          <motion.span
+            className="green"
+            initial="hidden"
+            animate="visible"
+            variants={initialAnimation}
+            transition={{ duration: 1 }}
+            onAnimationComplete={() => setIsInitialAnimationDone(true)}
+          >
+            <motion.img
+              src={HeaderLogo}
+              alt="BigCo Inc. logo"
+              style={{ height: "60px" }}
+              animate={isInitialAnimationDone ? repeatAnimation : {}}
+              transition={{
+                duration: 8,
+                repeat: isInitialAnimationDone ? Infinity : 0,
+                repeatType: "loop",
+              }}
+            />
+          </motion.span>
+        </StyledLink>
         <span>
-          <StyledLink to="/" className="important">
+          <StyledLink to="/" className="important" onClick={handleLinkClick}>
             {t("WIXLOOP")}
           </StyledLink>
         </span>
@@ -69,6 +73,7 @@ const Header = () => {
           <StyledLink
             to="/"
             className={location.pathname === "/" ? "active" : ""}
+            onClick={handleLinkClick}
           >
             {t("Home")}
           </StyledLink>
@@ -77,6 +82,7 @@ const Header = () => {
           <StyledLink
             to="/archive"
             className={location.pathname === "/archive" ? "active" : ""}
+            onClick={handleLinkClick}
           >
             {t("archive")}
           </StyledLink>
@@ -85,6 +91,7 @@ const Header = () => {
           <StyledLink
             to="/aboutme"
             className={location.pathname === "/aboutme" ? "active" : ""}
+            onClick={handleLinkClick}
           >
             {t("About Me")}
           </StyledLink>
@@ -101,27 +108,29 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
-  direction: ltr; /* اضافه کردن direction: ltr */
+  direction: ${(props) => (props.lang === "fa" ? "rtl" : "ltr")};
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the header */
-  gap: 40rem;
-  width: 100%;
-  margin: 0 auto;
+  justify-content: ${(props) => (props.lang === "fa" ? "flex-start" : "space-between")};
+  gap: ${(props) => (props.lang === "fa" ? "2rem" : "20rem")};
+
+  width: 80%;
+    margin: ${(props) => (props.lang === "fa" ? " 0px 15% 20% 10%" : "0px 50px 10% 10%")};
+
+  
   padding: 1.5rem 0;
   position: absolute;
   z-index: 10;
-  background: none; /* No background */
+  background: none;
 
   .bars {
     display: none;
   }
   @media (max-width: 1024px) {
-    gap: 9rem;
+    gap: ${(props) => (props.lang === "fa" ? "3rem" : "4rem")};
   }
 
   @media (max-width: 640px) {
- 
     .bars {
       width: 40px;
       color: black !important;
@@ -137,13 +146,11 @@ const Container = styled.div`
         width: 100%;
         height: 2px;
         background-color: ${(props) => (props.bar ? "#000" : "#fff")};
-
         transition: all 400ms ease-in-out;
         :before,
         :after {
           content: "";
           width: 100%;
-
           height: 2px;
           background-color: ${(props) => (props.bar ? "#000" : "#fff")};
           position: absolute;
@@ -158,7 +165,6 @@ const Container = styled.div`
 
         :after {
           z-index: 10;
-
           transform: ${(props) =>
             props.bar ? "rotate(-45deg)" : "translateY(-10px)"};
           transition: all 400ms ease-in-out;
@@ -168,30 +174,17 @@ const Container = styled.div`
   }
 
   @media (max-width: 385px) {
-    gap: 2rem;
-  }
-`;
-
-const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  span {
-    font-size: 1.8rem;
-  }
-
-  h1 {
-    font-weight: 600;
-    font-size: 1.2rem;
+    gap: ${(props) => (props.lang === "fa" ? "1rem" : "2rem")};
   }
 `;
 
 const Nav = styled.div`
   color: #fff;
+  display: flex;
+  align-items: center;
 
   @media (max-width: 640px) {
     position: fixed;
-    display: flex;
     flex-direction: column;
     background-color: #f0f0f0;
     inset: 0;
@@ -207,18 +200,17 @@ const Nav = styled.div`
   }
 
   span {
-    margin-left: 1rem;
+    margin-left: ${(props) => (props.lang === "fa" ? "1rem" : "2rem")};
+    margin-right: ${(props) => (props.lang === "fa" ? "0" : "1rem")};
 
-    /* استایل مخصوص برای زبان فارسی */
     body.lang-fa & {
       @media (min-width: 641px) {
-        margin-left: 2rem; /* فاصله بیشتر بین لینک‌ها در زبان فارسی */
+        margin-left: ${(props) => (props.lang === "fa" ? "1rem" : "2rem")};
       }
     }
 
     a {
-      color: ${(props) =>
-        props.bar ? "#000" : "#fff"} !important; /* رنگ لینک‌ها در حالت لپ‌تاپ و موبایل */
+      color: ${(props) => (props.bar ? "#000" : "#fff")} !important;
       text-decoration: none !important;
       font-weight: 400 !important;
       position: relative !important;
@@ -247,15 +239,29 @@ const Nav = styled.div`
       }
 
       &.active {
-        color: #01be96 !important; /* رنگ متفاوت برای لینک فعال */
-        font-weight: bold !important; /* وزن متفاوت برای لینک فعال */
+        color: #01be96 !important;
+        font-weight: bold !important;
       }
     }
   }
 `;
 
- 
 
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  span {
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+`;
+
+ 
 const StyledLink = styled(Link)`
   color: white !important;
   text-decoration: none !important;

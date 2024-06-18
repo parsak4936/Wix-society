@@ -24,12 +24,12 @@ const LanguageSwitcher = ({ position }) => {
         <LanguageButton
           key={lang.code}
           onClick={() => changeLanguage(lang.code)}
-          active={currentLanguage === lang.code}
+          isActive={currentLanguage === lang.code} // تغییر نام ویژگی
           initial={{ scale: 1 }}
           animate={{ scale: currentLanguage === lang.code ? 1.1 : 1 }} // انیمیشن تغییر اندازه برای دکمه فعال
           transition={{ duration: 0.3 }}
         >
-          <IconContainer active={currentLanguage === lang.code}>
+          <IconContainer isActive={currentLanguage === lang.code}> {/* تغییر نام ویژگی */}
             {lang.name}
           </IconContainer>
         </LanguageButton>
@@ -62,7 +62,7 @@ const SwitcherContainer = styled(motion.div)`
 const LanguageButton = styled(motion.button)`
   width: 40px;
   height: 40px;
-  background-color: ${(props) => (props.active ? '#f0ab0c' : '#01be96')};
+  background-color: ${(props) => (props.isActive ? '#f0ab0c' : '#01be96')}; // تغییر نام ویژگی
   border-radius: 50%;
   margin: 10px 0;
   cursor: pointer;
@@ -72,7 +72,7 @@ const LanguageButton = styled(motion.button)`
   justify-content: center;
   color: #fff !important;
   font-size: 1.2rem !important;
-  box-shadow: ${(props) => (props.active ? '0 0 10px 5px rgba(1, 190, 150, 0.5)' : 'none')};
+  box-shadow: ${(props) => (props.isActive ? '0 0 10px 5px rgba(1, 190, 150, 0.5)' : 'none')}; // تغییر نام ویژگی
 
   @media (max-width: 768px) {
     width: 30px;
@@ -82,7 +82,7 @@ const LanguageButton = styled(motion.button)`
 `;
 
 const IconContainer = styled.div`
-  background-color: ${(props) => (props.active ? "#F0AB0C" : "#01be96")};
+  background-color: ${(props) => (props.isActive ? "#F0AB0C" : "#01be96")}; // تغییر نام ویژگی
   color: white;
   border-radius: 50%;
   padding: 0.5rem;
