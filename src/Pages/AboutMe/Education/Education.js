@@ -2,19 +2,24 @@ import React, { useState, useEffect, useCallback } from "react";
 import Carousel from "./Carousel";
 import ContentBox from "./ContentBox";
 import styled from "styled-components";
-import EducationData from "./EducationData"; // اضافه کردن داده‌ها
+import useEducationData from "./EducationData"; // تغییر در import
+import { useTranslation } from "react-i18next"; // اضافه کردن ترجمه
+
 const Education = () => {
-  const [selectedCard, setSelectedCard] = useState(EducationData[0]); // انتخاب دیفالت دایره اول
+  const educationData = useEducationData();
+
+  const { t } = useTranslation();
+  const [selectedCard, setSelectedCard] = useState(educationData[0]); // انتخاب دیفالت دایره اول
   const [currentIndex, setCurrentIndex] = useState(0); // اضافه کردن اندیس فعلی
   const [key, setKey] = useState(0); // اضافه کردن کلید یکتا برای هر دایره
 
   const handleNextClick = useCallback(() => {
-    const nextIndex = (currentIndex + 1) % EducationData.length;
-    setSelectedCard(EducationData[nextIndex]);
+    const nextIndex = (currentIndex + 1) % educationData.length;
+    setSelectedCard(educationData[nextIndex]);
     setCurrentIndex(nextIndex);
     setKey(key + 1); // به روز رسانی کلید یکتا
-  }, [currentIndex, key]);
-
+  }, [currentIndex, key, educationData]);
+  
   useEffect(() => {
     const interval = setInterval(() => {
       handleNextClick();
@@ -27,12 +32,12 @@ const Education = () => {
     setCurrentIndex(index);
     setKey(key + 1); // به روز رسانی کلید یکتا
   };
+
   return (
     <Container>
-       
-       <TitleContainer>
-        <span className="green">Education</span>
-        <h1>All of the certifications and graduations</h1>
+      <TitleContainer>
+        <span className="green">{t("Education")}</span>
+        <h1>{t("All of the certifications and graduations")}</h1>
       </TitleContainer>
       <Carousel onCardClick={handleCardClick} currentIndex={currentIndex} />
       {selectedCard && <ContentBox key={key} selectedCard={selectedCard} />}
@@ -49,13 +54,12 @@ const Container = styled.div`
   text-align: center;
 `;
 
- 
 const TitleContainer = styled.div`
   text-align: center;
   margin-bottom: 1rem;
 
   span {
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     color: #01be96;
   }

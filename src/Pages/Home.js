@@ -1,14 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-import Header from "../components/Banner/Header";
-import ProfComponent from "../components/Banner/ProfComponent";
-import headervideo from "../Assets/backgrounds/Header5.mp4";
-import "./Home.css";
- 
+import React from 'react';
+import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import ProfComponent from '../components/Banner/ProfComponent';
+import headervideo from '../Assets/backgrounds/Header5.mp4';
+import './Home.css';
+
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <Container>
-       <Section id="section-1" className="section-1">
+      <Section id="section-1" className="section-1">
         <VideoWrapper className="video-wrapper">
           <Overlay className="overlay"></Overlay>
           <video
@@ -19,12 +21,11 @@ const Home = () => {
             onEnded={(e) => e.target.play()}
           >
             <source src={headervideo} type="video/mp4" />
-            Your browser does not support the video tag.
+            {t('Your browser does not support the video tag.')}
           </video>
           <HeaderWrapper>
-            <Header />
             <ProfComponent />
-          </HeaderWrapper>
+           </HeaderWrapper>
         </VideoWrapper>
       </Section>
     </Container>
@@ -33,8 +34,13 @@ const Home = () => {
 
 export default Home;
 
+
+
+
 const Container = styled.div`
   position: relative;
+    direction: ltr; /* اضافه کردن direction: ltr */
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -72,6 +78,7 @@ const Overlay = styled.div`
 
 const HeaderWrapper = styled.div`
   position: relative;
+  margin-top:90px;
   z-index: 2;
   display: flex;
   flex-direction: column;

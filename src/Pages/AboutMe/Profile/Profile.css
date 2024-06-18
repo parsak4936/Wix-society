@@ -1,3 +1,8 @@
+body.lang-fa {
+  direction: rtl;
+  text-align: right;
+}
+
 .profile-image {
   max-width: 100%;
   height: auto;

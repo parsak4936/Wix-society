@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import {  FaGraduationCap, FaEnvelope, FaUserFriends, FaUserTie } from "react-icons/fa";
+import { FaGraduationCap, FaEnvelope, FaUserFriends, FaUserTie, FaCodeBranch } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { FaCodeFork } from "react-icons/fa6";
+
 const iconMap = {
-  home: <FaUserTie  />,
+  home: <FaUserTie />,
   education: <FaGraduationCap />,
-  clients: <FaUserFriends   />,
-  skills: <FaCodeFork  />,
-   Contact: <FaEnvelope />,
-  // Add more icons as needed
+  clients: <FaUserFriends />,
+  skills: <FaCodeBranch />,
+  contact: <FaEnvelope />,
 };
 
 const ProgressIndicator = ({ sections, iconSize = '1.2rem', position = 'left' }) => {
@@ -63,6 +62,9 @@ const ProgressIndicator = ({ sections, iconSize = '1.2rem', position = 'left' })
           key={index}
           onClick={() => handleClick(section.id)}
           isActive={activeSection === section.id}
+          initial={{ scale: 1 }}
+          animate={{ scale: activeSection === section.id ? 1.2 : 1 }} // انیمیشن تغییر اندازه برای دایره فعال
+          transition={{ duration: 0.3 }}
         >
           <IconContainer style={{ fontSize: iconSize }}>
             {iconMap[section.icon]}
@@ -94,7 +96,7 @@ const IndicatorContainer = styled(motion.div)`
   }
 `;
 
-const Dot = styled.div`
+const Dot = styled(motion.div)`
   width: 40px;
   height: 40px;
   background-color: ${(props) => (props.isActive ? '#f0ab0c' : '#01be96')};
@@ -105,9 +107,10 @@ const Dot = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 1.2rem;
+  color: #fff !important;
+  font-size: 1.2rem !important;
   box-shadow: ${(props) => (props.isActive ? '0 0 10px 5px rgba(1, 190, 150, 0.5)' : 'none')};
+  transition: background-color 0.3s, color 0.3s;
 
   &:hover {
     background-color: #028f75;
@@ -116,7 +119,7 @@ const Dot = styled.div`
   @media (max-width: 768px) {
     width: 30px;
     height: 30px;
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
 `;
 
@@ -124,9 +127,11 @@ const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: inherit !important;
+  color: white !important;
 
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
 `;
 

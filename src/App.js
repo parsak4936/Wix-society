@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import RandomIcon from "./components/RandomIcon/RandomIcon ";
@@ -6,11 +6,15 @@ import ScrollUp from "./components/ScrollUp/ScrollUp";
 import Aboutme from "./Pages/AboutMe/Aboutme";
 import Home from "./Pages/Home";
 import Archive from "./Pages/Archive/Archive";
+import "./Pages/Home.css";
 
 
 import { AudioProvider } from "./Context/AudioContext"; 
 import GlobalAudioPlayer from "./components/AudioPlayer/GlobalAudioPlayer";
-import { createGlobalStyle } from "styled-components";
+import  { createGlobalStyle } from "styled-components";
+import Header from "./components/Banner/Header";
+import LanguageSwitcher from "./components/translator/LanguageSwitcher ";
+import { useTranslation } from "react-i18next";
 const GlobalStyle = createGlobalStyle`
   @keyframes wave1 {
     0% { box-shadow: 0 0 0 0 rgba(1, 190, 150, 0.4); }
@@ -67,6 +71,8 @@ const AnimatedRoutes = () => {
   return (
     <>
       <GlobalStyle />
+      <LanguageSwitcher position="right" />
+
       <motion.div
         className="scroll-progress-bar"
         style={{ scaleX: scrollYProgress }}
@@ -131,9 +137,34 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const language = i18n.language;
+    document.body.classList.remove('lang-en', 'lang-fa', 'lang-ru','lang-it');
+    if (language.startsWith('en')) {
+      document.body.classList.add('lang-en');
+    } else if (language.startsWith('fa')) {
+      document.body.classList.add('lang-fa');
+    } else if (language.startsWith('it')) {
+      document.body.classList.add('lang-it');
+    } else if (language.startsWith('ru')) {
+      document.body.classList.add('lang-ru');
+    }
+  }, [i18n.language]);
+
   return (
+    
     <AudioProvider>
-      <BrowserRouter>
+     
+       <BrowserRouter>
+        
+      
+          
+           
+          <Header />
+          
+       
         <RandomIcon />
         <ScrollUp />
         <GlobalAudioPlayer />
@@ -144,3 +175,4 @@ const App = () => {
 };
 
 export default App;
+ 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const animationVariants = {
   fadeIn: {
@@ -16,11 +17,12 @@ const animationVariants = {
 };
 
 const getRandomAnimation = () => {
-  const animations = ["slideInFromRight", "slideInFromLeft", "slideInFromBottom"];
+  const animations = ["fadeIn", "zoomIn"];
   return animations[Math.floor(Math.random() * animations.length)];
 };
 
 const ContentBox = ({ selectedCard }) => {
+  const { t } = useTranslation();
   const randomAnimation = getRandomAnimation();
 
   return (
@@ -38,7 +40,7 @@ const ContentBox = ({ selectedCard }) => {
         <ProfileMask>
           <motion.img 
             src={selectedCard.avatar} 
-            alt="Profile"
+            alt={t("Profile")}
             initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             whileHover={{ scale: 1.1 }}
@@ -52,12 +54,12 @@ const ContentBox = ({ selectedCard }) => {
         animate="visible"
         variants={animationVariants.fadeIn}
       >
-        <Title>{selectedCard.title}</Title>
-        <SchoolYear>{selectedCard.school} - {selectedCard.year}</SchoolYear>
+        <Title>{t(selectedCard.title)}</Title>
+        <SchoolYear>{t(selectedCard.school)} - {t(selectedCard.year)}</SchoolYear>
         <Details>
-          <p>{selectedCard.details}</p>
-          {selectedCard.Address && <p><strong>Address:</strong> {selectedCard.Address}</p>}
-          {selectedCard.grade && <p><strong>Grade:</strong> {selectedCard.grade}</p>}
+          <p>{t(selectedCard.details)}</p>
+          {selectedCard.Address && <p><strong>{t("Address")}:</strong> {t(selectedCard.Address)}</p>}
+          {selectedCard.grade && <p><strong>{t("Grade")}:</strong> {t(selectedCard.grade)}</p>}
         </Details>
         <LinksContainer
           as={motion.div}
@@ -65,10 +67,10 @@ const ContentBox = ({ selectedCard }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {selectedCard.Website && <Button href={selectedCard.Website} target={selectedCard.Website} rel="noopener noreferrer">Website</Button>}
-          {selectedCard.EECLinks && <Button href={selectedCard.EECLinks} target={selectedCard.EECLinks} rel="noopener noreferrer">Entry Exam Certificate</Button>}
-          {selectedCard.Certification && <Button href={selectedCard.Certification} target={selectedCard.Certification} rel="noopener noreferrer">Certification</Button>}
-          {selectedCard.trans && <Button href={selectedCard.trans} target={selectedCard.trans} rel="noopener noreferrer">Transcripts</Button>}
+          {selectedCard.Website && <Button href={selectedCard.Website} target="_blank" rel="noopener noreferrer">{t("Website")}</Button>}
+          {selectedCard.EECLinks && <Button href={selectedCard.EECLinks} target="_blank" rel="noopener noreferrer">{t("Entry Exam Certificate")}</Button>}
+          {selectedCard.Certification && <Button href={selectedCard.Certification} target="_blank" rel="noopener noreferrer">{t("Certification")}</Button>}
+          {selectedCard.trans && <Button href={selectedCard.trans} target="_blank" rel="noopener noreferrer">{t("Transcripts")}</Button>}
         </LinksContainer>
       </ContentDetails>
     </ContentContainer>
@@ -150,27 +152,25 @@ const ContentDetails = styled(motion.div)`
 const Title = styled.h3`
   font-size: 1.8rem;
   font-weight: bold;
-    color:#fff;
-
-   margin: 10px 0;
+  color: #fff;
+  margin: 10px 0;
 `;
 
 const SchoolYear = styled.p`
   font-size: 1.2rem;
   font-weight: bold;
   margin: 10px 0;
-      color:#01be96;
-
+  color: #01be96;
 `;
 
 const Details = styled.div`
   text-align: left;
   width: 100%;
-    
 
   p {
     margin: 10px 0;
-color:#fff;  }
+    color: #fff;
+  }
 `;
 
 const LinksContainer = styled(motion.div)`

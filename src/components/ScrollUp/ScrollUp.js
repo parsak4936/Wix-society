@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import "./ScrollUp.css";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const ScrollUp = () => {
   const [showScroll, setShowScroll] = useState(false);
@@ -28,20 +28,13 @@ const ScrollUp = () => {
 
   return (
     <motion.div
-    className="scroll-up"
-    animate={{ opacity: showScroll ? 1 : 0, y: showScroll ? 0 : 50 }}
-    
-    transition={{ duration: 0.5 }}
-    onClick={scrollTop}
-     
-  >
-     
+      className="scroll-up"
+      animate={{ opacity: showScroll ? 1 : 0, y: showScroll ? 0 : 50 }}
+      transition={{ duration: 0.5 }}
+      onClick={scrollTop}
+    >
       <FaArrowUp />
-    
-  </motion.div>
-
-
-   
+    </motion.div>
   );
 };
 

@@ -15,9 +15,13 @@
   align-items: center;
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
+  animation: wave44 3s infinite alternate;
+
 }
 
 .scroll-up.show {
   opacity: 1;
+  animation: wave44 3s infinite alternate;
+
 }
  

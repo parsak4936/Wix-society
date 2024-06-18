@@ -3,15 +3,18 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLink } from 'react-icons/fa';
 import ProjectData from './ProjectData';
-
+import { useTranslation } from 'react-i18next';
+  
 const Projects = ({ searchQuery, sortOrder }) => {
+  const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = useState([]);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const projectData = ProjectData();
 
   useEffect(() => {
-    let filteredData = ProjectData.filter(item =>
-      item.title?.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      item.description?.toLowerCase().includes(searchQuery.toLowerCase())
+    let filteredData = projectData.filter(item =>
+      t(item.title)?.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      t(item.description)?.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     if (sortOrder === 'newest') {
@@ -21,14 +24,14 @@ const Projects = ({ searchQuery, sortOrder }) => {
     }
 
     setVisibleItems(filteredData.slice(0, 6));
-  }, [searchQuery, sortOrder]);
+  }, [searchQuery, sortOrder, t,projectData]);
 
   const loadMoreItems = useCallback(() => {
     setVisibleItems((prevItems) => [
       ...prevItems,
-      ...ProjectData.slice(prevItems.length, prevItems.length + 6),
+      ...projectData.slice(prevItems.length, prevItems.length + 6),
     ]);
-  }, []);
+  }, [projectData]);
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -56,34 +59,34 @@ const Projects = ({ searchQuery, sortOrder }) => {
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <ProjectImage src={item.image} alt={item.title} />
+            <ProjectImage src={item.image} alt={t(item.title)} />
             <ProjectContent>
               <ProjectHeader>
-                <ProjectTitle>{item.title}</ProjectTitle>
+                <ProjectTitle>{t(item.title)}</ProjectTitle>
                 <ProjectLink href={item.link} target="_blank">
                   <FaLink />
                 </ProjectLink>
               </ProjectHeader>
-              <ProjectDescription>{item.description}</ProjectDescription>
+              <ProjectDescription>{t(item.description)}</ProjectDescription>
               <ProjectDates>
-                <StartDate>Start Date: {item.startDate}</StartDate>
-                <EndDate>End Date: {item.endDate}</EndDate>
+                <StartDate>{t("Start Date")}: {item.startDate}</StartDate>
+                <EndDate>{t("End Date")}: {item.endDate}</EndDate>
               </ProjectDates>
               <ProjectStats>
                 <StatItem>
-                  <StatLabel>Total Fundraising:</StatLabel>
+                  <StatLabel>{t("Total Fundraising")}:</StatLabel>
                   <StatValue>${item.totalFundraising.toLocaleString()}</StatValue>
                 </StatItem>
                 <StatItem>
-                  <StatLabel>Total Funds Raised:</StatLabel>
+                  <StatLabel>{t("Total Funds Raised")}:</StatLabel>
                   <StatValue>${item.totalFundsRaised.toLocaleString()}/{item.totalFundraising.toLocaleString()}</StatValue>
                 </StatItem>
                 <StatItem>
-                  <StatLabel>Max Allocation:</StatLabel>
+                  <StatLabel>{t("Max Allocation")}:</StatLabel>
                   <StatValue>${item.maxAllocation}</StatValue>
                 </StatItem>
                 <StatItem>
-                  <StatLabel>Number of People Funded:</StatLabel>
+                  <StatLabel>{t("Number of People Funded")}:</StatLabel>
                   <StatValue>{item.numberOfPeopleFunded.toLocaleString()}</StatValue>
                 </StatItem>
               </ProjectStats>
@@ -108,9 +111,7 @@ const ProjectsContainer = styled.div`
 const ProjectCard = styled(motion.div)`
   background: #1c1c1c;
   border-radius: 10px;
-
-      animation: wave44 3s infinite alternate;
-
+  animation: wave44 3s infinite alternate;
   overflow: hidden;
   max-width: 300px;
   display: flex;

@@ -5,26 +5,22 @@ import { FaLinkedin, FaTelegramPlane, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import profileimage from "../../Assets/Profile/WixProfile2.jpeg";
 import { AudioContext } from "../../Context/AudioContext";
-// ProfComponent.js
 import { motion } from "framer-motion";
-import italy from '../../Assets/Icons/italy.png'
-import iran from '../../Assets/Icons/iran.png'
-import infj from '../../Assets/Icons/INFJ.png'
-import gemini from '../../Assets/Icons/gemini2.png'
-import email from '../../Assets/Icons/communication.png'
-
-
-import hungary from '../../Assets/Icons/hungary.png'
-
-import ukraine from '../../Assets/Icons/ukraine.png'
-
-import turkey from '../../Assets/Icons/turkey.png'
-
-import circle from '../../Assets/Icons/circle.png'
-import russia from '../../Assets/Icons/russia.png'
+import italy from "../../Assets/Icons/italy.png";
+import iran from "../../Assets/Icons/iran.png";
+import infj from "../../Assets/Icons/INFJ.png";
+import gemini from "../../Assets/Icons/gemini2.png";
+import email from "../../Assets/Icons/communication.png";
+import hungary from "../../Assets/Icons/hungary.png";
+import ukraine from "../../Assets/Icons/ukraine.png";
+import turkey from "../../Assets/Icons/turkey.png";
+import circle from "../../Assets/Icons/circle.png";
+import russia from "../../Assets/Icons/russia.png";
+import { useTranslation } from "react-i18next";
 
 const ProfComponent = () => {
   const { canvasRef } = useContext(AudioContext);
+  const { t } = useTranslation();
 
   return (
     <Container id="home">
@@ -37,7 +33,7 @@ const ProfComponent = () => {
           <ProfileMask>
             <motion.img
               src={profileimage}
-              alt="Profile"
+              alt={t("Profile")}
               initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               whileHover={{ scale: 1.1 }}
@@ -87,7 +83,7 @@ const ProfComponent = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              Welcome to my Digital Haven,
+              {t("Welcome to my Digital Haven,")}
             </motion.h2>
           </Title>
           <Skills>
@@ -96,21 +92,21 @@ const ProfComponent = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <SkillButton>Data Scientist</SkillButton>
+              <SkillButton>{t("Data Scientist")}</SkillButton>
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, scale: [1, 1.2, 1] }}
               transition={{ duration: 0.5 }}
             >
-              <SkillButton>Content Creator</SkillButton>
+              <SkillButton>{t("Content Creator")}</SkillButton>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <SkillButton>Web Developer</SkillButton>
+              <SkillButton>{t("Web Developer")}</SkillButton>
             </motion.div>
           </Skills>
           <motion.div
@@ -120,106 +116,120 @@ const ProfComponent = () => {
           >
             <Description>
               <p>
-                where words weave tales and data dances.
-                <br /> Dive into my world of creations and adventures.
-                <br /> Explore the Archive to find my whole lifetime activities.
+                {t("where words weave tales and data dances.")} <br />{" "}
+                {t("Dive into my world of creations and adventures.")} <br />{" "}
+                {t("Explore the Archive to find my whole lifetime activities.")}
               </p>
             </Description>
             <Link to="/aboutme">
-              <LearnMoreButton>Learn More about me</LearnMoreButton>
+              <LearnMoreButton>{t("Learn More about me")}</LearnMoreButton>
             </Link>
           </motion.div>
         </Content>
       </MiddleColumn>
       <RightColumn>
-      <h2>Personal Info</h2>
-      <Line />
+        <h2>{t("Personal Info")}</h2>
+        <Line />
 
-  <InfoText>
-    {[
-      {
-        text: "Jun , 12, 1999 (Gemini)",
-        icon: gemini,
-      },
-      {
-        text: "Wixloop.contact@gmail.com",
-        icon: email,
-      },
-      
-      {
-        text: "Born in Ghazvin - Iran",
-        icon: iran,
-      },
-      {
-        text: "Living in ME , Italy",
-        icon: italy,
-      },
-      {
-        text: " INFJ - A",
-        icon: infj,
-      },
-    ].map((info, index) => (
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: index * 0.2 }}
-        style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}
-      >
-        {typeof info === "string" ? (
-          <p>{info}</p>
-        ) : (
-          <>
-            <img src={info.icon} alt="Icon" style={{ width: '30px', marginRight: '8px' }} />
-            <p style={{ margin: 0 }}>{info.text}</p>
-          </>
-        )}
-      </motion.div>
-    ))}
-<h2>Favorite countries</h2>
-<Line />
-    <motion.div
-      className="favorite-countries"
-      style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, delay: 0.5 }}
-    >
-      {[ukraine, iran, italy, russia, hungary, circle, turkey].map((flag, index) => (
-        <img key={index} src={flag} alt={`Flag ${index}`} style={{ width: '30px' }} />
-      ))}
-    </motion.div>
-    <Social>
-      <div className="social-icons">
-        {[
-          {
-            href: "https://www.instagram.com/parsak.exe/",
-            icon: <AiOutlineInstagram />,
-          },
-          {
-            href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
-            icon: <FaLinkedin />,
-          },
-          { href: "https://t.me/Slihouette", icon: <FaTelegramPlane /> },
-          {
-            href: "https://www.youtube.com/channel/UC31aBZ8280jBRyEtk1pzzZg",
-            icon: <FaYoutube />,
-          },
-        ].map((social, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0, rotate: 180 }}
-            animate={{ opacity: 1, rotate: 0 }}
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+        <InfoText>
+          {[
+            {
+              text: t("Jun , 12, 1999 (Gemini)"),
+              icon: gemini,
+            },
+            {
+              text: t("Wixloop.contact@gmail.com"),
+              icon: email,
+            },
+            {
+              text: t("Born in Ghazvin - Iran"),
+              icon: iran,
+            },
+            {
+              text: t("Living in ME , Italy"),
+              icon: italy,
+            },
+            {
+              text: t("INFJ - A"),
+              icon: infj,
+            },
+          ].map((info, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "10px",
+              }}
+            >
+              {typeof info === "string" ? (
+                <p>{info}</p>
+              ) : (
+                <>
+                  <img
+                    src={info.icon}
+                    alt={t("Icon")}
+                    style={{ width: "30px", marginRight: "8px" }}
+                  />
+                  <p style={{ margin: 0 }}>{info.text}</p>
+                </>
+              )}
+            </motion.div>
+          ))}
+          <h2>{t("Favorite countries")}</h2>
+          <Line />
+          <motion.div
+            className="favorite-countries"
+            style={{ display: "flex", gap: "10px", marginBottom: "20px" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <a href={social.href}>{social.icon}</a>
-          </motion.span>
-        ))}
-      </div>
-    </Social>
-  </InfoText>
-</RightColumn>
+            {[ukraine, iran, italy, russia, hungary, circle, turkey].map(
+              (flag, index) => (
+                <img
+                  key={index}
+                  src={flag}
+                  alt={t(`Flag ${index}`)}
+                  style={{ width: "30px" }}
+                />
+              )
+            )}
+          </motion.div>
+          <Social>
+            <div className="social-icons">
+              {[
+                {
+                  href: "https://www.instagram.com/parsak.exe/",
+                  icon: <AiOutlineInstagram />,
+                },
+                {
+                  href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
+                  icon: <FaLinkedin />,
+                },
+                { href: "https://t.me/Slihouette", icon: <FaTelegramPlane /> },
+                {
+                  href: "https://www.youtube.com/channel/UC31aBZ8280jBRyEtk1pzzZg",
+                  icon: <FaYoutube />,
+                },
+              ].map((social, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, rotate: 180 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <a href={social.href}>{social.icon}</a>
+                </motion.span>
+              ))}
+            </div>
+          </Social>
+        </InfoText>
+      </RightColumn>
     </Container>
   );
 };
@@ -300,7 +310,7 @@ const RightColumn = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
-   @media (max-width: 840px) {
+  @media (max-width: 840px) {
     padding: 0;
   }
 `;
@@ -321,7 +331,7 @@ const InfoText = styled.div`
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
-        margin-top: 20px;
+    margin-top: 20px;
 
     img {
       width: 30px;
@@ -332,7 +342,6 @@ const InfoText = styled.div`
     }
   }
 `;
-
 
 const Profile = styled.div`
   display: flex;
@@ -391,7 +400,7 @@ const Title = styled.div`
 
   h1 {
     font-size: 2.5rem;
-    font-family: "Cinzel", serif;
+    font-family: 'Playfair Display', serif;
     letter-spacing: 2px;
     color: white;
   }
@@ -399,7 +408,7 @@ const Title = styled.div`
     font-size: 1rem;
     margin-top: 10px;
     margin-bottom: 10px;
-    font-family: "Cinzel", serif;
+    font-family: " Quicksand", serif;
     color: white;
   }
 `;

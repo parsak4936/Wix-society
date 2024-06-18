@@ -1,95 +1,81 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
- import ClientSlider from "./ClientSlider";
+import ClientSlider from "./ClientSlider";
 import Najafi from "../../Assets/refrences Image/Najafi.jpg";
 import Hadiseh from "../../Assets/refrences Image/Hadis.jpg";
 import Amiri from "../../Assets/refrences Image/AliAmiri.jpg";
 import styled from "styled-components";
-
-let clients = [
-  {
-    name: "Amir Hossein Najafi",
-    position: " CEO of Faviran company",
-    img_url: Najafi,
-    stars: 5,
-    disc: `"I had the pleasure of working with 
-    Parsa for three years, and during that time,
-    I was consistently impressed by their dedication 
-    and work ethic. They tackled every challenge with 
-    enthusiasm and a can-do attitude, and I would highly 
-    recommend them to any future employer."`,
-  },
-  {
-    name: "Hadiseh Pouesheikh",
-    position: "Literary creation expert at KPF ",
-    img_url: Hadiseh,
-    stars: 5,
-    disc: ` "As Parsa's teacher for nearly a decade,
-     I can say without reservation that they are one 
-     of the most creative, hard-working, and disciplined
-     individuals I've had the pleasure of instructing.
-     I'm confident that they will be an asset to any team lucky enough to have
-     them."`,
-  },
-  {
-    name: "Ali Amiri",
-    position: "Associate professor at ZNU ",
-    img_url: Amiri,
-    stars: 4,
-    disc: `"I had the privilege of supervising Parsa 
-    during their bachelor's degree, and I was consistently
-    impressed by their eagerness to take on new challenges
-    and their enthusiasm for learning. They were always
-    willing to go above and beyond what was expected of them,
-    and their dedication to their work was truly inspiring.
-        "`,
-  },
-];
-
-var settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  initialSlide: 0,
-  arrows: false,
-  responsive: [
-    {
-      breakpoint: 990,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        initialSlide: 2,
-      },
-    },
-    {
-      breakpoint: 530,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
+import { useTranslation } from "react-i18next";
 
 const Clients = () => {
+  const { t } = useTranslation();
   const arrowRef = useRef(null);
+  
+  let clients = [
+    {
+      name: t("Amir Hossein Najafi"),
+      position: t("CEO of Faviran company"),
+      img_url: Najafi,
+      stars: 5,
+      disc: t(`"I had the pleasure of working with Parsa for three years, and during that time, I was consistently impressed by their dedication and work ethic. They tackled every challenge with enthusiasm and a can-do attitude, and I would highly recommend them to any future employer."`),
+    },
+    {
+      name: t("Hadiseh Pouesheikh"),
+      position: t("Literary creation expert at KPF"),
+      img_url: Hadiseh,
+      stars: 5,
+      disc: t(`"As Parsa's teacher for nearly a decade, I can say without reservation that they are one of the most creative, hard-working, and disciplined individuals I've had the pleasure of instructing. I'm confident that they will be an asset to any team lucky enough to have them."`),
+    },
+    {
+      name: t("Ali Amiri"),
+      position: t("Associate professor at ZNU"),
+      img_url: Amiri,
+      stars: 4,
+      disc: t(`"I had the privilege of supervising Parsa during their bachelor's degree, and I was consistently impressed by their eagerness to take on new challenges and their enthusiasm for learning. They were always willing to go above and beyond what was expected of them, and their dedication to their work was truly inspiring."`),
+    },
+  ];
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 990,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 530,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <Container id="client">
-    
       <TitleContainer>
-        <span className="green">Recommendations</span>
-        <h1>What Do My Supervisors Say</h1>
+        <span className="green">{t("Recommendations")}</span>
+        <h1>{t("What Do My Supervisors Say")}</h1>
       </TitleContainer>
       <Testimonials>
         <Slider ref={arrowRef} {...settings}>

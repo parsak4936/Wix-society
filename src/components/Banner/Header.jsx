@@ -3,19 +3,21 @@ import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import HeaderLogo from "../../Assets/Logo/Logo1.png";
 import { motion } from "framer-motion";
+ import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [isInitialAnimationDone, setIsInitialAnimationDone] = useState(false);
   const [bar, setBar] = useState(false);
   const location = useLocation(); // گرفتن مسیر فعلی
+  const { t } = useTranslation();
 
   const initialAnimation = {
     hidden: { x: "-100%", opacity: 0, rotate: 0 },
-    visible: { x: "0%", opacity: 1, rotate: [0, 360] }
+    visible: { x: "0%", opacity: 1, rotate: [0, 360] },
   };
 
   const repeatAnimation = {
-    rotate: 360
+    rotate: 360,
   };
 
   useEffect(() => {
@@ -29,6 +31,8 @@ const Header = () => {
       return () => clearInterval(interval);
     }
   }, [isInitialAnimationDone]);
+
+  
 
   return (
     <Container bar={bar}>
@@ -49,27 +53,46 @@ const Header = () => {
             transition={{
               duration: 8,
               repeat: isInitialAnimationDone ? Infinity : 0,
-              repeatType: "loop"
+              repeatType: "loop",
             }}
           />
         </motion.span>
         <span>
-          <StyledLink to="/">WIXLOOP</StyledLink>
+          <StyledLink to="/" className="important">
+            {t("WIXLOOP")}
+          </StyledLink>
         </span>
       </Logo>
+
       <Nav bar={bar}>
         <span>
-          <StyledLink to="/" className={location.pathname === "/" ? "active" : ""}>Home</StyledLink>
+          <StyledLink
+            to="/"
+            className={location.pathname === "/" ? "active" : ""}
+          >
+            {t("Home")}
+          </StyledLink>
         </span>
         <span>
-          <StyledLink to="/archive" className={location.pathname === "/archive" ? "active" : ""}>archive</StyledLink>
+          <StyledLink
+            to="/archive"
+            className={location.pathname === "/archive" ? "active" : ""}
+          >
+            {t("archive")}
+          </StyledLink>
         </span>
         <span>
-          <StyledLink to="/aboutme" className={location.pathname === "/aboutme" ? "active" : ""}>About Me</StyledLink>
+          <StyledLink
+            to="/aboutme"
+            className={location.pathname === "/aboutme" ? "active" : ""}
+          >
+            {t("About Me")}
+          </StyledLink>
         </span>
       </Nav>
+
       <div onClick={() => setBar(!bar)} className="bars">
-        <div className={`bar ${bar ? 'active' : ''}`}></div>
+        <div className={`bar ${bar ? "active" : ""}`}></div>
       </div>
     </Container>
   );
@@ -78,62 +101,74 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
+  direction: ltr; /* اضافه کردن direction: ltr */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  max-width: 1280px;
-  width: 80%;
+  justify-content: center; /* Center the header */
+  gap: 40rem;
+  width: 100%;
   margin: 0 auto;
   padding: 1.5rem 0;
-  position: relative;
-  animation: header 500ms ease-in-out;
-  z-index: 100;
-  @media (max-width: 840px) {
-    width: 90%;
-  }
+  position: absolute;
+  z-index: 10;
+  background: none; /* No background */
+
   .bars {
     display: none;
   }
+  @media (max-width: 1024px) {
+    gap: 9rem;
+  }
+
   @media (max-width: 640px) {
+ 
     .bars {
       width: 40px;
+      color: black !important;
       height: 40px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0.5rem;
-      z-index: 100;
+      z-index: 10;
       .bar {
         position: absolute;
         width: 100%;
         height: 2px;
-        background-color: ${(props) => (props.bar ? "#fff" : "#fff")};
+        background-color: ${(props) => (props.bar ? "#000" : "#fff")};
+
         transition: all 400ms ease-in-out;
         :before,
         :after {
           content: "";
           width: 100%;
+
           height: 2px;
-          background-color: ${(props) => (props.bar ? "#fff" : "#fff")};
+          background-color: ${(props) => (props.bar ? "#000" : "#fff")};
           position: absolute;
         }
 
         :before {
-          z-index: 100;
+          z-index: 10;
           transform: ${(props) =>
             props.bar ? "rotate(45deg)" : "translateY(10px)"};
           transition: all 400ms ease-in-out;
         }
 
         :after {
-          z-index: 100;
+          z-index: 10;
+
           transform: ${(props) =>
             props.bar ? "rotate(-45deg)" : "translateY(-10px)"};
           transition: all 400ms ease-in-out;
         }
       }
     }
+  }
+
+  @media (max-width: 385px) {
+    gap: 2rem;
   }
 `;
 
@@ -153,6 +188,7 @@ const Logo = styled.div`
 
 const Nav = styled.div`
   color: #fff;
+
   @media (max-width: 640px) {
     position: fixed;
     display: flex;
@@ -167,48 +203,64 @@ const Nav = styled.div`
     height: ${(props) => (props.bar ? "100vh" : 0)};
     transition: height 400ms ease-in-out;
     overflow: hidden;
-    z-index: 100;
+    z-index: 10;
   }
+
   span {
     margin-left: 1rem;
+
+    /* استایل مخصوص برای زبان فارسی */
+    body.lang-fa & {
+      @media (min-width: 641px) {
+        margin-left: 2rem; /* فاصله بیشتر بین لینک‌ها در زبان فارسی */
+      }
+    }
+
     a {
-      color: ${(props) => (props.bar ? "#000" : "#fff")}; /* رنگ لینک‌ها در حالت لپ‌تاپ و موبایل */
-      text-decoration: none;
-      font-weight: 400;
-      position: relative;
+      color: ${(props) =>
+        props.bar ? "#000" : "#fff"} !important; /* رنگ لینک‌ها در حالت لپ‌تاپ و موبایل */
+      text-decoration: none !important;
+      font-weight: 400 !important;
+      position: relative !important;
+
       :before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -5px;
-        height: 2px;
-        background-color: #000;
-        transform: scale(0);
-        transform-origin: right;
-        transition: transform 400ms ease-in-out;
+        content: "" !important;
+        position: absolute !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: -5px !important;
+        height: 2px !important;
+        background-color: #000 !important;
+        transform: scale(0) !important;
+        transform-origin: right !important;
+        transition: transform 400ms ease-in-out !important;
       }
+
       :hover:before {
-        z-index: 100;
-        transform: scale(1);
-        transform-origin: left;
+        z-index: 10 !important;
+        transform: scale(1) !important;
+        transform-origin: left !important;
       }
+
       :hover {
-        opacity: 0.7;
+        opacity: 0.7 !important;
       }
+
       &.active {
-        color: #01be96; /* رنگ متفاوت برای لینک فعال */
-        font-weight: bold; /* وزن متفاوت برای لینک فعال */
+        color: #01be96 !important; /* رنگ متفاوت برای لینک فعال */
+        font-weight: bold !important; /* وزن متفاوت برای لینک فعال */
       }
     }
   }
 `;
 
+ 
+
 const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
+  color: white !important;
+  text-decoration: none !important;
   &.active {
-    color: #01be96;
-    font-weight: bold;
+    color: #01be96 !important;
+    font-weight: bold !important;
   }
 `;

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
- import { IoIosQuote } from "react-icons/io";
+import { IoIosQuote } from "react-icons/io";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
- 
+import { useTranslation } from "react-i18next";
+
 const ClientSlider = (props) => {
+  const { t } = useTranslation();
   const { name, position, img_url, stars, disc } = props.item;
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -25,10 +27,9 @@ const ClientSlider = (props) => {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
- 
+
   return (
     <Container>
-       
       <Header>
         <span className="quote">
           <IoIosQuote />
@@ -44,7 +45,7 @@ const ClientSlider = (props) => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              {disc}
+              {t(disc)}
             </motion.div>
           ) : (
             <motion.div
@@ -53,21 +54,21 @@ const ClientSlider = (props) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              {disc.substring(0, 100)}...
+              {t(disc.substring(0, 100))}...
             </motion.div>
           )}
         </AnimatePresence>
         {disc.length > 100 && (
           <ReadMoreButton onClick={toggleExpand}>
-            {isExpanded ? "Read Less" : "Read More"}
+            {isExpanded ? t("Read Less") : t("Read More")}
           </ReadMoreButton>
         )}
       </Body>
       <Footer>
-        <img src={img_url} alt={name} />
+        <img src={img_url} alt={t(name)} />
         <div className="details">
-          <h1>{name}</h1>
-          <p>{position}</p>
+          <h1>{t(name)}</h1>
+          <p>{t(position)}</p>
         </div>
       </Footer>
     </Container>
@@ -85,7 +86,7 @@ const Container = styled.div`
   justify-content: space-between;
   height: 100%;
   border-radius: 15px;
-  animation: wave44 3s infinite alternate ;
+  animation: wave44 3s infinite alternate;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 `;
 
@@ -116,8 +117,8 @@ const StarOutlined = styled(AiOutlineStar)`
 const Body = styled.div`
   font-size: 1rem;
   color: #ddd;
-    text-align: justify;
- line-height: 1.7;
+  text-align: justify;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;

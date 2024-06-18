@@ -8,12 +8,13 @@ import {
   FaSortAmountDown,
   FaSortAmountUp,
 } from "react-icons/fa";
-import Header from "../../components/Banner/Header";
 import styled from "styled-components";
 import Writing from "./Writings/Writing";
 import Photos from "./Photoes/Photos";
 import Projects from "./Projects/Projects ";
-import headervideo from '../../Assets/backgrounds/Header5.mp4'
+import headervideo from '../../Assets/backgrounds/Header5.mp4';
+import { useTranslation } from "react-i18next";
+import useLanguageChange from '../../Context/useLanguageChange';
 
 const tabs = [
   { name: "Writings", icon: <FaPen /> },
@@ -22,12 +23,14 @@ const tabs = [
 ];
 
 const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
+  const { t } = useTranslation();
+
   switch (currentTab) {
-    case "Writings":
+    case t("Writings"):
       return <Writing searchQuery={searchQuery} sortOrder={sortOrder} />;
-    case "Photos":
+    case t("Photos"):
       return <Photos searchQuery={searchQuery} sortOrder={sortOrder} />;
-    case "Projects":
+    case t("Projects"):
       return <Projects searchQuery={searchQuery} sortOrder={sortOrder} />;
     default:
       return null;
@@ -35,12 +38,17 @@ const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
 };
 
 const ArchivePage = () => {
-  const [currentTab, setCurrentTab] = useState("Writings");
+  const { t } = useTranslation();
+  const [currentTab, setCurrentTab] = useState(t("Writings"));
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("newest");
 
+  useLanguageChange(() => {
+    setCurrentTab(t("Writings"));
+  });
+
   const toggleSortOrder = () => {
-    setSortOrder(prevSortOrder => (prevSortOrder === "newest" ? "oldest" : "newest"));
+    setSortOrder((prevSortOrder) => (prevSortOrder === "newest" ? "oldest" : "newest"));
   };
 
   return (
@@ -55,23 +63,22 @@ const ArchivePage = () => {
           onEnded={(e) => e.target.play()}
         >
           <source src={headervideo} type="video/mp4" />
-          Your browser does not support the video tag.
+          {t("Your browser does not support the video tag.")}
         </video>
         <ArchiveHeaderWrapper>
-          <Header />
           <TitleContainer>
-            <span className="green">Archive</span>
-            <h1>All the things I have done</h1>
+            <span className="green">{t("Archive")}</span>
+            <h1>{t("All the things I have done")}</h1>
           </TitleContainer>
           <ArchiveControlBar>
             <ArchiveTabContainer>
               {tabs.map((tab) => (
                 <ArchiveTab
                   key={tab.name}
-                  isActive={currentTab === tab.name}
-                  onClick={() => setCurrentTab(tab.name)}
+                  isActive={currentTab === t(tab.name)}
+                  onClick={() => setCurrentTab(t(tab.name))}
                 >
-                  {tab.icon} {tab.name}
+                  {tab.icon} {t(tab.name)}
                 </ArchiveTab>
               ))}
             </ArchiveTabContainer>
@@ -80,7 +87,7 @@ const ArchivePage = () => {
                 <FaSearch />
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder={t("Search")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -112,11 +119,16 @@ const ArchivePage = () => {
 
 export default ArchivePage;
 
+// styled-components definitions remain unchanged
+
+
+
  
 const TitleContainer = styled.div`
   text-align: center;
+ 
   margin-bottom: 3rem;
-  margin-top: 3rem;
+  margin-top: 5rem;
   span {
     font-weight: 700;
     text-transform: uppercase;

@@ -1,6 +1,7 @@
 .audio-player-container {
   background: rgba(0, 0, 0, 0.8);
   padding: 1rem;
+  direction: ltr;
   border-radius: 10px;
   position: fixed;
   bottom: 0 !important;

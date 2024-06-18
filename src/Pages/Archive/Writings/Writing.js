@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useCallback } from "react";
-import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import WritingData from "../Writings/WritingData";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
 const Writing = ({ searchQuery, sortOrder }) => {
+  const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = useState([]);
   const [lastScrollY, setLastScrollY] = useState(0);
-
+  const writingData = WritingData();
   useEffect(() => {
-    let filteredData = WritingData.filter(
+    let filteredData = writingData.filter(
       (item) =>
-        item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.summary?.toLowerCase().includes(searchQuery.toLowerCase())
+        t(item.title).toLowerCase().includes(searchQuery.toLowerCase()) ||
+        t(item.summary).toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     if (sortOrder === "newest") {
@@ -25,14 +27,14 @@ const Writing = ({ searchQuery, sortOrder }) => {
     }
 
     setVisibleItems(filteredData.slice(0, 6));
-  }, [searchQuery, sortOrder]);
+  }, [searchQuery, sortOrder, t,writingData]);
 
   const loadMoreItems = useCallback(() => {
     setVisibleItems((prevItems) => [
       ...prevItems,
-      ...WritingData.slice(prevItems.length, prevItems.length + 6),
+      ...writingData.slice(prevItems.length, prevItems.length + 6),
     ]);
-  }, []);
+  }, [writingData]);
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -61,7 +63,7 @@ const Writing = ({ searchQuery, sortOrder }) => {
   };
 
   const handleWannaReadIt = (title) => {
-    alert(`Please email me if you want to read the full story of "${title}"`);
+    alert(t(`Please email me if you want to read the full story of "${title}"`));
   };
 
   return (
@@ -76,23 +78,23 @@ const Writing = ({ searchQuery, sortOrder }) => {
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <ImageContainer>
-              <Image src={item.image} alt={item.title} />
+              <Image src={item.image} alt={t(item.title)} />
               <Tag>{item.date}</Tag>
             </ImageContainer>
             <Info>
-              <Title>{item.title}</Title>
+              <Title>{t(item.title)}</Title>
               <Summary>
-                {item.expanded ? item.summary : `${item.summary.slice(0, 100)}...`}
+                {item.expanded ? t(item.summary) : `${t(item.summary).slice(0, 100)}...`}
               </Summary>
               <ButtonContainer>
                 {item.expanded && (
                   <Button onClick={() => handleWannaReadIt(item.title)}>
-                    Wanna Read It?
+                    {t("Wanna Read It?")}
                   </Button>
                 )}
                 {item.summary.length > 100 && (
                   <ReadMoreButton onClick={() => handleReadMore(index)}>
-                    {item.expanded ? "Read Less" : "Read More"}
+                    {item.expanded ? t("Read Less") : t("Read More")}
                   </ReadMoreButton>
                 )}
               </ButtonContainer>
@@ -120,7 +122,7 @@ const WritingContainer = styled.div`
 `;
 
 const Card = styled(motion.div)`
-  background: linear-gradient(159deg, rgb(45, 45, 58) 0%, rgb(43, 43, 53) 100%);
+  background: white;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -176,12 +178,13 @@ const Title = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #fff;
+  color: rgb(45, 45, 58);
 `;
 
 const Summary = styled.p`
   font-size: 1rem;
-  color: white;
+  color:rgb(45, 45, 58);
+;
   margin-bottom: 20px;
   text-align: justify;
 `;
@@ -209,7 +212,7 @@ const ReadMoreButton = styled.button`
 
 const Button = styled.button`
   background: none;
-  color: #fff;
+  color: rgb(45, 45, 58);
   padding: 10px 20px;
   border: #fff;
   border-radius: 5px;
@@ -221,6 +224,7 @@ const Button = styled.button`
 
   &:hover {
     background: #01be96;
+    color:white;
      animation: wave1 3s infinite alternate, wave3 5s infinite alternate;
   }
 `;

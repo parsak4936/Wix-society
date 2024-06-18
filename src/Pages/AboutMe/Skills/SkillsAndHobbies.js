@@ -11,6 +11,7 @@ import ProfessionalSkills from "./ProfessionalSkills";
 import PersonalSkills from "./PersonalSkills";
 import { PiGuitarFill } from "react-icons/pi";
 import { FaUserSecret } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 const skillLevels = {
   Beginner: 20,
@@ -20,6 +21,7 @@ const skillLevels = {
 };
 
 const SkillsAndHobbies = () => {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState("");
   const [visibleSkills, setVisibleSkills] = useState([]);
   const [selectedTab, setSelectedTab] = useState("professional");
@@ -97,30 +99,29 @@ const SkillsAndHobbies = () => {
   return (
     <SkillsContainer>
       <StickyHeader>
-      
-      <TitleContainer>
-        <span className="green">Characteristics</span>
-        <h1>My skills,characteristics in both personal and professional aspect</h1>
-      </TitleContainer>
+        <TitleContainer>
+          <span className="green">{t("Characteristics")}</span>
+          <h1>{t("My Properties in both personal and professional aspect")}</h1>
+        </TitleContainer>
         <Tabs>
           <Tab
             onClick={() => setSelectedTab("professional")}
             active={selectedTab === "professional"}
           >
             <FaUserSecret />
-            Professional
+            {t("Professional")}
           </Tab>
           <Tab
             onClick={() => setSelectedTab("personal")}
             active={selectedTab === "personal"}
           >
             <PiGuitarFill />
-            Personal
+            {t("Personal")}
           </Tab>
         </Tabs>
         <SearchBar
           type="text"
-          placeholder="Search skills..."
+          placeholder={t("Search skills...")}
           value={filter}
           onChange={handleFilterChange}
         />
@@ -143,14 +144,14 @@ const SkillsAndHobbies = () => {
                   <skill.icon />
                 </SkillIcon>
                 <SkillDetails>
-                  <h3>{skill.name}</h3>
+                  <h3>{t(skill.name)}</h3>
                   <SkillLevel level={skillLevels[skill.level]} />
-                  <p>{skill.description}</p>
+                  <p>{t(skill.description)}</p>
                 </SkillDetails>
               </SkillCard>
             ))
           ) : (
-            <NoSkillsFound>No skills found</NoSkillsFound>
+            <NoSkillsFound>{t("No skills found")}</NoSkillsFound>
           )}
         </AnimatePresence>
       </SkillsGrid>
@@ -189,7 +190,6 @@ const Tabs = styled.div`
 
 const Tab = styled.button`
   border: none;
-
   border-radius: 10px 10px 10px 10px;
   background: ${(props) =>
     props.active
@@ -199,16 +199,13 @@ const Tab = styled.button`
     props.active
       ? "#fff"
       : "#fff"}; /* White for default and green for active */
-
   padding: 0.6rem 0.6rem;
   margin: 0.5rem;
-
   font-size: 1.2rem;
   cursor: pointer;
   border: ${(props) => (props.active ? "1px solid #01be96" : "1px solid #fff")};
   animation: ${(props) =>
     props.active ? "wave1 3s infinite alternate" : "none"};
-
   &:focus {
     outline: none;
   }
@@ -220,7 +217,6 @@ const SearchBar = styled.input`
   font-size: 1rem;
   margin-bottom: 2rem;
   background: #f0f0f0; /* Change this to your desired background color */
-
   border-radius: 5px;
   border: 1px solid #ccc;
 `;
@@ -268,7 +264,6 @@ const SkillLevel = styled.div`
   height: 10px;
   border-radius: 5px;
   margin: 1rem 0;
-
   &::after {
     content: "";
     display: block;
@@ -285,16 +280,16 @@ const NoSkillsFound = styled.p`
   font-size: 1.2rem;
   color: #666;
 `;
+
 const TitleContainer = styled.div`
   text-align: center;
   margin-bottom: 1rem;
-
+  padding: 10px;
   span {
     font-weight: 700;
     text-transform: uppercase;
     color: #01be96;
   }
-
   h1 {
     padding-top: 1rem;
     text-transform: capitalize;

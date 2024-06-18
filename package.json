@@ -3,16 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.5.2",
-    "@fortawesome/free-brands-svg-icons": "^6.5.2",
-    "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+     
+    
     "framer-motion": "^11.2.10",
     "i18next": "^23.11.5",
     "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.5.2",
+    "i18next-parser": "^9.0.0",
     "react": "^18.2.0",
     "react-audio-analyser": "^1.0.0",
     "react-audio-player": "^0.17.0",
@@ -21,19 +18,23 @@
     "react-i18next": "^14.1.2",
     "react-icons": "^4.4.0",
     "react-intersection-observer": "^9.10.2",
+    "react-modal": "^3.16.1",
     "react-router": "^6.9.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.8",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.11",
+    "uuid": "^10.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "extract-i18n": "npx i18next -c src/i18next-parser.config.js \"src/**/*.{js,jsx}\" \"public/**/*.html\""
   },
   "eslintConfig": {
     "extends": [

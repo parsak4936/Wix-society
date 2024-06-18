@@ -6,8 +6,11 @@ import { AiOutlineInstagram } from "react-icons/ai";
 import { FaLinkedin, FaTelegramPlane, FaYoutube } from "react-icons/fa";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
+  const { t } = useTranslation();
+
   const waveVariants = {
     initial: { opacity: 0 },
     animate: {
@@ -18,45 +21,48 @@ export default function Profile() {
       },
     },
   };
-  
+
   const letterVariants = {
     initial: { y: 20, opacity: 0 },
     animate: { y: 0, opacity: 1 },
   };
-  
+
   return (
     <ProfileContainer>
       <ProfileInfo>
         <h1>
-          Hello! <br /> I'm{" "}
+          {t("Hello!")} <br /> {t("I'm")}{" "}
           <motion.span
             className="highlight-text"
             variants={waveVariants}
             initial="initial"
             animate="animate"
           >
-            {"Parsa".split("").map((char, index) => (
-              <motion.span key={index} variants={letterVariants}>
-                {char}
-              </motion.span>
-            ))}
+            {t("Parsa")
+              .split("")
+              .map((char, index) => (
+                <motion.span key={index} variants={letterVariants}>
+                  {char}
+                </motion.span>
+              ))}
           </motion.span>
           <br />
-          <span className="highlight-text">Book worm and science nerd</span>
+          <span className="highlight-text">
+            {t("Book worm and science nerd")}
+          </span>
         </h1>
         <ProfileDescription>
           <p>
-            Welcome! I'm Parsa, a product designer and Webflow developer. I
-            intertwine my love for literature, art, and technology to craft
-            unique digital experiences. I’m passionate about data science,
-            storytelling, travel, and creating impactful content.
+            {t(
+              "Welcome! I'm Parsa, a product designer and Webflow developer. I intertwine my love for literature, art, and technology to craft unique digital experiences. I’m passionate about data science, storytelling, travel, and creating impactful content."
+            )}
           </p>
 
           <SmallImageSection>
             <BackgroundShape></BackgroundShape>
             <motion.img
               src={SmallProfileImage}
-              alt="Small Profile"
+              alt={t("Small Profile")}
               animate={{ rotate: [0, 2, -2, 0] }}
               transition={{
                 duration: 2,
@@ -66,21 +72,22 @@ export default function Profile() {
               }}
             />
             <p>
-              Based in <span className="highlight-text">Bangladesh</span>
+              {t("Based in")}{" "}
+              <span className="highlight-text">{t("Bangladesh")}</span>
               <br />
-              I'm also a{" "}
-              <span className="highlight-text">Webflow developer</span>.
+              {t("I'm also a")}{" "}
+              <span className="highlight-text">{t("Webflow developer")}</span>.
             </p>
           </SmallImageSection>
         </ProfileDescription>
       </ProfileInfo>
 
       <ProfileImage>
-        <img src={Profileimage1} alt="Profile" />
+        <img src={Profileimage1} alt={t("Profile")} />
         <Experience>
-          <h2>Content creator</h2>
-          <p>Web Developer</p>
-          <p>Data Science</p>
+          <h2>{t("Content creator")}</h2>
+          <p>{t("Web Developer")}</p>
+          <p>{t("Data Science")}</p>
 
           <Line />
           <Social>
@@ -119,6 +126,8 @@ export default function Profile() {
 }
 
 const ProfileContainer = styled.div`
+  direction: ltr; /* اضافه کردن direction: ltr */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,6 +138,9 @@ const ProfileContainer = styled.div`
   @media screen and (min-width: 998px) {
     flex-direction: row;
     justify-content: space-between;
+    body.lang-fa {
+      text-align: right;
+    }
     text-align: left;
     padding: 0 10%;
   }
@@ -181,6 +193,11 @@ const Line = styled.div`
 const ProfileInfo = styled.div`
   max-width: 100%;
   padding: 20px;
+
+  body.lang-fa  {
+    direction: rtl;
+    text-align: right;
+  }
   margin: 20px;
   flex: 1; /* Add flex property */
 
@@ -197,9 +214,17 @@ const ProfileInfo = styled.div`
 `;
 
 const ProfileDescription = styled.div`
-  text-align: left;
   padding: 20px;
-
+body.lang-fa p,
+body.lang-fa h1,
+body.lang-fa h2,
+body.lang-fa h3,
+body.lang-fa h4,
+body.lang-fa h5,
+body.lang-fa h6 {
+  direction: rtl;
+  text-align: right;
+}
   margin: 20px;
 `;
 
@@ -213,6 +238,7 @@ const BackgroundShape = styled.div`
 const SmallImageSection = styled.div`
   display: flex;
   align-items: center;
+
   margin-top: 20px;
   position: relative;
 
@@ -273,4 +299,3 @@ const Social = styled.div`
     }
   }
 `;
-

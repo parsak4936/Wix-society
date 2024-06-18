@@ -1,5 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?&family=Secular+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/rastikerdar/iransans@4.0.0/dist/IRANSansWeb.css");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@4.0.0/dist/IRANSansWeb.css');
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap");
+/* فایل CSS اصلی */
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+body.lang-en {
+  font-family: "Roboto", sans-serif;
+}
+body.lang-it {
+  font-family: "Playfair Display", sans-serif;
+}
+
+body.lang-fa {
+  font-family: "IRANSansWeb", sans-serif;
+}
+
+body.lang-ru {
+  font-family: "Roboto", sans-serif;
+}
+
+/* سایر استایل‌های مربوط به زبان فارسی */
+body.lang-fa {
+  
+    direction: rtl;
+  
+}
+
 .scroll-progress-bar {
   position: fixed;
   top: 0;
@@ -15,10 +52,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
-  
-
 }
 p {
   position: relative;

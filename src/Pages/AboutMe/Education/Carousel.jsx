@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import EducationData from "./EducationData";
+import useEducationData from "./EducationData"; // تغییر در import
 import { motion } from "framer-motion";
 
 const Carousel = ({ onCardClick, currentIndex }) => {
   const scrollRef = useRef(null);
- 
+  const educationData = useEducationData();
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft = currentIndex * scrollRef.current.offsetWidth;
@@ -15,16 +16,16 @@ const Carousel = ({ onCardClick, currentIndex }) => {
   const handlePrevClick = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft -= scrollRef.current.offsetWidth;
-      const prevIndex = currentIndex === 0 ? EducationData.length - 1 : currentIndex - 1;
-      onCardClick(EducationData[prevIndex], prevIndex);
+      const prevIndex = currentIndex === 0 ? educationData.length - 1 : currentIndex - 1;
+      onCardClick(educationData[prevIndex], prevIndex);
     }
   };
 
   const handleNextClick = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft += scrollRef.current.offsetWidth;
-      const nextIndex = (currentIndex + 1) % EducationData.length;
-      onCardClick(EducationData[nextIndex], nextIndex);
+      const nextIndex = (currentIndex + 1) % educationData.length;
+      onCardClick(educationData[nextIndex], nextIndex);
     }
   };
 
@@ -33,7 +34,7 @@ const Carousel = ({ onCardClick, currentIndex }) => {
       <Arrow onClick={handlePrevClick}>{"<"}</Arrow>
       <TimelineWrapper ref={scrollRef}>
         <Timeline>
-          {EducationData.map((card, index) => (
+          {educationData.map((card, index) => (
             <TimelineItem
               key={index}
               onClick={() => onCardClick(card, index)}
