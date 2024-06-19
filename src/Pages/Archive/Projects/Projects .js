@@ -2,10 +2,16 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import Image1 from "../../../Assets/backgrounds/Header5.png";
-import Image2 from "../../../Assets/Profile/Parsa.jpg";
-import Image3 from "../../../Assets/Profile/WixProfile2.jpeg";
+import Wixloop from "../../../Assets/Archive/projects/Wixloop.png";
+ 
+import Door from "../../../Assets/Archive/projects/Door.jpg";
+ import Janama from "../../../Assets/Archive/projects/Janama2.png";
 
+import Koj from "../../../Assets/Archive/projects/Koj.png";
+import Darya from "../../../Assets/Archive/projects/Darya.png";
+
+import Taraz from "../../../Assets/Archive/projects/Taraz.png";
+ 
 const Projects = ({ searchQuery, sortOrder }) => {
   const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = useState([]);
@@ -15,7 +21,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
     () => [
       {
         id: 1,
-        image: Image1,
+        image: Wixloop,
         title: t("WixLoop"),
         role: t("React JS"),
         description: t(
@@ -28,7 +34,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
       },
       {
         id: 2,
-        image: Image2,
+        image: Janama,
         title: t("JanamaTasvir"),
         description: t(
           "JanmaTafsir is an innovative platform designed to streamline the judicial process within the country's legal system. By focusing on cases related to agricultural and non-agricultural land disputes, this platform aims to prevent simple or clear-cut cases from clogging court schedules. Users can specify the location of the land, upload relevant documents, and mutually select an expert to assess the situation. The expert's findings are then published on the website. If the opinions of both experts align, the case proceeds to the next stages; if not, it is referred to court. JanmaTafsir enhances efficiency, reduces courtroom congestion, and ensures swift, reliable resolutions."
@@ -41,7 +47,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
       },
       {
         id: 3,
-        image: Image3,
+        image: Door,
         title: t("DoorMaster"),
         description: t(
           "The DoorMaster project is a team initiative that integrates image processing, a mobile application, and hardware. The goal was to create the most intelligent camera at the lowest cost, capable of unlocking doors even when the person is wearing a mask or has a facial injury. This process was powered by artificial intelligence. A mobile app was developed to manage authorized individuals, allowing users to unlock the door via their phone, control access, and monitor entry and exit logs along with the latest image used by the system to unlock the door. The project utilized Raspberry Pi and Kinect Xbox 360 camera."
@@ -54,7 +60,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
       },
       {
         id: 4,
-        image: Image3,
+        image: Koj,
         title: t("NearNow"),
         Year: t("2022"),
         description: t(
@@ -67,7 +73,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
       },
       {
         id: 5,
-        image: Image3,
+        image: Taraz,
         title: t("Taraz"),
         description: t(
           "Taraaz is an app designed to assist students preparing for the national university entrance exam. It offers planning tools, academic counseling, and competitive features to enhance their study experience. Counselors can add their students to personalized groups and create tailored study plans. With just a few clicks, students can track their progress, compare their current performance with previous weeks, and monitor changes in their exam scores and rankings. For those without a counselor, the app allows them to choose from a pool of advisors and join the competitive arena."
@@ -80,7 +86,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
       },
       {
         id: 6,
-        image: Image3,
+        image: Darya,
         title: t("DaryaBuildings"),
         description: t(
           "DaryaBuildings is a website designed for selecting and customizing your dream home. It offers investment opportunities and allows for personalization of homes under construction by choosing building materials. Users can view both completed and under-construction homes. For completed homes, users can select the desired unit, schedule a meeting, and proceed with the purchase in person. For pre-purchase, users can customize the building materials and desired changes, receive a receipt, and bring it to the meeting along with any additional payment, then wait for their dream home to be built."

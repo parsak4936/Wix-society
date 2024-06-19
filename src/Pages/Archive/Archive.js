@@ -13,16 +13,20 @@ import styled from "styled-components";
 import Writing from "./Writings/Writing";
 import Photos from "./Photoes/Photos";
 import Projects from "./Projects/Projects ";
-import headervideo from '../../Assets/backgrounds/Header5.mp4';
+import headervideo from "../../Assets/backgrounds/Header5.mp4";
 import { useTranslation } from "react-i18next";
-import useLanguageChange from '../../Context/useLanguageChange';
+import useLanguageChange from "../../Context/useLanguageChange";
 import Education from "./Education/Education";
+import Design from "./Designs/Design";
+import { MdDesignServices } from "react-icons/md";
 
 const tabs = [
   { name: "Writings", icon: <FaPen /> },
   { name: "Photos", icon: <FaCamera /> },
   { name: "Projects", icon: <FaProjectDiagram /> },
-  { name: "Education", icon: <FaGraduationCap />},
+  { name: "Education", icon: <FaGraduationCap /> },
+  { name: "Design", icon: <MdDesignServices />
+  },
 ];
 
 const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
@@ -33,8 +37,10 @@ const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
       return <Writing searchQuery={searchQuery} sortOrder={sortOrder} />;
     case t("Photos"):
       return <Photos searchQuery={searchQuery} sortOrder={sortOrder} />;
-      case t("Education"):
-        return <Education searchQuery={searchQuery} sortOrder={sortOrder} />;
+    case t("Education"):
+      return <Education searchQuery={searchQuery} sortOrder={sortOrder} />;
+    case t("Design"):
+      return <Design sortOrder={sortOrder}/>;
     case t("Projects"):
       return <Projects searchQuery={searchQuery} sortOrder={sortOrder} />;
     default:
@@ -53,7 +59,9 @@ const ArchivePage = () => {
   });
 
   const toggleSortOrder = () => {
-    setSortOrder((prevSortOrder) => (prevSortOrder === "newest" ? "oldest" : "newest"));
+    setSortOrder((prevSortOrder) =>
+      prevSortOrder === "newest" ? "oldest" : "newest"
+    );
   };
 
   return (
@@ -98,7 +106,11 @@ const ArchivePage = () => {
                 />
               </ArchiveSearchBar>
               <ArchiveSortButton onClick={toggleSortOrder}>
-                {sortOrder === "newest" ? <FaSortAmountDown /> : <FaSortAmountUp />}
+                {sortOrder === "newest" ? (
+                  <FaSortAmountDown />
+                ) : (
+                  <FaSortAmountUp />
+                )}
               </ArchiveSortButton>
             </ArchiveSearchAndSort>
           </ArchiveControlBar>
@@ -126,12 +138,9 @@ export default ArchivePage;
 
 // styled-components definitions remain unchanged
 
-
-
- 
 const TitleContainer = styled.div`
   text-align: center;
- 
+
   margin-bottom: 3rem;
   margin-top: 5rem;
   span {
@@ -157,7 +166,7 @@ const ArchiveControlBar = styled.div`
   margin-bottom: 20px;
   width: 100%;
   max-width: 1200px;
-    animation: wave44 3s infinite alternate;
+  animation: wave44 3s infinite alternate;
 
   @media (min-width: 769px) {
     flex-direction: row;
@@ -217,7 +226,8 @@ const ArchiveTab = styled.div`
   border-radius: 5px;
   background-color: ${({ isActive }) => (isActive ? "#01be96" : "#333")};
   color: ${({ isActive }) => (isActive ? "#fff" : "#888")};
-        animation:   ${({ isActive }) => (isActive ? "wave44 3s infinite alternate" : "none")};
+  animation: ${({ isActive }) =>
+    isActive ? "wave44 3s infinite alternate" : "none"};
 
   display: flex;
   align-items: center;
