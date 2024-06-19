@@ -373,35 +373,40 @@ const Photos = ({ searchQuery, sortOrder }) => {
     summary: t("Sometimes I feel pity for my old self, for the pain he went through"),
   },
 ], [t]);
-useEffect(() => {
-  let filteredData = PhotoData.filter(
+const filteredData = useMemo(() => {
+  let data = PhotoData.filter(
     (item) =>
       t(item.title).toLowerCase().includes(searchQuery.toLowerCase()) ||
       t(item.summary).toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (sortOrder === 'newest') {
-    filteredData = filteredData.sort((a, b) => parseInt(b.date) - parseInt(a.date));
+    data = data.sort((a, b) => parseInt(b.date) - parseInt(a.date));
   } else if (sortOrder === 'oldest') {
-    filteredData = filteredData.sort((a, b) => parseInt(a.date) - parseInt(b.date));
+    data = data.sort((a, b) => parseInt(a.date) - parseInt(b.date));
   }
 
-  setVisibleItems(filteredData.slice(0, 6));
+  return data;
 }, [searchQuery, sortOrder, t, PhotoData]);
 
+useEffect(() => {
+  setVisibleItems(filteredData.slice(0, 6));
+}, [filteredData]);
+
 const loadMoreItems = useCallback(() => {
-  setVisibleItems((prevItems) => [
-    ...prevItems,
-    ...PhotoData.slice(prevItems.length, prevItems.length + 6),
-  ]);
+  setVisibleItems((prevItems) => {
+    const nextItems = PhotoData.slice(prevItems.length, prevItems.length + 6);
+    const uniqueItems = nextItems.filter(item => !prevItems.some(prevItem => prevItem.id === item.id));
+    return [...prevItems, ...uniqueItems];
+  });
 }, [PhotoData]);
 
 const handleScroll = useCallback(() => {
   const currentScrollY = window.scrollY;
-  if (currentScrollY > lastScrollY) {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-      loadMoreItems();
-    }
+  console.log("ScrollY:", currentScrollY, "lastScrollY:", lastScrollY);
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+    console.log("Loading more items...");
+    loadMoreItems();
   }
   setLastScrollY(currentScrollY);
 }, [lastScrollY, loadMoreItems]);
@@ -565,8 +570,8 @@ const Photo = styled.img`
   height: 100%;
   object-fit: cover;
   display: ${props => (props.loaded ? 'block' : 'none')};
+  loading: lazy;
 `;
-
 const YearBadge = styled.div`
   position: absolute;
   bottom: 10px;
@@ -698,3 +703,4 @@ const ModalImage = styled.img`
     max-height: 50vh; /* Adjust height for mobile */
   }
 `;
+ 

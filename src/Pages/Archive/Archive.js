@@ -7,6 +7,7 @@ import {
   FaSearch,
   FaSortAmountDown,
   FaSortAmountUp,
+  FaGraduationCap,
 } from "react-icons/fa";
 import styled from "styled-components";
 import Writing from "./Writings/Writing";
@@ -15,11 +16,13 @@ import Projects from "./Projects/Projects ";
 import headervideo from '../../Assets/backgrounds/Header5.mp4';
 import { useTranslation } from "react-i18next";
 import useLanguageChange from '../../Context/useLanguageChange';
+import Education from "./Education/Education";
 
 const tabs = [
   { name: "Writings", icon: <FaPen /> },
   { name: "Photos", icon: <FaCamera /> },
   { name: "Projects", icon: <FaProjectDiagram /> },
+  { name: "Education", icon: <FaGraduationCap />},
 ];
 
 const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
@@ -30,6 +33,8 @@ const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
       return <Writing searchQuery={searchQuery} sortOrder={sortOrder} />;
     case t("Photos"):
       return <Photos searchQuery={searchQuery} sortOrder={sortOrder} />;
+      case t("Education"):
+        return <Education searchQuery={searchQuery} sortOrder={sortOrder} />;
     case t("Projects"):
       return <Projects searchQuery={searchQuery} sortOrder={sortOrder} />;
     default:

@@ -94,7 +94,6 @@ const Writing = ({ searchQuery, sortOrder }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
-  
 
   const handleReadMore = (index) => {
     setVisibleItems((prevItems) =>
@@ -107,44 +106,63 @@ const Writing = ({ searchQuery, sortOrder }) => {
   const handleWannaReadIt = (title) => {
     alert(t(`Please email me if you want to read the full story of "${title}"`));
   };
-
   return (
     <WritingContainer>
-      <AnimatePresence>
-        {visibleItems.map((item, index) => (
-          <Card
-            key={item.id}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <ImageContainer>
-              <Image src={item.image} alt={t(item.title)} />
-              <Tag>{item.date}</Tag>
-            </ImageContainer>
-            <Info>
-              <Title>{t(item.title)}</Title>
-              <Summary>
-                {item.expanded ? t(item.summary) : `${t(item.summary).slice(0, 100)}...`}
-              </Summary>
-              <ButtonContainer>
-                {item.expanded && (
-                  <Button onClick={() => handleWannaReadIt(item.title)}>
-                    {t('Wanna Read It?')}
-                  </Button>
-                )}
-                {item.summary.length > 100 && (
-                  <ReadMoreButton onClick={() => handleReadMore(index)}>
-                    {item.expanded ? t('Read Less') : t('Read More')}
-                  </ReadMoreButton>
-                )}
-              </ButtonContainer>
-            </Info>
-          </Card>
-        ))}
-      </AnimatePresence>
-    </WritingContainer>
+    {visibleItems.map((item, index) => (
+      <Card
+        key={item.id}
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -50 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+      >
+        <ImageContainer>
+          <Image src={item.image} alt={t(item.title)} />
+          <Tag>{item.date}</Tag>
+        </ImageContainer>
+        <Info>
+          <Title>{t(item.title)}</Title>
+          <Summary>
+            <AnimatePresence>
+              {item.expanded ? (
+                <motion.div
+                  key="expanded"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {t(item.summary)}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="collapsed"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {`${t(item.summary).slice(0, 100)}...`}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Summary>
+          <ButtonContainer>
+            {item.expanded && (
+              <Button onClick={() => handleWannaReadIt(item.title)}>
+                {t('Wanna Read It?')}
+              </Button>
+            )}
+            {item.summary.length > 100 && (
+              <ReadMoreButton onClick={() => handleReadMore(index)}>
+                {item.expanded ? t('Read Less') : t('Read More')}
+              </ReadMoreButton>
+            )}
+          </ButtonContainer>
+        </Info>
+      </Card>
+    ))}
+  </WritingContainer>
   );
 };
 
