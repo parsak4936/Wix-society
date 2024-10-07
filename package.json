@@ -1,46 +1,31 @@
 {
   "name": "wixsociety",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-     
-    
-    "framer-motion": "^11.2.10",
-    "i18next": "^23.11.5",
-    "i18next-browser-languagedetector": "^8.0.0",
-    "i18next-http-backend": "^2.5.2",
-    "i18next-parser": "^9.0.0",
-    "react": "^18.2.0",
-    "react-audio-analyser": "^1.0.0",
-    "react-audio-player": "^0.17.0",
-    "react-awesome-reveal": "^4.1.0",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^14.1.2",
-    "react-icons": "^4.4.0",
-    "react-intersection-observer": "^9.10.2",
-    "react-modal": "^3.16.1",
-    "react-router": "^6.9.0",
-    "react-router-dom": "^6.9.0",
-    "react-scripts": "^5.0.1",
-    "react-slick": "^0.29.0",
-    "react-spinners": "^0.13.8",
-    "slick-carousel": "^1.8.1",
-    "styled-components": "^5.3.11",
-    "uuid": "^10.0.0",
-    "web-vitals": "^2.1.4"
-  },
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "extract-i18n": "npx i18next -c src/i18next-parser.config.js \"src/**/*.{js,jsx}\" \"public/**/*.html\""
+    "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "framer-motion": "^11.3.31",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.6.1",
+    "leaflet": "^1.9.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^15.0.1",
+    "react-icons": "^5.3.0",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.30.2",
+    "styled-components": "^6.1.13"
   },
   "browserslist": {
     "production": [
@@ -53,8 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

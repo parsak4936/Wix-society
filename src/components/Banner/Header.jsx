@@ -89,6 +89,15 @@ const Header = () => {
         </span>
         <span>
           <StyledLink
+            to="/travel"
+            className={location.pathname === "/travel" ? "active" : ""}
+            onClick={handleLinkClick}
+          >
+            {t("Travel")}
+          </StyledLink>
+        </span>
+        <span>
+          <StyledLink
             to="/aboutme"
             className={location.pathname === "/aboutme" ? "active" : ""}
             onClick={handleLinkClick}

@@ -7,6 +7,7 @@ import Aboutme from "./Pages/AboutMe/Aboutme";
 import Home from "./Pages/Home";
 import Archive from "./Pages/Archive/Archive";
 import "./Pages/Home.css";
+import Travels from "./Pages/Travel/Travels";
 
 
 import { AudioProvider } from "./Context/AudioContext"; 
@@ -116,6 +117,19 @@ const AnimatedRoutes = () => {
                 </motion.div>
               }
             />
+             <Route
+              path="/travel"
+              element={
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                 <Travels />
+                </motion.div>
+              }
+            />  
             <Route
               path="/aboutme"
               element={
