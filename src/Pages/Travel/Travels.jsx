@@ -306,6 +306,7 @@ const Container = styled.div`
   @media (max-width: 450px) {
     padding-bottom: 1%;
   }
+  z-index: 0 !important; /* Ensure this is higher than any other element */
 `;
 
 const Section = styled.div`
