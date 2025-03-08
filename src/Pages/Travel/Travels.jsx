@@ -1044,24 +1044,23 @@ const Travels = () => {
 
 const Container = styled.div`
   position: relative;
-  direction: ltr;
+    direction: ltr; /* اضافه کردن direction: ltr */
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding-bottom: 0%;
-  background-color: #121212; /* پس زمینه تیره‌تر برای هماهنگی با نقشه */
+  padding-bottom: 0%; /* Default padding for larger screens */
 
   @media (max-width: 450px) {
-    padding-bottom: 1%;
+    padding-bottom: 1%; /* Increased padding for phone screens */
   }
-  z-index: 0 !important; /* Ensure this is higher than any other element */
 `;
 
 const Section = styled.div`
   position: relative;
   overflow: hidden;
-  min-height: 50vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1081,6 +1080,7 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 `;
+
 
 const HeaderWrapper = styled.div`
   position: relative;
