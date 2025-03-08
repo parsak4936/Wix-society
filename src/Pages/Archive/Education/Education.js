@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import Unime from "../../../Assets/Education/Unime.png";
-import IASBS from "../../../Assets/Education/IASBS.png";
-import ZNU from "../../../Assets/Education/ZNU.png";
-import sadra from "../../../Assets/Education/sadra.jpg";
-import Maktab from "../../../Assets/Education/Maktab.jpg";
-import Rahnama from "../../../Assets/Education/Rahnama.jpg";
+import Unime from "../../../Assets/Education/Unime.webp";
+import IASBS from "../../../Assets/Education/IASBS.webp";
+import ZNU from "../../../Assets/Education/ZNU.webp";
+import sadra from "../../../Assets/Education/sadra.webp";
+import Maktab from "../../../Assets/Education/Maktab.webp";
+import Rahnama from "../../../Assets/Education/Rahnama.webp";
 
 const Education = ({ searchQuery, sortOrder }) => {
   const { t } = useTranslation();
@@ -345,7 +345,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.a`
-  background: #01be96;
+  background: #018367;
   color: #fff;
   padding: 10px;
   text-decoration: none;
@@ -359,7 +359,7 @@ const Button = styled.a`
 `;
 const Divider = styled.div`
   height: 1px;
-  background: #01be96;
+  background: #018367;
   margin: 10px 0;
 `;
 const ImagePlaceholder = styled.div`

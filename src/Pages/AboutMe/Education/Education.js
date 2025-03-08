@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import EducationBg from "../../../Assets/backgrounds/education.jpg"; // عکس بکگراند برای تب تحصیلات
+import EducationBg from "../../../Assets/backgrounds/education.webp"; // عکس بکگراند برای تب تحصیلات
 import WorkBg from "../../../Assets/backgrounds/Projects.webp"; // عکس بکگراند برای تب سابقه کاری
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
@@ -189,7 +189,7 @@ const TitleContainer = styled.div`
   span {
     font-weight: 700;
     text-transform: uppercase;
-    color: #01be96;
+    color: #018367;
   }
   h1 {
     padding-top: 1rem;
@@ -208,13 +208,13 @@ const Tabs = styled.div`
 const Tab = styled.button`
   border: none;
   border-radius: 10px;
-  background: ${(props) => (props.active ? "#01be96" : "none")};
+  background: ${(props) => (props.active ? "#018367" : "none")};
   color: ${(props) => (props.active ? "#fff" : "#fff")};
   padding: 0.6rem 0.6rem;
   margin: 0.5rem;
   font-size: 1.2rem;
   cursor: pointer;
-  border: ${(props) => (props.active ? "1px solid #01be96" : "1px solid #fff")};
+  border: ${(props) => (props.active ? "1px solid #018367" : "1px solid #fff")};
   animation: ${(props) =>
     props.active ? "wave1 3s infinite alternate" : "none"};
   &:focus {

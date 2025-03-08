@@ -1,6 +1,6 @@
 import React from "react";
-import Profileimage1 from "../../../Assets/Profile/Parsa.jpg";
-import SmallProfileImage from "../../../Assets/Profile/small.jpg";
+import Profileimage1 from "../../../Assets/Profile/Parsa.webp";
+import SmallProfileImage from "../../../Assets/Profile/small.webp";
 import "./Profile.css";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { FaLinkedin, FaTelegramPlane, FaYoutube } from "react-icons/fa";
@@ -75,8 +75,13 @@ export default function Profile() {
               {t("based in ,")}{" "}
               <span className="highlight-text">{t("Italy")}</span>
               <br />
-              {t("with a focus onfront-end development and graphic design")}{" "}
-              <span className="highlight-text">{t("And obsessed with Data Analysis ")}</span>.
+              {t(
+                "with a focus onfront-end development and graphic design"
+              )}{" "}
+              <span className="highlight-text">
+                {t("And obsessed with Data Analysis ")}
+              </span>
+              .
             </SmallProfileText>
           </SmallImageSection>
         </ProfileDescription>
@@ -86,40 +91,49 @@ export default function Profile() {
         <img src={Profileimage1} alt={t("Profile")} />
         <Experience lang={i18n.language}>
           <h2>{t("Content creator")}</h2>
-          <p>{t("Data Science")}</p>
+          <h2>{t("Data Science")}</h2>
 
-          <p>{t("Web Developer")}</p>
+          <h2>{t("Web Developer")}</h2>
 
           <Line />
-          <Social>
-            <div className="social-icons">
-              {[
-                {
-                  href: "https://www.instagram.com/parsak.exe/",
-                  icon: <AiOutlineInstagram />,
-                },
-                {
-                  href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
-                  icon: <FaLinkedin />,
-                },
-                { href: "https://t.me/Slihouette", icon: <FaTelegramPlane /> },
-                {
-                  href: "https://www.youtube.com/channel/UC31aBZ8280jBRyEtk1pzzZg",
-                  icon: <FaYoutube />,
-                },
-              ].map((social, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, rotate: 180 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <a href={social.href}>{social.icon}</a>
-                </motion.span>
-              ))}
-            </div>
-          </Social>
+             <Social>
+       <div className="social-icons">
+         {[ 
+           {
+             href: "https://www.instagram.com/parsak.exe/",
+             icon: <AiOutlineInstagram />,
+             label: "Instagram Profile"
+           },
+           {
+             href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
+             icon: <FaLinkedin />,
+             label: "LinkedIn Profile"
+           },
+           {
+             href: "https://t.me/Parsakazemi",
+             icon: <FaTelegramPlane />,
+             label: "Telegram Channel"
+           },
+           {
+             href: "https://www.youtube.com/@betterwix",
+             icon: <FaYoutube />,
+             label: "YouTube Channel"
+           }
+         ].map((social, index) => (
+           <motion.span
+             key={index}
+             initial={{ opacity: 0, rotate: 180 }}
+             animate={{ opacity: 1, rotate: 0 }}
+             whileHover={{ rotate: 360 }}
+             transition={{ duration: 0.6, delay: 0.2 }}
+           >
+             <a href={social.href} aria-label={social.label}>
+               {social.icon}
+             </a>
+           </motion.span>
+         ))}
+       </div>
+     </Social>
         </Experience>
       </ProfileImage>
     </ProfileContainer>
@@ -156,7 +170,7 @@ const ProfileImage = styled.div`
 
   img {
     width: 100%;
-    max-width: 20rem;
+    max-width: 35rem;
     height: auto;
     border-radius: 10%;
     animation: wave1 3s infinite alternate, wave2 4s infinite alternate,
@@ -187,7 +201,7 @@ const Experience = styled.div`
 const Line = styled.div`
   width: 150px;
   height: 2px;
-  background: #01be96;
+  background: #018367;
   margin: 0.5rem auto;
 `;
 
@@ -274,7 +288,7 @@ const Social = styled.div`
       width: 2.5rem;
       height: 2.5rem;
       background-color: transparent;
-      border: 0px solid #01be96;
+      border: 0px solid #018367;
       border-radius: 30%;
       position: relative;
       transition: transform 400ms ease-in-out, background-color 0.3s, color 0.3s;
@@ -282,12 +296,12 @@ const Social = styled.div`
 
       &:hover {
         transform: rotate(360deg);
-        background-color: #01be96;
+        background-color: #018367;
         color: #fff;
       }
 
       svg {
-        color: #01be96;
+        color: #018367;
         position: absolute;
         top: 50%;
         left: 50%;

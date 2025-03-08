@@ -43,7 +43,7 @@ body.lang-fa {
   left: 0;
   right: 0;
   height: 5px;
-  background: #01be96;
+  background: #018367;
   transform-origin: 0%;
   z-index: 10000; /* Ensure this is higher than any other element */
 }
@@ -83,7 +83,7 @@ body {
 }
 
 .green {
-  color: #01be96;
+  color: #018367;
 }
 
 .slick-list,

@@ -10,7 +10,7 @@ import { FaTimes } from 'react-icons/fa';
  
  for (let i = 1; i <= 20; i++) {
   try {
-    images.push(require(`../../../Assets/Archive/Designs/${i}.jpg`));
+    images.push(require(`../../../Assets/Archive/Designs/${i}.webp`));
   } catch (e) {
     console.error(`Could not load image: ../../../Assets/Archive/Designs/${i}.jpg`);
     images.push(null); // push null if image is not found

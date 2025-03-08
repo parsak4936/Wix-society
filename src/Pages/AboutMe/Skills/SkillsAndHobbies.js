@@ -193,7 +193,7 @@ const Tab = styled.button`
   border-radius: 10px 10px 10px 10px;
   background: ${(props) =>
     props.active
-      ? "#01be96"
+      ? "#018367"
       : "none"}; /* Change these colors to your desired background colors */
   color: ${(props) =>
     props.active
@@ -203,7 +203,7 @@ const Tab = styled.button`
   margin: 0.5rem;
   font-size: 1.2rem;
   cursor: pointer;
-  border: ${(props) => (props.active ? "1px solid #01be96" : "1px solid #fff")};
+  border: ${(props) => (props.active ? "1px solid #018367" : "1px solid #fff")};
   animation: ${(props) =>
     props.active ? "wave1 3s infinite alternate" : "none"};
   &:focus {
@@ -230,7 +230,7 @@ const SkillsGrid = styled.div`
 const SkillCard = styled(motion.div)`
   background: transparent; /* حذف پس‌زمینه */
   padding: 1.5rem;
-  border: 2px solid #01be96; /* حاشیه سبز رنگ */
+  border: 2px solid #018367; /* حاشیه سبز رنگ */
   border-radius: 10%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* سایه اطراف کادر */
   display: flex;
@@ -268,7 +268,7 @@ const SkillLevel = styled.div`
     content: "";
     display: block;
     height: 100%;
-    background: #01be96;
+    background: #018367;
     border-radius: 5px;
     width: ${(props) => props.level}%;
   }
@@ -288,7 +288,7 @@ const TitleContainer = styled.div`
   span {
     font-weight: 700;
     text-transform: uppercase;
-    color: #01be96;
+    color: #018367;
   }
   h1 {
     padding-top: 1rem;

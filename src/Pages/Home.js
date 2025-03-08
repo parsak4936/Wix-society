@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import ProfComponent from '../components/Banner/ProfComponent';
-import headervideo from '../Assets/backgrounds/Header5.mp4';
+import headervideo from '../Assets/backgrounds/Header6.mp4';
 import './Home.css';
 
 const Home = () => {
@@ -21,6 +21,8 @@ const Home = () => {
             onEnded={(e) => e.target.play()}
           >
             <source src={headervideo} type="video/mp4" />
+            <track kind="captions" src="path/to/captions_en.vtt" srclang="en" label="English" default/>
+
             {t('Your browser does not support the video tag.')}
           </video>
           <HeaderWrapper>

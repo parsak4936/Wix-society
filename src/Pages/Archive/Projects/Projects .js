@@ -2,15 +2,15 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import Wixloop from "../../../Assets/Archive/projects/Wixloop.png";
+import Wixloop from "../../../Assets/Archive/projects/Wixloop.webp";
  
-import Door from "../../../Assets/Archive/projects/Door.jpg";
- import Janama from "../../../Assets/Archive/projects/Janama2.png";
+import Door from "../../../Assets/Archive/projects/Door.webp";
+ import Janama from "../../../Assets/Archive/projects/Janama2.webp";
 
-import Koj from "../../../Assets/Archive/projects/Koj.png";
-import Darya from "../../../Assets/Archive/projects/Darya.png";
+import Koj from "../../../Assets/Archive/projects/Koj.webp";
+import Darya from "../../../Assets/Archive/projects/Darya.webp";
 
-import Taraz from "../../../Assets/Archive/projects/Taraz.png";
+import Taraz from "../../../Assets/Archive/projects/Taraz.webp";
  
 const Projects = ({ searchQuery, sortOrder }) => {
   const { t } = useTranslation();
@@ -267,7 +267,7 @@ const ProjectTitle = styled.h3`
 `;
 
 const ProjectLink = styled.a`
-  color: #01be96;
+  color: #018367;
   font-size: 1.2rem;
   &:hover {
     color: #fff;
@@ -289,7 +289,7 @@ const ReadMoreButtonContainer = styled.div`
 `;
 
 const ReadMoreButton = styled.button`
-  background: #01be96;
+  background: #018367;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -308,7 +308,7 @@ const ProjectDates = styled.div`
 
 const Divider = styled.div`
   height: 1px;
-  background: #01be96;
+  background: #018367;
   margin: 10px 0;
 `;
 
@@ -325,7 +325,7 @@ const StatItem = styled.div`
 `;
 
 const Tag = styled.span`
-  background: #01be96;
+  background: #018367;
   color: #fff;
   padding: 5px 10px;
   border-radius: 15px;

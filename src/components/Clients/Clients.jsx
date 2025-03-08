@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import ClientSlider from "./ClientSlider";
-import Najafi from "../../Assets/refrences Image/Najafi.jpg";
-import Hadiseh from "../../Assets/refrences Image/Hadis.jpg";
-import Amiri from "../../Assets/refrences Image/AliAmiri.jpg";
+import Najafi from "../../Assets/refrences Image/Najafi.webp";
+import Hadiseh from "../../Assets/refrences Image/Hadis.webp";
+import Amiri from "../../Assets/refrences Image/AliAmiri.webp";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
@@ -130,7 +130,7 @@ const Container = styled.div`
   }
 
   .slick-dots li.slick-active button {
-    background: #01be96;
+    background: #018367;
     width: 15px;
   }
 
@@ -146,7 +146,7 @@ const TitleContainer = styled.div`
   span {
     font-weight: 700;
     text-transform: uppercase;
-    color: #01be96;
+    color: #018367;
   }
 
   h1 {

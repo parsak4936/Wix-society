@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./RandomIcon.css"; // برای استایل‌های سفارشی
-import react from "../../Assets/Icons/React.png";
-import book from "../../Assets/Icons/book.png";
-import animals from "../../Assets/Icons/wild-animals.png";
-import ukraine from "../../Assets/Icons/ukraine.png";
-import turkey from "../../Assets/Icons/turkey.png";
-import russia from "../../Assets/Icons/russia.png";
-import playlist from "../../Assets/Icons/playlist.png";
-import science from "../../Assets/Icons/science-report.png";
-import earth from "../../Assets/Icons/planet-earth.png";
-import italy from "../../Assets/Icons/italy.png";
-import iran from "../../Assets/Icons/iran.png";
-import hungary from "../../Assets/Icons/hungary.png";
-import camera from "../../Assets/Icons/camera.png";
-import circle from "../../Assets/Icons/circle.png";
-import code from "../../Assets/Icons/code.png";
-import writing from "../../Assets/Icons/copy-writing.png";
-import destination from "../../Assets/Icons/destination.png";
-import family from "../../Assets/Icons/family.png";
-import guitar from "../../Assets/Icons/guitar.png";
+import react from "../../Assets/Icons/React.webp";
+import book from "../../Assets/Icons/book.webp";
+import animals from "../../Assets/Icons/wild-animals.webp";
+import ukraine from "../../Assets/Icons/ukraine.webp";
+import turkey from "../../Assets/Icons/turkey.webp";
+import russia from "../../Assets/Icons/russia.webp";
+import playlist from "../../Assets/Icons/playlist.webp";
+import science from "../../Assets/Icons/science-report.webp";
+import earth from "../../Assets/Icons/planet-earth.webp";
+import italy from "../../Assets/Icons/italy.webp";
+import iran from "../../Assets/Icons/iran.webp";
+import hungary from "../../Assets/Icons/hungary.webp";
+import camera from "../../Assets/Icons/camera.webp";
+import circle from "../../Assets/Icons/circle.webp";
+import code from "../../Assets/Icons/code.webp";
+import writing from "../../Assets/Icons/copy-writing.webp";
+import destination from "../../Assets/Icons/destination.webp";
+import family from "../../Assets/Icons/family.webp";
+import guitar from "../../Assets/Icons/guitar.webp";
 
 const icons = [
   <img

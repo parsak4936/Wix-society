@@ -25,7 +25,7 @@
 .audio-control-button {
   background: none;
   border: none;
-  color: #01be96;
+  color: #018367;
   font-size: 1.5rem;
   cursor: pointer;
   outline: none;
@@ -46,7 +46,7 @@
   appearance: none;
   width: 15px;
   height: 15px;
-  background: #01be96;
+  background: #018367;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -54,7 +54,7 @@
 .volume-slider::-moz-range-thumb {
   width: 15px;
   height: 15px;
-  background: #01be96;
+  background: #018367;
   border-radius: 50%;
   cursor: pointer;
 }

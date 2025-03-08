@@ -13,7 +13,7 @@ import styled from "styled-components";
 import Writing from "./Writings/Writing";
 import Photos from "./Photoes/Photos";
 import Projects from "./Projects/Projects ";
-import headervideo from "../../Assets/backgrounds/Header5.mp4";
+import headervideo from "../../Assets/backgrounds/Header6.mp4";
 import { useTranslation } from "react-i18next";
 import useLanguageChange from "../../Context/useLanguageChange";
 import Education from "./Education/Education";
@@ -25,8 +25,7 @@ const tabs = [
   { name: "Photos", icon: <FaCamera /> },
   { name: "Projects", icon: <FaProjectDiagram /> },
   { name: "Education", icon: <FaGraduationCap /> },
-  { name: "Design", icon: <MdDesignServices />
-  },
+  { name: "Design", icon: <MdDesignServices /> },
 ];
 
 const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
@@ -40,7 +39,7 @@ const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
     case t("Education"):
       return <Education searchQuery={searchQuery} sortOrder={sortOrder} />;
     case t("Design"):
-      return <Design sortOrder={sortOrder}/>;
+      return <Design sortOrder={sortOrder} />;
     case t("Projects"):
       return <Projects searchQuery={searchQuery} sortOrder={sortOrder} />;
     default:
@@ -97,13 +96,16 @@ const ArchivePage = () => {
             </ArchiveTabContainer>
             <ArchiveSearchAndSort>
               <ArchiveSearchBar>
-                <FaSearch />
+                 <FaSearch />
                 <input
-                  type="text"
-                  placeholder={t("Search")}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+  type="text"
+  placeholder={t("Search")}
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  aria-label={t("Search")}
+/>
+
+
               </ArchiveSearchBar>
               <ArchiveSortButton onClick={toggleSortOrder}>
                 {sortOrder === "newest" ? (
@@ -146,7 +148,7 @@ const TitleContainer = styled.div`
   span {
     font-weight: 700;
     text-transform: uppercase;
-    color: #01be96;
+    color: #018367;
   }
 
   h1 {
@@ -224,7 +226,7 @@ const ArchiveTab = styled.div`
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  background-color: ${({ isActive }) => (isActive ? "#01be96" : "#333")};
+  background-color: ${({ isActive }) => (isActive ? "#018367" : "#333")};
   color: ${({ isActive }) => (isActive ? "#fff" : "#888")};
   animation: ${({ isActive }) =>
     isActive ? "wave44 3s infinite alternate" : "none"};
@@ -235,7 +237,7 @@ const ArchiveTab = styled.div`
   transition: background-color 0.3s, color 0.3s;
 
   &:hover {
-    background-color: #01be96;
+    background-color: #018367;
     color: #fff;
   }
 

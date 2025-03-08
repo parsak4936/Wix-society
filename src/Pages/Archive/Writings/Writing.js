@@ -224,7 +224,7 @@ const Info = styled.div`
 `;
 
 const Tag = styled.span`
-  background: #01be96;
+  background: #018367;
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
@@ -255,7 +255,7 @@ const ButtonContainer = styled.div`
 `;
 
 const ReadMoreButton = styled.button`
-  background: #01be96;
+  background: #018367;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -284,7 +284,7 @@ const Button = styled.button`
     animation: wave44 3s infinite alternate;
 
   &:hover {
-    background: #01be96;
+    background: #018367;
     color:white;
      animation: wave1 3s infinite alternate, wave3 5s infinite alternate;
   }

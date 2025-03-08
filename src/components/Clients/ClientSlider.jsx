@@ -97,7 +97,7 @@ const Header = styled.div`
   margin-bottom: 1rem;
   .quote {
     font-size: 3rem;
-    color: #01be96;
+    color: #018367;
     opacity: 0.7;
   }
 `;
@@ -126,7 +126,7 @@ const Body = styled.div`
 `;
 
 const ReadMoreButton = styled.button`
-  background: #01be96;
+  background: #018367;
   color: #fff;
   border: none;
   padding: 5px 10px;

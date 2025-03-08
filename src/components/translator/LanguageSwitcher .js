@@ -62,7 +62,7 @@ const SwitcherContainer = styled(motion.div)`
 const LanguageButton = styled(motion.button)`
   width: 40px;
   height: 40px;
-  background-color: ${(props) => (props.isActive ? '#f0ab0c' : '#01be96')}; // تغییر نام ویژگی
+  background-color: ${(props) => (props.isActive ? '#AE7D09' : '#018367')}; // تغییر نام ویژگی
   border-radius: 50%;
   margin: 10px 0;
   cursor: pointer;
@@ -81,8 +81,9 @@ const LanguageButton = styled(motion.button)`
   }
 `;
 
+
 const IconContainer = styled.div`
-  background-color: ${(props) => (props.isActive ? "#F0AB0C" : "#01be96")}; // تغییر نام ویژگی
+  background-color: ${(props) => (props.isActive ? "#AE7D09" : "#018367")}; // تغییر نام ویژگی
   color: white;
   border-radius: 50%;
   padding: 0.5rem;

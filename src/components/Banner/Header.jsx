@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-import HeaderLogo from "../../Assets/Logo/Logo1.png";
+import HeaderLogo from "../../Assets/Logo/Logo1.webp";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
-  const [isInitialAnimationDone, setIsInitialAnimationDone] = useState(false);
-  const [bar, setBar] = useState(false);
+  const [isInitialAnimationDone, setIsInitialAnimationDone] = useState(undefined);
+  const [bar, setBar] = useState(undefined);
   const location = useLocation();
   const { t, i18n } = useTranslation();
 
@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (isInitialAnimationDone) {
+    if (isInitialAnimationDone ==undefined) {
       const interval = setInterval(() => {
         setIsInitialAnimationDone(false);
         setTimeout(() => {
@@ -33,11 +33,11 @@ const Header = () => {
   }, [isInitialAnimationDone]);
 
   const handleLinkClick = () => {
-    setBar(false);
+    setBar(undefined);
   };
 
   return (
-    <Container bar={bar} lang={i18n.language}>
+<Container bar={bar ? "true" : undefined} lang={i18n.language}>
       <Logo>
         <StyledLink to="/" onClick={handleLinkClick}>
           <motion.span
@@ -140,46 +140,48 @@ const Container = styled.div`
   }
 
   @media (max-width: 640px) {
-    .bars {
-      width: 40px;
-      color: black !important;
-      height: 40px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      z-index: 10;
-      .bar {
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        background-color: ${(props) => (props.bar ? "#000" : "#fff")};
-        transition: all 400ms ease-in-out;
-        :before,
-        :after {
-          content: "";
-          width: 100%;
-          height: 2px;
-          background-color: ${(props) => (props.bar ? "#000" : "#fff")};
-          position: absolute;
-        }
+     .bars {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
 
-        :before {
-          z-index: 10;
-          transform: ${(props) =>
-            props.bar ? "rotate(45deg)" : "translateY(10px)"};
-          transition: all 400ms ease-in-out;
-        }
+.bar {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: ${(props) => (props.bar ? "#000" : "#fff")};
+  transition: all 400ms ease-in-out;
+}
 
-        :after {
-          z-index: 10;
-          transform: ${(props) =>
-            props.bar ? "rotate(-45deg)" : "translateY(-10px)"};
-          transition: all 400ms ease-in-out;
-        }
-      }
-    }
+.bar::before,
+.bar::after {
+  content: "";
+  width: 30px;
+  height: 3px;
+  background-color: ${(props) => (props.bar ? "#000" : "#fff")};
+  position: absolute;
+  transition: all 400ms ease-in-out;
+}
+
+.bar::before {
+  
+  transform: ${(props) => (props.bar ? "rotate(45deg) translate(0px, 0px)" : "translateY(-10px)")};
+}
+
+.bar::after {
+  
+  transform: ${(props) => (props.bar ? "rotate(-45deg) translate(0px, 0px)" : "translateY(10px)")};
+}
+
+.bar.active {
+  background-color: transparent; /* مخفی کردن خط وسط */
+}
   }
 
   @media (max-width: 385px) {
@@ -248,7 +250,7 @@ const Nav = styled.div`
       }
 
       &.active {
-        color: #01be96 !important;
+        color: #018367 !important;
         font-weight: bold !important;
       }
     }
@@ -275,7 +277,7 @@ const StyledLink = styled(Link)`
   color: white !important;
   text-decoration: none !important;
   &.active {
-    color: #01be96 !important;
+    color: #018367 !important;
     font-weight: bold !important;
   }
 `;

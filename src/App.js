@@ -8,11 +8,11 @@ import Home from "./Pages/Home";
 import Archive from "./Pages/Archive/Archive";
 import "./Pages/Home.css";
 import Travels from "./Pages/Travel/Travels";
+import styled, { StyleSheetManager } from 'styled-components';
 
-
-import { AudioProvider } from "./Context/AudioContext"; 
+import { AudioProvider } from "./Context/AudioContext";
 import GlobalAudioPlayer from "./components/AudioPlayer/GlobalAudioPlayer";
-import  { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import Header from "./components/Banner/Header";
 import LanguageSwitcher from "./components/translator/LanguageSwitcher ";
 import { useTranslation } from "react-i18next";
@@ -23,8 +23,9 @@ const GlobalStyle = createGlobalStyle`
     50% { box-shadow: 0 0 20px 20px rgba(1, 190, 150, 0.2); }
     75% { box-shadow: 0 0 30px 30px rgba(1, 190, 150, 0.1); }
     100% { box-shadow: 0 0 40px 40px rgba(1, 190, 150, 0.4); }
-  } 
-     @keyframes wave44 {
+  }
+
+  @keyframes wave44 {
     0% { box-shadow: 0 0 0 0 rgba(1, 190, 150, 0.4); }
     25% { box-shadow: 0 0 2px 2px rgba(1, 190, 150, 0.3); }
     50% { box-shadow: 0 0 5px 5px rgba(1, 190, 150, 0.2); }
@@ -48,6 +49,14 @@ const GlobalStyle = createGlobalStyle`
     100% { box-shadow: 0 0 50px 50px rgba(1, 190, 150, 0.4); }
   }
 
+  /* New yellow wave animation */
+  @keyframes waveYellow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 221, 51, 0.4); }
+    25% { box-shadow: 0 0 10px 10px rgba(255, 221, 51, 0.3); }
+    50% { box-shadow: 0 0 20px 20px rgba(255, 221, 51, 0.2); }
+    75% { box-shadow: 0 0 30px 30px rgba(255, 221, 51, 0.1); }
+    100% { box-shadow: 0 0 40px 40px rgba(255, 221, 51, 0.4); }
+  }
 `;
 
 const pageTransition = {
@@ -117,7 +126,7 @@ const AnimatedRoutes = () => {
                 </motion.div>
               }
             />
-             <Route
+            <Route
               path="/travel"
               element={
                 <motion.div
@@ -126,10 +135,10 @@ const AnimatedRoutes = () => {
                   exit="exit"
                   variants={pageTransition}
                 >
-                 <Travels />
+                  <Travels />
                 </motion.div>
               }
-            />  
+            />
             <Route
               path="/aboutme"
               element={
@@ -155,30 +164,22 @@ const App = () => {
 
   useEffect(() => {
     const language = i18n.language;
-    document.body.classList.remove('lang-en', 'lang-fa', 'lang-ru','lang-it');
-    if (language.startsWith('en')) {
-      document.body.classList.add('lang-en');
-    } else if (language.startsWith('fa')) {
-      document.body.classList.add('lang-fa');
-    } else if (language.startsWith('it')) {
-      document.body.classList.add('lang-it');
-    } else if (language.startsWith('ru')) {
-      document.body.classList.add('lang-ru');
+    document.body.classList.remove("lang-en", "lang-fa", "lang-ru", "lang-it");
+    if (language.startsWith("en")) {
+      document.body.classList.add("lang-en");
+    } else if (language.startsWith("fa")) {
+      document.body.classList.add("lang-fa");
+    } else if (language.startsWith("it")) {
+      document.body.classList.add("lang-it");
+    } else if (language.startsWith("ru")) {
+      document.body.classList.add("lang-ru");
     }
   }, [i18n.language]);
 
   return (
-    
     <AudioProvider>
-     
-       <BrowserRouter>
-        
-      
-          
-           
-          <Header />
-          
-       
+      <BrowserRouter>
+        <Header />
         <RandomIcon />
         <ScrollUp />
         <GlobalAudioPlayer />
@@ -189,4 +190,3 @@ const App = () => {
 };
 
 export default App;
- 

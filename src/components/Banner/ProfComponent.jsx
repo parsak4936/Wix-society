@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { FaLinkedin, FaTelegramPlane, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import profileimage from "../../Assets/Profile/WixProfile2.jpeg";
+import profileimage from "../../Assets/Profile/WixProfile2.webp";
 import { AudioContext } from "../../Context/AudioContext";
 import { motion } from "framer-motion";
-import italy from "../../Assets/Icons/italy.png";
-import iran from "../../Assets/Icons/iran.png";
-import infj from "../../Assets/Icons/INFJ.png";
-import gemini from "../../Assets/Icons/gemini2.png";
-import email from "../../Assets/Icons/communication.png";
-import hungary from "../../Assets/Icons/hungary.png";
-import ukraine from "../../Assets/Icons/ukraine.png";
-import turkey from "../../Assets/Icons/turkey.png";
-import circle from "../../Assets/Icons/circle.png";
-import russia from "../../Assets/Icons/russia.png";
+import italy from "../../Assets/Icons/italy.webp";
+import iran from "../../Assets/Icons/iran.webp";
+import infj from "../../Assets/Icons/INFJ.webp";
+import gemini from "../../Assets/Icons/gemini2.webp";
+import email from "../../Assets/Icons/communication.webp";
+import hungary from "../../Assets/Icons/hungary.webp";
+import ukraine from "../../Assets/Icons/ukraine.webp";
+import turkey from "../../Assets/Icons/turkey.webp";
+import circle from "../../Assets/Icons/circle.webp";
+import russia from "../../Assets/Icons/russia.webp";
 import { useTranslation } from "react-i18next";
 
 const ProfComponent = () => {
@@ -199,35 +199,45 @@ const ProfComponent = () => {
               )
             )}
           </motion.div>
-          <Social>
-            <div className="social-icons">
-              {[
-                {
-                  href: "https://www.instagram.com/parsak.exe/",
-                  icon: <AiOutlineInstagram />,
-                },
-                {
-                  href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
-                  icon: <FaLinkedin />,
-                },
-                { href: "https://t.me/Slihouette", icon: <FaTelegramPlane /> },
-                {
-                  href: "https://www.youtube.com/channel/UC31aBZ8280jBRyEtk1pzzZg",
-                  icon: <FaYoutube />,
-                },
-              ].map((social, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, rotate: 180 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <a href={social.href}>{social.icon}</a>
-                </motion.span>
-              ))}
-            </div>
-          </Social>
+         <Social>
+  <div className="social-icons">
+    {[ 
+      {
+        href: "https://www.instagram.com/parsak.exe/",
+        icon: <AiOutlineInstagram />,
+        label: "Instagram Profile"
+      },
+      {
+        href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
+        icon: <FaLinkedin />,
+        label: "LinkedIn Profile"
+      },
+      {
+        href: "https://t.me/Parsakazemi",
+        icon: <FaTelegramPlane />,
+        label: "Telegram Channel"
+      },
+      {
+        href: "https://www.youtube.com/@betterwix",
+        icon: <FaYoutube />,
+        label: "YouTube Channel"
+      }
+    ].map((social, index) => (
+      <motion.span
+        key={index}
+        initial={{ opacity: 0, rotate: 180 }}
+        animate={{ opacity: 1, rotate: 0 }}
+        whileHover={{ rotate: 360 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <a href={social.href} aria-label={social.label}>
+          {social.icon}
+        </a>
+      </motion.span>
+    ))}
+  </div>
+</Social>
+
         </InfoText>
       </RightColumn>
     </Container>
@@ -436,8 +446,8 @@ const Skills = styled.div`
 `;
 
 const SkillButton = styled.span`
-  color: #01be96;
-  border: 2px solid #01be96;
+  color: #018367;
+  border: 2px solid #018367;
   padding: 0.4rem 0.7rem;
   border-radius: 5px;
   cursor: pointer;
@@ -446,7 +456,7 @@ const SkillButton = styled.span`
   transition: background-color 0.3s, color 0.3s;
 
   &:hover {
-    background-color: #01be96;
+    background-color: #018367;
     color: #fff;
   }
 
@@ -460,7 +470,7 @@ const LearnMoreButton = styled.button`
   padding: 0.7rem 2rem;
   cursor: pointer;
   margin-top: 20px;
-  background-color: #01be96;
+  background-color: #018367;
   border: none;
   color: #fff;
   font-weight: 500;
@@ -489,18 +499,18 @@ const Social = styled.div`
       width: 2.5rem;
       height: 2.5rem;
       background-color: transparent;
-      border: 0px solid #01be96;
+      border: 0px solid #018367;
       border-radius: 30%;
       position: relative;
       cursor: pointer;
 
       &:hover {
-        background-color: #01be96;
+        background-color: #018367;
         color: #fff;
       }
 
       svg {
-        color: #01be96;
+        color: #018367;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -517,6 +527,6 @@ const Social = styled.div`
 const Line = styled.div`
   width: 100%;
   height: 2px;
-  background: #01be96;
+  background: #018367;
   margin: 0.5rem auto;
 `;

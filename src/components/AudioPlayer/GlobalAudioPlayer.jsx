@@ -130,6 +130,7 @@ const GlobalAudioPlayer = () => {
             variants={buttonVariants}
             initial="hidden"
             animate="visible"
+            aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
           >
             {isPlaying ? <FaPause /> : <FaPlay />}
           </motion.button>
@@ -141,6 +142,7 @@ const GlobalAudioPlayer = () => {
             variants={buttonVariants}
             initial="hidden"
             animate="visible"
+            aria-label="Stop audio" 
           >
             <FaStop />
           </motion.button>

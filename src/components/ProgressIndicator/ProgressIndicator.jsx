@@ -106,7 +106,7 @@ const IndicatorContainer = styled(motion.div)`
 const Dot = styled(motion.div)`
   width: 40px;
   height: 40px;
-  background-color: ${(props) => (props.isActive ? '#f0ab0c' : '#01be96')};
+  background-color: ${(props) => (props.isActive ? '#AE7D09' : '#018367')};
   border-radius: 50%;
   margin: 10px 0;
   cursor: pointer;
@@ -124,7 +124,7 @@ const Dot = styled(motion.div)`
   &:focus,
   &:active {
     outline: none;
-    background-color: #f0ab0c;
+    background-color: #AE7D09;
     box-shadow: 0 0 10px 5px rgba(1, 190, 150, 0.5);
   }
 
