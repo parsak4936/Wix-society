@@ -140,13 +140,13 @@ const SkillsAndHobbies = () => {
                 exit={{ opacity: 0, y: scrollDirection === "down" ? -50 : 50 }}
                 transition={{ duration: 0.5 }}
               >
-                <SkillIcon>
+                {/* <SkillIcon>
                   <skill.icon />
-                </SkillIcon>
+                </SkillIcon> */}
                 <SkillDetails>
                   <h3>{t(skill.name)}</h3>
-                  <SkillLevel level={skillLevels[skill.level]} />
-                  <p>{t(skill.description)}</p>
+                  {/* <SkillLevel level={skillLevels[skill.level]} /> */}
+                  {/* <p>{t(skill.description)}</p> */}
                 </SkillDetails>
               </SkillCard>
             ))
@@ -178,7 +178,7 @@ const StickyHeader = styled.div`
   top: 0;
   background: none;
   z-index: 10;
-  padding: 1rem 0;
+  padding: 0.2rem 0;
 `;
 
 const Tabs = styled.div`
@@ -199,7 +199,7 @@ const Tab = styled.button`
     props.active
       ? "#fff"
       : "#fff"}; /* White for default and green for active */
-  padding: 0.6rem 0.6rem;
+  padding: 0.2rem 0.6rem;
   margin: 0.5rem;
   font-size: 1.2rem;
   cursor: pointer;
@@ -229,9 +229,9 @@ const SkillsGrid = styled.div`
 
 const SkillCard = styled(motion.div)`
   background: transparent; /* حذف پس‌زمینه */
-  padding: 1.5rem;
+  padding: 0.8rem;
   border: 2px solid #018367; /* حاشیه سبز رنگ */
-  border-radius: 10%;
+  border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* سایه اطراف کادر */
   display: flex;
   flex-direction: column;

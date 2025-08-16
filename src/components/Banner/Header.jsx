@@ -80,11 +80,11 @@ const Header = () => {
         </span>
         <span>
           <StyledLink
-            to="/archive"
-            className={location.pathname === "/archive" ? "active" : ""}
+            to="/Portfolio"
+            className={location.pathname === "/Portfolio" ? "active" : ""}
             onClick={handleLinkClick}
           >
-            {t("archive")}
+            {t("Portfolio")}
           </StyledLink>
         </span>
         <span>

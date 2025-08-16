@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 // import WritingData from "../Writings/WritingData";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
- import DeathGame from "../../../Assets/Archive/Writings/DeathGame.webp";
-import eykash from "../../../Assets/Archive/Writings/eykash.webp";
-import lonely from "../../../Assets/Archive/Writings/lonely.webp";
-import lonewarrior from "../../../Assets/Archive/Writings/lonewarrior.webp";
+ import DeathGame from "../../../Assets/Portfolio/Writings/DeathGame.webp";
+import eykash from "../../../Assets/Portfolio/Writings/eykash.webp";
+import lonely from "../../../Assets/Portfolio/Writings/lonely.webp";
+import lonewarrior from "../../../Assets/Portfolio/Writings/lonewarrior.webp";
 
 
 

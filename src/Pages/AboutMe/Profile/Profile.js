@@ -1,6 +1,6 @@
 import React from "react";
-import Profileimage1 from "../../../Assets/Profile/Parsa.webp";
-import SmallProfileImage from "../../../Assets/Profile/small.webp";
+import Profileimage1 from "../../../Assets/Profile/Parsa.jpg";
+import SmallProfileImage from "../../../Assets/Profile/small.jpg";
 import "./Profile.css";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { FaLinkedin, FaTelegramPlane, FaYoutube } from "react-icons/fa";
@@ -29,6 +29,7 @@ export default function Profile() {
 
   return (
     <ProfileContainer>
+      {/* LEFT SIDE — TEXT */}
       <ProfileInfo lang={i18n.language}>
         <h1>
           {t("Hello!")} <br /> {t("I'm")}{" "}
@@ -47,19 +48,20 @@ export default function Profile() {
               ))}
           </motion.span>
           <br />
-          <span className="highlight-text">
-            {t("Book worm and science nerd")}
+          <span className="">
+            {t("A bookworm, a science nerd, and a dreamer at heart.")}
           </span>
         </h1>
+
         <ProfileDescription lang={i18n.language}>
           <p>
             {t(
-              "With a specialized focus in computer engineering, I have dedicated the past two years to mastering React JS/ Native. I blend my passions for literature, art, and technology to create distinctive digital experiences. My journey is driven by an insatiable curiosity and a commitment to exploring and demystifying the complexities of the digital world.."
+              "With a foundation in computer engineering, I’ve spent the past two years exploring React JS/Native, weaving together art, storytelling, and data to craft meaningful digital experiences. My curiosity is endless — from writing and creating audiobooks, to analyzing data and designing intuitive interfaces. I bridge creativity and logic to transform ideas into something both beautiful and functional."
             )}
           </p>
 
           <SmallImageSection>
-            <BackgroundShape></BackgroundShape>
+            <BackgroundShape />
             <motion.img
               src={SmallProfileImage}
               alt={t("Small Profile")}
@@ -72,14 +74,14 @@ export default function Profile() {
               }}
             />
             <SmallProfileText lang={i18n.language}>
-              {t("based in ,")}{" "}
-              <span className="highlight-text">{t("Italy")}</span>
+              {t("Originally from")}{" "}
+              <span className="highlight-text">{t("Iran")}</span>,{" "}
+              {t("now based in")}{" "}
+              <span className="highlight-text">{t("Italy")}</span>.
               <br />
-              {t(
-                "with a focus onfront-end development and graphic design"
-              )}{" "}
+              {t("I thrive at the intersection of")}{" "}
               <span className="highlight-text">
-                {t("And obsessed with Data Analysis ")}
+                {t("technology, design, and data")}
               </span>
               .
             </SmallProfileText>
@@ -87,114 +89,107 @@ export default function Profile() {
         </ProfileDescription>
       </ProfileInfo>
 
+      {/* RIGHT SIDE — IMAGE + SKILL GRID + SOCIALS */}
       <ProfileImage>
         <img src={Profileimage1} alt={t("Profile")} />
-        <Experience lang={i18n.language}>
-          <h2>{t("Content creator")}</h2>
-          <h2>{t("Data Science")}</h2>
+        <ExperienceGrid>
+          <motion.div whileHover={{ scale: 1.1 }}>{t("Web Developer")}</motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>{t("Data Scientist")}</motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>{t("Story Writer")}</motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>{t("Content Creator")}</motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>{t("INFJ 2w3")}</motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>{t("Explorer")}</motion.div>
+        </ExperienceGrid>
 
-          <h2>{t("Web Developer")}</h2>
-
-          <Line />
-             <Social>
-       <div className="social-icons">
-         {[ 
-           {
-             href: "https://www.instagram.com/parsak.exe/",
-             icon: <AiOutlineInstagram />,
-             label: "Instagram Profile"
-           },
-           {
-             href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
-             icon: <FaLinkedin />,
-             label: "LinkedIn Profile"
-           },
-           {
-             href: "https://t.me/Parsakazemi",
-             icon: <FaTelegramPlane />,
-             label: "Telegram Channel"
-           },
-           {
-             href: "https://www.youtube.com/@betterwix",
-             icon: <FaYoutube />,
-             label: "YouTube Channel"
-           }
-         ].map((social, index) => (
-           <motion.span
-             key={index}
-             initial={{ opacity: 0, rotate: 180 }}
-             animate={{ opacity: 1, rotate: 0 }}
-             whileHover={{ rotate: 360 }}
-             transition={{ duration: 0.6, delay: 0.2 }}
-           >
-             <a href={social.href} aria-label={social.label}>
-               {social.icon}
-             </a>
-           </motion.span>
-         ))}
-       </div>
-     </Social>
-        </Experience>
+        <Line />
+        <Social>
+          <div className="social-icons">
+            {[
+              {
+                href: "https://www.instagram.com/parsak.exe/",
+                icon: <AiOutlineInstagram />,
+                label: "Instagram Profile",
+              },
+              {
+                href: "https://www.linkedin.com/in/parsa-kazemi-230253257/",
+                icon: <FaLinkedin />,
+                label: "LinkedIn Profile",
+              },
+              {
+                href: "https://t.me/Parsakazemi",
+                icon: <FaTelegramPlane />,
+                label: "Telegram Channel",
+              },
+              {
+                href: "https://www.youtube.com/@betterwix",
+                icon: <FaYoutube />,
+                label: "YouTube Channel",
+              },
+            ].map((social, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, rotate: 180 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <a href={social.href} aria-label={social.label}>
+                  {social.icon}
+                </a>
+              </motion.span>
+            ))}
+          </div>
+        </Social>
       </ProfileImage>
     </ProfileContainer>
   );
 }
 
+/* ---------- STYLES ---------- */
 const ProfileContainer = styled.div`
-  direction: ltr;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
   text-align: center;
-  padding: 20px;
-  gap: 20px;
 
-  @media screen and (min-width: 998px) {
-    flex-direction: row;
-    justify-content: space-between;
-    body.lang-fa {
-      text-align: right;
-    }
+  @media screen and (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
     text-align: left;
-    padding: 0 10%;
+    padding: 4rem 10%;
   }
 `;
 
 const ProfileImage = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  position: relative;
-  flex: 1;
+  gap: 1.5rem;
 
   img {
     width: 100%;
-    max-width: 35rem;
-    height: auto;
-    border-radius: 10%;
-    animation: wave1 3s infinite alternate, wave2 4s infinite alternate,
-      wave3 5s infinite alternate;
-  }
-
-  @media (max-width: 640px) {
-    margin-top: 2rem;
+    max-width: 20rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 12%;
+    object-fit: cover;
   }
 `;
 
-const Experience = styled.div`
+const ExperienceGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   text-align: center;
-  margin-top: 1rem;
-  h2 {
-    font-size: 1.5rem;
-    margin: 0;
-    text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
-  }
-
-  p {
+ 
+  div {
+    background: #018367;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
     font-size: 1rem;
-    margin: 0;
-    text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
+    transition: all 0.3s ease-in-out;
+    cursor: default;
   }
 `;
 
@@ -206,29 +201,26 @@ const Line = styled.div`
 `;
 
 const ProfileInfo = styled.div`
-  max-width: 100%;
-  padding: 20px;
-  margin: 20px;
-  flex: 1;
-
   h1 {
-    padding-left: 20px;
-    margin: 20px;
-    text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
   }
 
-  @media screen and (min-width: 1000px) {
-    max-width: 50%;
-    margin-right: 0;
-    margin-bottom: 0;
+  .highlight-text {
+    color: #018367;
+    font-weight: bold;
   }
 `;
 
 const ProfileDescription = styled.div`
-  padding: 20px;
-  line-height: 1.8;
-  margin: 20px;
-  text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  margin-top: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
 `;
 
 const BackgroundShape = styled.div`
@@ -241,36 +233,27 @@ const BackgroundShape = styled.div`
 const SmallImageSection = styled.div`
   display: flex;
   align-items: center;
-  line-height: 1.8;
-  margin-top: 20px;
-  position: relative;
+  gap: 1rem;
+  margin-top: 2rem;
 
   img {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 80%;
-    margin-right: 10px;
-    z-index: 1;
-    animation: wave1 3s infinite alternate, wave3 5s infinite alternate;
+    width: 8rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    align-items: center;
-    img {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
+    text-align: center;
+    gap: 1.2rem;
   }
 `;
 
 const SmallProfileText = styled.p`
-  margin: 0;
   font-size: 1rem;
-  text-align: ${(props) => (props.lang === "fa" ? "right" : "left")};
-  @media screen and (max-width: 768px) {
-    text-align: center;
-  }
+  margin: 0;
+  line-height: 1.5;
 `;
 
 const Social = styled.div`
@@ -281,37 +264,6 @@ const Social = styled.div`
 
   .social-icons {
     display: flex;
-    align-items: center;
     gap: 1.5rem;
-
-    span {
-      width: 2.5rem;
-      height: 2.5rem;
-      background-color: transparent;
-      border: 0px solid #018367;
-      border-radius: 30%;
-      position: relative;
-      transition: transform 400ms ease-in-out, background-color 0.3s, color 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        transform: rotate(360deg);
-        background-color: #018367;
-        color: #fff;
-      }
-
-      svg {
-        color: #018367;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: color 0.3s;
-      }
-
-      &:hover svg {
-        color: #fff;
-      }
-    }
   }
 `;

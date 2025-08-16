@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import Profile from "./Profile/Profile";
 // import Profile2 from "./Profile/Profile2";
-import Education from "./Education/Education";
+import Education from "./Education/Education.js";
 import Clients from "../../components/Clients/Clients";
 import Skills from "./Skills/SkillsAndHobbies";
 import headervideo from "../../Assets/backgrounds/Header4.mp4";
@@ -9,7 +9,7 @@ import "./Aboutme.css"; // Import the CSS file
 import ProgressIndicator from "../../components/ProgressIndicator/ProgressIndicator";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-
+ 
 const Aboutme = () => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
@@ -35,15 +35,20 @@ const Aboutme = () => {
         <VideoWrapper className="video-wrapper">
           <div className="overlay23"></div>
           <video
-            id="background-video"
-            loop
-            autoPlay
-            muted
-            onEnded={(e) => e.target.play()}
-          >
-            <source src={headervideo} type="video/mp4" />
-            {t("Your browser does not support the video tag.")}
-          </video>
+  ref={videoRef}
+  className="background-video"
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="auto"
+  poster="/fallback.jpg"  // add a static image for mobile fallback
+  onEnded={(e) => e.target.play()}
+  onPlay={handlePlay}
+>
+  <source src={headervideo} type="video/mp4" />
+  {t("Your browser does not support the video tag.")}
+</video>
           <HeaderWrapper>
             <Profile />
           </HeaderWrapper>

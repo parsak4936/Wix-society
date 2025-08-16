@@ -5,7 +5,7 @@ import RandomIcon from "./components/RandomIcon/RandomIcon ";
 import ScrollUp from "./components/ScrollUp/ScrollUp";
 import Aboutme from "./Pages/AboutMe/Aboutme";
 import Home from "./Pages/Home";
-import Archive from "./Pages/Archive/Archive";
+import Portfolio from "./Pages/Portfolio/Portfolio";
 import "./Pages/Home.css";
 import Travels from "./Pages/Travel/Travels";
 import styled, { StyleSheetManager } from 'styled-components';
@@ -114,7 +114,7 @@ const AnimatedRoutes = () => {
               }
             />
             <Route
-              path="/archive"
+              path="/Portfolio"
               element={
                 <motion.div
                   initial="hidden"
@@ -122,7 +122,7 @@ const AnimatedRoutes = () => {
                   exit="exit"
                   variants={pageTransition}
                 >
-                  <Archive />
+                  <Portfolio/>
                 </motion.div>
               }
             />

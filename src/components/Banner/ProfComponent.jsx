@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { FaLinkedin, FaTelegramPlane, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import profileimage from "../../Assets/Profile/WixProfile2.webp";
+import profileimage from "../../Assets/Profile/WixProfile2.jpg";
 import { AudioContext } from "../../Context/AudioContext";
 import { motion } from "framer-motion";
 import italy from "../../Assets/Icons/italy.webp";
@@ -16,6 +16,8 @@ import ukraine from "../../Assets/Icons/ukraine.webp";
 import turkey from "../../Assets/Icons/turkey.webp";
 import circle from "../../Assets/Icons/circle.webp";
 import russia from "../../Assets/Icons/russia.webp";
+import english from "../../Assets/Icons/english.jpg";
+
 import { useTranslation } from "react-i18next";
 
 const ProfComponent = () => {
@@ -99,6 +101,13 @@ const ProfComponent = () => {
               animate={{ opacity: 1, scale: [1, 1.2, 1] }}
               transition={{ duration: 0.5 }}
             >
+               <SkillButton>{t("Story Writer")}</SkillButton>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, scale: [1, 1.2, 1] }}
+              transition={{ duration: 0.5 }}
+            >
               <SkillButton>{t("Content Creator")}</SkillButton>
             </motion.div>
             <motion.div
@@ -118,7 +127,7 @@ const ProfComponent = () => {
               <p>
                 {t("where words weave tales and data dances.")} <br />{" "}
                 {t("Dive into my world of creations and adventures.")} <br />{" "}
-                {t("Explore the Archive to find my whole lifetime activities.")}
+                {t("Explore the Portfolioto find my whole lifetime activities.")}
               </p>
             </Description>
             <Link to="/aboutme">
@@ -179,26 +188,30 @@ const ProfComponent = () => {
               )}
             </motion.div>
           ))}
-          <h2>{t("Favorite countries")}</h2>
+          <h2>{t("Languages I can Speak")}</h2>
           <Line />
           <motion.div
-            className="favorite-countries"
-            style={{ display: "flex", gap: "10px", marginBottom: "20px" }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            {[ukraine, iran, italy, russia, hungary, circle, turkey].map(
-              (flag, index) => (
-                <img
-                  key={index}
-                  src={flag}
-                  alt={t(`Flag ${index}`)}
-                  style={{ width: "30px" }}
-                />
-              )
-            )}
-          </motion.div>
+  className="favorite-countries"
+  style={{ 
+    display: "flex", 
+    justifyContent: "center",   // ✅ center horizontally
+    alignItems: "center",       // ✅ center vertically
+    gap: "10px", 
+    marginBottom: "20px" 
+  }}
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.8, delay: 0.5 }}
+>
+  {[iran, english, italy].map((flag, index) => (
+    <img
+      key={index}
+      src={flag}
+      alt={t(`Flag ${index}`)}
+      style={{ width: "30px" }}
+    />
+  ))}
+</motion.div>
          <Social>
   <div className="social-icons">
     {[ 
@@ -272,20 +285,23 @@ const CanvasWrapper = styled.div`
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap; /* ✅ allow wrapping instead of overflow */
   padding-top: 1rem;
-  width: 80%;
-  position: relative;
-  min-height: 100%;
+  width: 100%;     /* ✅ full width, no overflow */
   max-width: 1280px;
   margin: auto;
-  z-index: 1;
   gap: 2rem;
   align-items: flex-start;
 
-  @media (max-width: 840px) {
-    width: 90%;
-    flex-direction: column;
+  @media (max-width: 1024px) {
+    width: 95%;
+    flex-direction: column; /* ✅ stack for tablets */
     align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    padding: 0 1rem;
   }
 `;
 
@@ -293,12 +309,12 @@ const LeftColumn = styled.div`
   flex: 1;
   display: flex;
   padding-top: 50px;
-
-  @media (max-width: 840px) {
-    padding: 0;
-  }
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    padding-top: 20px;
+  }
 `;
 
 const MiddleColumn = styled.div`
@@ -306,50 +322,53 @@ const MiddleColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; // Add relative positioning to contain the absolute CanvasWrapper
-  z-index: 1; // Ensure content is above the CanvasWrapper
-  padding-top: 0.2rem; // Adjust padding to better center content vertically
-  @media (max-width: 840px) {
+  position: relative;
+  z-index: 1;
+  padding-top: 0.5rem;
+
+  @media (max-width: 1024px) {
+    width: 100%;   /* ✅ fit smaller devices */
     padding-top: 0;
   }
 `;
-
 const RightColumn = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
-  @media (max-width: 840px) {
-    padding: 0;
-  }
+
+  @media (max-width: 1024px) {
+    padding-top: 20px;
+   }
 `;
 
 const InfoText = styled.div`
   text-align: center;
+
   p {
     margin: 0.5rem 0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: white;
     display: flex;
     align-items: center;
     gap: 8px;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
-  .favorite-countries {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+  h2 {
+    font-size: 1.5rem;
+   font-family: "Roboto", sans-serif;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
 
-    img {
-      width: 30px;
-      transition: transform 0.3s;
-      &:hover {
-        transform: scale(1.2);
-      }
-    }
+  @media (max-width: 640px) {
+    
+    h2 { font-size: 1.2rem; }
   }
 `;
 
@@ -360,8 +379,8 @@ const Profile = styled.div`
 `;
 
 const ProfileMask = styled.div`
-  width: 15rem;
-  height: 20rem;
+  width: 25rem;
+  height:30rem;
   margin-bottom: 1rem;
   display: flex;
   border-radius: 10% 10% 90% 90%; /* Change this to achieve the desired shape */
@@ -415,10 +434,10 @@ const Title = styled.div`
     color: white;
   }
   h2 {
-    font-size: 1rem;
+     
     margin-top: 10px;
     margin-bottom: 10px;
-    font-family: " Quicksand", serif;
+    font-family: "Roboto", sans-serif;
     color: white;
   }
 `;
@@ -427,13 +446,12 @@ const Description = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
-
+    font-family: "Roboto", sans-serif;
   p {
-    font-weight: 300;
-    font-size: 1.1rem;
-    margin: 0.5rem 0;
+     font-size: 1.1rem;
+    margin: 0.7rem 0;
     color: white;
-    max-width: 80%;
+    max-width: 90%;
   }
 `;
 
@@ -441,18 +459,24 @@ const Skills = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
   margin-bottom: 1rem;
 `;
 
-const SkillButton = styled.span`
-  color: #018367;
+const SkillButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;   /* Ensures consistent width */
+  height: 45px;       /* Ensures consistent height */
+  padding: 0.5rem 1rem;
   border: 2px solid #018367;
-  padding: 0.4rem 0.7rem;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
-  font-size: 1rem;
+ 
+  color: #018367;
+  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 
   &:hover {
@@ -461,8 +485,9 @@ const SkillButton = styled.span`
   }
 
   @media (max-width: 640px) {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.5rem;
+    min-width: 120px;  /* Smaller on mobile */
+    height: 40px;
+    font-size: 0.9rem;
   }
 `;
 
@@ -471,9 +496,12 @@ const LearnMoreButton = styled.button`
   cursor: pointer;
   margin-top: 20px;
   background-color: #018367;
+  border-radius: 5px;
   border: none;
   color: #fff;
   font-weight: 500;
+      font-family: "Roboto", sans-serif;
+
   filter: drop-shadow(0px 10px 10px #01be9551);
   transition: background-color 0.3s, filter 0.3s;
   animation: wave1 3s infinite alternate;

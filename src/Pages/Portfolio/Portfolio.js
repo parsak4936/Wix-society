@@ -16,15 +16,15 @@ import Projects from "./Projects/Projects ";
 import headervideo from "../../Assets/backgrounds/Header6.mp4";
 import { useTranslation } from "react-i18next";
 import useLanguageChange from "../../Context/useLanguageChange";
-import Education from "./Education/Education";
+// import Education from "../AboutMe/Education/Education";
 import Design from "./Designs/Design";
 import { MdDesignServices } from "react-icons/md";
 
 const tabs = [
   { name: "Writings", icon: <FaPen /> },
-  { name: "Photos", icon: <FaCamera /> },
+  // { name: "Photos", icon: <FaCamera /> },
   { name: "Projects", icon: <FaProjectDiagram /> },
-  { name: "Education", icon: <FaGraduationCap /> },
+  // { name: "Education", icon: <FaGraduationCap /> },
   { name: "Design", icon: <MdDesignServices /> },
 ];
 
@@ -34,20 +34,20 @@ const TabContent = ({ currentTab, searchQuery, sortOrder }) => {
   switch (currentTab) {
     case t("Writings"):
       return <Writing searchQuery={searchQuery} sortOrder={sortOrder} />;
-    case t("Photos"):
-      return <Photos searchQuery={searchQuery} sortOrder={sortOrder} />;
-    case t("Education"):
-      return <Education searchQuery={searchQuery} sortOrder={sortOrder} />;
+    // case t("Photos"):
+    //   return <Photos searchQuery={searchQuery} sortOrder={sortOrder} />;
+    // case t("Education"):
+    //   return <Education searchQuery={searchQuery} sortOrder={sortOrder} />;
     case t("Design"):
       return <Design sortOrder={sortOrder} />;
     case t("Projects"):
       return <Projects searchQuery={searchQuery} sortOrder={sortOrder} />;
     default:
       return null;
-  }
+  } 
 };
 
-const ArchivePage = () => {
+const PortfolioPage = () => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = useState(t("Writings"));
   const [searchQuery, setSearchQuery] = useState("");
@@ -65,8 +65,8 @@ const ArchivePage = () => {
 
   return (
     <>
-      <ArchiveVideoWrapper>
-        <ArchiveOverlay />
+      <PortfolioVideoWrapper>
+        <PortfolioOverlay />
         <video
           id="background-video"
           loop
@@ -77,25 +77,25 @@ const ArchivePage = () => {
           <source src={headervideo} type="video/mp4" />
           {t("Your browser does not support the video tag.")}
         </video>
-        <ArchiveHeaderWrapper>
+        <PortfolioHeaderWrapper>
           <TitleContainer>
-            <span className="green">{t("Archive")}</span>
+            <span className="green">{t("Portfolio")}</span>
             <h1>{t("All the things I have done")}</h1>
           </TitleContainer>
-          <ArchiveControlBar>
-            <ArchiveTabContainer>
+          <PortfolioControlBar>
+            <PortfolioTabContainer>
               {tabs.map((tab) => (
-                <ArchiveTab
+                <PortfolioTab
                   key={tab.name}
                   isActive={currentTab === t(tab.name)}
                   onClick={() => setCurrentTab(t(tab.name))}
                 >
                   {tab.icon} {t(tab.name)}
-                </ArchiveTab>
+                </PortfolioTab>
               ))}
-            </ArchiveTabContainer>
-            <ArchiveSearchAndSort>
-              <ArchiveSearchBar>
+            </PortfolioTabContainer>
+            <PortfolioSearchAndSort>
+              <PortfolioSearchBar>
                  <FaSearch />
                 <input
   type="text"
@@ -106,17 +106,17 @@ const ArchivePage = () => {
 />
 
 
-              </ArchiveSearchBar>
-              <ArchiveSortButton onClick={toggleSortOrder}>
+              </PortfolioSearchBar>
+              <PortfolioSortButton onClick={toggleSortOrder}>
                 {sortOrder === "newest" ? (
                   <FaSortAmountDown />
                 ) : (
                   <FaSortAmountUp />
                 )}
-              </ArchiveSortButton>
-            </ArchiveSearchAndSort>
-          </ArchiveControlBar>
-          <ArchiveContent>
+              </PortfolioSortButton>
+            </PortfolioSearchAndSort>
+          </PortfolioControlBar>
+          <PortfolioContent>
             <motion.div
               key={currentTab}
               initial={{ opacity: 0, y: 20 }}
@@ -129,14 +129,14 @@ const ArchivePage = () => {
                 sortOrder={sortOrder}
               />
             </motion.div>
-          </ArchiveContent>
-        </ArchiveHeaderWrapper>
-      </ArchiveVideoWrapper>
+          </PortfolioContent>
+        </PortfolioHeaderWrapper>
+      </PortfolioVideoWrapper>
     </>
   );
 };
 
-export default ArchivePage;
+export default PortfolioPage;
 
 // styled-components definitions remain unchanged
 
@@ -158,7 +158,7 @@ const TitleContainer = styled.div`
   }
 `;
 
-const ArchiveControlBar = styled.div`
+const PortfolioControlBar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,7 +176,7 @@ const ArchiveControlBar = styled.div`
   }
 `;
 
-const ArchiveSearchAndSort = styled.div`
+const PortfolioSearchAndSort = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -190,7 +190,7 @@ const ArchiveSearchAndSort = styled.div`
   }
 `;
 
-const ArchiveSearchBar = styled.div`
+const PortfolioSearchBar = styled.div`
   display: flex;
   align-items: center;
   background-color: #2c2c2c;
@@ -212,7 +212,7 @@ const ArchiveSearchBar = styled.div`
   }
 `;
 
-const ArchiveTabContainer = styled.div`
+const PortfolioTabContainer = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -222,7 +222,7 @@ const ArchiveTabContainer = styled.div`
   }
 `;
 
-const ArchiveTab = styled.div`
+const PortfolioTab = styled.div`
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -247,7 +247,7 @@ const ArchiveTab = styled.div`
   }
 `;
 
-const ArchiveSortButton = styled.div`
+const PortfolioSortButton = styled.div`
   display: flex;
   align-items: center;
   background-color: #2c2c2c;
@@ -271,7 +271,7 @@ const ArchiveSortButton = styled.div`
   }
 `;
 
-const ArchiveContent = styled.div`
+const PortfolioContent = styled.div`
   width: 100%;
   max-width: 1200px;
   padding: 20px;
@@ -281,14 +281,14 @@ const ArchiveContent = styled.div`
   margin-top: 20px;
 `;
 
-const ArchiveVideoWrapper = styled.div`
+const PortfolioVideoWrapper = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 0;
   flex: 1;
 `;
 
-const ArchiveOverlay = styled.div`
+const PortfolioOverlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -296,7 +296,7 @@ const ArchiveOverlay = styled.div`
   z-index: 1;
 `;
 
-const ArchiveHeaderWrapper = styled.div`
+const PortfolioHeaderWrapper = styled.div`
   position: relative;
   z-index: 2;
   display: flex;

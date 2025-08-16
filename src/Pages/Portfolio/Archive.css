@@ -1,6 +1,6 @@
-/* Archive.css */
+/* Portfolio.css */
 
-.archive-container {
+.Portfolio-container {
   background-color: #121212;
   min-height: 100vh;
   display: flex;
@@ -10,7 +10,7 @@
   padding: 20px;
 }
 
-.archive-app {
+.Portfolio-app {
   width: 100%;
   max-width: 1200px;
   padding: 20px;
@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.archive-tab-content {
+.Portfolio-tab-content {
   width: 80%;
   margin-top: 30px;
 }

@@ -4,6 +4,20 @@
 
 }
 
+.header-content { 
+  position: relative;
+  z-index: 2; /* content always above */
+}
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes it behave like background-size: cover */
+  z-index: -1; /* keeps content above */
+}
+
 .video-wrapper {
   position: relative;
 }
@@ -14,19 +28,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -999;
+  object-fit: cover; /* acts like background-size: cover */
+  z-index: 0; /* video at bottom */
 }
-
 .overlay23 {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.49); /* Dark overlay */
-  z-index: -1;
+  background: url("../../Assets/backgrounds/education.webp") no-repeat center center;
+  background-size: cover;
+  opacity: 0.1; /* optional: make it partly transparent */
+  z-index: 1;
 }
+
  
 .section-a1 {
 

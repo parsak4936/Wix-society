@@ -11,7 +11,7 @@ import { FaTimes } from 'react-icons/fa';
  
  for (let i = 1; i <= 14; i++) {
   try {
-    images.push(require(`../../../Assets/Archive/Photoes/${i}.webp`));
+    images.push(require(`../../../Assets/Portfolio/Photoes/${i}.webp`));
   } catch (e) {
      images.push(null); // push null if image is not found
   }

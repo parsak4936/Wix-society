@@ -2,15 +2,15 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import Wixloop from "../../../Assets/Archive/projects/Wixloop.webp";
+import Wixloop from "../../../Assets/Portfolio/projects/Wixloop.webp";
  
-import Door from "../../../Assets/Archive/projects/Door.webp";
- import Janama from "../../../Assets/Archive/projects/Janama2.webp";
+import Door from "../../../Assets/Portfolio/projects/Door.webp";
+ import Janama from "../../../Assets/Portfolio/projects/Janama2.webp";
 
-import Koj from "../../../Assets/Archive/projects/Koj.webp";
-import Darya from "../../../Assets/Archive/projects/Darya.webp";
+import Koj from "../../../Assets/Portfolio/projects/Koj.webp";
+import Darya from "../../../Assets/Portfolio/projects/Darya.webp";
 
-import Taraz from "../../../Assets/Archive/projects/Taraz.webp";
+import Taraz from "../../../Assets/Portfolio/projects/Taraz.webp";
  
 const Projects = ({ searchQuery, sortOrder }) => {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
         title: t("WixLoop"),
         role: t("React JS"),
         description: t(
-          "Wixloop is my personal website, designed for business and dating purposes. It serves as a comprehensive introduction to myself, showcasing my skills, works, and archives. Visitors can explore my programming abilities, portfolio, travel stories, projects I have worked on, contact information, personal and professional interests, as well as my education and work experience. While its current function is solely for self-introduction, the future vision for this website is to evolve into a business platform."
+          "Wixloop is my personal website, designed for business and dating purposes. It serves as a comprehensive introduction to myself, showcasing my skills, works, and Portfolios. Visitors can explore my programming abilities, Portfolio, travel stories, projects I have worked on, contact information, personal and professional interests, as well as my education and work experience. While its current function is solely for self-introduction, the future vision for this website is to evolve into a business platform."
         ),
         startDate: t("May 2024"),
         endDate: t("End of my time"),
