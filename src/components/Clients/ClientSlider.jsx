@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const ClientSlider = (props) => {
   const { t } = useTranslation();
-  const { name, position, img_url, stars, disc } = props.item;
+  const { name, position, img_url, stars, disc, email } = props.item;
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Function to render stars
@@ -69,6 +69,11 @@ const ClientSlider = (props) => {
         <div className="details">
           <h1>{t(name)}</h1>
           <p>{t(position)}</p>
+          {email && (
+            <a className="ref-email" href={`mailto:${email}`}>
+              {email}
+            </a>
+          )}
         </div>
       </Footer>
     </Container>
@@ -86,8 +91,7 @@ const Container = styled.div`
   justify-content: space-between;
   height: 100%;
   border-radius: 15px;
-  animation: wave44 3s infinite alternate;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), 0 0 10px rgba(1, 190, 150, 0.12);
 `;
 
 const Header = styled.div`
@@ -169,6 +173,18 @@ const Footer = styled.div`
     color: rgba(255, 255, 255, 0.7);
     @media (max-width: 538px) {
       font-size: 0.8rem;
+    }
+  }
+
+  .ref-email {
+    display: inline-block;
+    margin-top: 2px;
+    font-size: 0.72rem;
+    color: #018367;
+    text-decoration: none;
+    word-break: break-all;
+    &:hover {
+      text-decoration: underline;
     }
   }
 `;

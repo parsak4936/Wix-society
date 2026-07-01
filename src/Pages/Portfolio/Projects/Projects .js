@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import Wixloop from "../../../Assets/Portfolio/projects/Wixloop.webp";
+import BetterWixImg from "../../../Assets/Portfolio/projects/Wixloop.webp";
  
 import Door from "../../../Assets/Portfolio/projects/Door.webp";
  import Janama from "../../../Assets/Portfolio/projects/Janama2.webp";
@@ -11,7 +11,12 @@ import Koj from "../../../Assets/Portfolio/projects/Koj.webp";
 import Darya from "../../../Assets/Portfolio/projects/Darya.webp";
 
 import Taraz from "../../../Assets/Portfolio/projects/Taraz.webp";
- 
+import BiofeedbackImg from "../../../Assets/Portfolio/projects/Biofeedback.webp";
+import HateSpeechImg from "../../../Assets/Portfolio/projects/HateSpeech.webp";
+import SimaImg from "../../../Assets/Portfolio/projects/SIMA.webp";
+import BatImg from "../../../Assets/Portfolio/projects/BatAlgorithm.webp";
+import DiaryAgentImg from "../../../Assets/Portfolio/projects/DiaryAgent.webp";
+
 const Projects = ({ searchQuery, sortOrder }) => {
   const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = useState([]);
@@ -20,12 +25,76 @@ const Projects = ({ searchQuery, sortOrder }) => {
   const ProjectsData = useMemo(
     () => [
       {
-        id: 1,
-        image: Wixloop,
-        title: t("WixLoop"),
-        role: t("React JS"),
+        id: 7,
+        image: HateSpeechImg,
+        title: t("Real-Time Hate-Speech Detection"),
+        role: t("Data Science / Big Data / NLP"),
         description: t(
-          "Wixloop is my personal website, designed for business and dating purposes. It serves as a comprehensive introduction to myself, showcasing my skills, works, and Portfolios. Visitors can explore my programming abilities, Portfolio, travel stories, projects I have worked on, contact information, personal and professional interests, as well as my education and work experience. While its current function is solely for self-introduction, the future vision for this website is to evolve into a business platform."
+          "My Master's thesis: a scalable, real-time pipeline that detects hateful and offensive speech in live social-media streams such as YouTube and X. It pairs a Big Data stack — Apache Kafka, Apache Spark, Elasticsearch and Kibana — with a fine-tuned DistilBERT classifier (~80% accuracy) and automated AI agents that refine the results. Trained on roughly 53,000 samples consolidated from multiple research datasets and fully containerised with Docker."
+        ),
+        startDate: t("2025"),
+        endDate: t("2026"),
+        Year: t("2026"),
+        link: "https://github.com/parsak4936/Real-Time-Hate-Speech-Detection",
+      },
+      {
+        id: 8,
+        image: BiofeedbackImg,
+        title: t("Biofeedback"),
+        role: t("Python / Data Science / VR"),
+        description: t(
+          "A modular real-time biofeedback platform for VR exposure therapy. Electrodermal activity, heart rate and heart-rate variability are streamed from a PLUX biosignals device, fused into a live stress index, and used to drive a Unity VR scene over UDP. Originally built for acrophobia, it is now designed as a modular system that adapts to multiple anxiety scenarios — including spider phobia and public-speaking exposure. Built in Python with PyQt5, NeuroKit2 and Lab Streaming Layer, and developed in the NISC Lab at the University of Messina."
+        ),
+        startDate: t("2025"),
+        endDate: t("Current"),
+        Year: t("2026"),
+        link: "https://github.com/parsak4936/Biofeedback",
+      },
+      {
+        id: 9,
+        image: DiaryAgentImg,
+        title: t("Diary Agent"),
+        role: t("LLM / AI Agent"),
+        description: t(
+          "An AI agent that reads and analyses my personal diary archive, turning years of private journaling into reflective insight — surfacing emotional patterns and recurring themes. Built around large language models with a retrieval pipeline over the entries, it can also generate imagery from diary passages (some of which appear in the Photos section). It is the companion to the upcoming Diary archive on this site."
+        ),
+        startDate: t("2025"),
+        endDate: t("Current"),
+        Year: t("2026"),
+      },
+      {
+        id: 10,
+        image: SimaImg,
+        title: t("SIMA Data Extraction"),
+        role: t("Data Mining / Python"),
+        description: t(
+          "SIMA is a data-mining project that scrapes and extracts data from multiple APIs to find research works and organise them into taxonomies. Built in collaboration with the Department of Economics and two professors at the University of Messina, it produces a dataset capturing the codes, contexts and research fields of individual researchers — delivering a finalised set of 821 classified papers."
+        ),
+        startDate: t("2024"),
+        endDate: t("2024"),
+        Year: t("2024"),
+        link: "https://github.com/parsak4936/SIMA-Data-Extraction-Project",
+      },
+      {
+        id: 11,
+        image: BatImg,
+        title: t("Bat Algorithm Optimization"),
+        role: t("Algorithms / Python"),
+        description: t(
+          "A comparative study of metaheuristic optimisation, pitting a Genetic Algorithm against swarm intelligence (a Standard Bat Algorithm and a Discrete Memetic Bat Algorithm) across three NP-hard problems: N-Queens, 0/1 Knapsack and the Travelling Salesman Problem. It introduces custom transfer mechanisms and local-search operators so continuous swarm algorithms can handle discrete spaces. Written from scratch in Python — and the project I built starting from almost no formal programming background."
+        ),
+        startDate: t("2024"),
+        endDate: t("2024"),
+        Year: t("2024"),
+        link: "https://github.com/parsak4936/-Bat-algorithm-Optimization",
+      },
+      {
+        id: 1,
+        image: BetterWixImg,
+        title: t("BetterWix"),
+        role: t("React / i18n / Leaflet"),
+        description: t(
+          "BetterWix is my personal portfolio website — a multi-language showcase of my journey across art, design, development and data science. Built in React, it features an interactive Leaflet travel map, a searchable portfolio of projects, designs and writings, background audio, smooth animations, and full localization in English, Italian, Persian and Russian. Conceived as a living self-introduction, it is steadily evolving into a personal brand platform."
         ),
         startDate: t("May 2024"),
         endDate: t("End of my time"),
@@ -35,7 +104,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
       {
         id: 2,
         image: Janama,
-        title: t("JanamaTasvir"),
+        title: t("JanmaTafsir"),
         description: t(
           "JanmaTafsir is an innovative platform designed to streamline the judicial process within the country's legal system. By focusing on cases related to agricultural and non-agricultural land disputes, this platform aims to prevent simple or clear-cut cases from clogging court schedules. Users can specify the location of the land, upload relevant documents, and mutually select an expert to assess the situation. The expert's findings are then published on the website. If the opinions of both experts align, the case proceeds to the next stages; if not, it is referred to court. JanmaTafsir enhances efficiency, reduces courtroom congestion, and ensures swift, reliable resolutions."
         ),
@@ -48,9 +117,9 @@ const Projects = ({ searchQuery, sortOrder }) => {
       {
         id: 3,
         image: Door,
-        title: t("DoorMaster"),
+        title: t("Smart Door Access System"),
         description: t(
-          "The DoorMaster project is a team initiative that integrates image processing, a mobile application, and hardware. The goal was to create the most intelligent camera at the lowest cost, capable of unlocking doors even when the person is wearing a mask or has a facial injury. This process was powered by artificial intelligence. A mobile app was developed to manage authorized individuals, allowing users to unlock the door via their phone, control access, and monitor entry and exit logs along with the latest image used by the system to unlock the door. The project utilized Raspberry Pi and Kinect Xbox 360 camera."
+          "My bachelor's thesis project (graded 19.25/20), developed with the EpIran startup team. The system uses facial-recognition AI to identify authorised people and unlock a door — even when the person is wearing a mask or has a facial injury. A companion mobile app manages members, controls access remotely, and logs every entry alongside the latest capture used to open the door. Built with React Native on low-cost hardware (Raspberry Pi and a Kinect Xbox 360 camera), the project was taken through to a patent application in Iran."
         ),
         startDate: t("Nov 2022"),
         endDate: t("Sep 2023"),
@@ -82,7 +151,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
         endDate: t("May, 2022"),
         Year: t("2022"),
         role: t("UI/UX Designer and product manager"),
-        link: "https://tarazapp.com/",
+        link: "https://taraz.org/",
       },
       {
         id: 6,
@@ -164,13 +233,19 @@ const Projects = ({ searchQuery, sortOrder }) => {
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <ProjectImage src={item.image} alt={t(item.title)} />
+            <ProjectImage src={item.image} alt={t(item.title)} loading="lazy" decoding="async" />
             <ProjectContent>
               <ProjectHeader>
                 <ProjectTitle>{t(item.title)}</ProjectTitle>
-                <ProjectLink href={item.link} target="_blank">
-                  <p>{item.Year}</p>
-                </ProjectLink>
+                {item.link ? (
+                  <ProjectLink href={item.link} target="_blank" rel="noreferrer">
+                    <p>{item.Year}</p>
+                  </ProjectLink>
+                ) : (
+                  <ProjectLink as="span">
+                    <p>{item.Year}</p>
+                  </ProjectLink>
+                )}
               </ProjectHeader>
               <ProjectDates>
                 {t("Start")}: {item.startDate} - {t("End")}: {item.endDate}
@@ -231,8 +306,6 @@ const ProjectsContainer = styled.div`
 
 const ProjectCard = styled(motion.div)`
   background: #1c1c1c;
-       animation: wave1 3s infinite alternate, wave3 5s infinite alternate;
-
   border-radius: 10px;
   overflow: hidden;
   max-width: 300px;

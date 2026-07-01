@@ -63,7 +63,7 @@ const Header = () => {
         </StyledLink>
         <span>
           <StyledLink to="/" className="important" onClick={handleLinkClick}>
-            {t("WIXLOOP")}
+            {t("BetterWix")}
           </StyledLink>
         </span>
       </Logo>

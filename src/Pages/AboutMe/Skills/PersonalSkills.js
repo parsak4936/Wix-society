@@ -20,6 +20,12 @@ import {
     FaFileExcel,
     FaFilePowerpoint,
     FaFirstAid,
+    FaBookOpen,
+    FaMicrophone,
+    FaSpa,
+    FaShieldAlt,
+    FaHeadphones,
+    FaLightbulb,
   } from "react-icons/fa";
   import { GiPawHeart, GiFamilyTree } from "react-icons/gi";
   
@@ -47,6 +53,12 @@ import {
     { icon: FaFileWord, name: "Word", level: "Expert" },
     { icon: FaFileExcel, name: "Excel", level: "Expert" },
     { icon: FaFilePowerpoint, name: "Power Point", level: "Expert" },
+    { icon: FaBookOpen, name: "Storytelling", level: "Expert" },
+    { icon: FaMicrophone, name: "Public Speaking", level: "Intermediate" },
+    { icon: FaSpa, name: "Mindfulness", level: "Advanced" },
+    { icon: FaShieldAlt, name: "Resilience", level: "Advanced" },
+    { icon: FaHeadphones, name: "Audiobook Narration", level: "Advanced" },
+    { icon: FaLightbulb, name: "Continuous Learning", level: "Expert" },
   ];
   
   export default PersonalSkills;

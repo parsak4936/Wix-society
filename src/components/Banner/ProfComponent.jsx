@@ -130,9 +130,14 @@ const ProfComponent = () => {
                 {t("Explore the Portfolioto find my whole lifetime activities.")}
               </p>
             </Description>
-            <Link to="/aboutme">
-              <LearnMoreButton>{t("Learn More about me")}</LearnMoreButton>
-            </Link>
+            <ButtonRow>
+              <Link to="/aboutme">
+                <LearnMoreButton>{t("Learn More about me")}</LearnMoreButton>
+              </Link>
+              <Link to="/aboutme" state={{ scrollTo: "contact-section" }}>
+                <ContactButton>{t("Contact me")}</ContactButton>
+              </Link>
+            </ButtonRow>
           </motion.div>
         </Content>
       </MiddleColumn>
@@ -216,7 +221,7 @@ const ProfComponent = () => {
   <div className="social-icons">
     {[ 
       {
-        href: "https://www.instagram.com/parsak.exe/",
+        href: "https://www.instagram.com/parichka.e/",
         icon: <AiOutlineInstagram />,
         label: "Instagram Profile"
       },
@@ -508,6 +513,30 @@ const LearnMoreButton = styled.button`
   &:hover {
     background-color: #019a78;
     filter: drop-shadow(0px 10px 10px #019a7851);
+  }
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+
+const ContactButton = styled.button`
+  padding: 0.7rem 2rem;
+  cursor: pointer;
+  margin-top: 20px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #018367;
+  color: #fff;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #018367;
   }
 `;
 

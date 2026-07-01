@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FaGraduationCap, FaEnvelope, FaUserFriends, FaUserTie, FaCodeBranch } from "react-icons/fa";
+import { FaGraduationCap, FaEnvelope, FaUserFriends, FaUserTie, FaCodeBranch, FaRoute } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const iconMap = {
   home: <FaUserTie />,
+  journey: <FaRoute />,
   education: <FaGraduationCap />,
   clients: <FaUserFriends />,
   skills: <FaCodeBranch />,

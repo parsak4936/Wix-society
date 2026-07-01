@@ -224,6 +224,8 @@ const handleImageLoad = (id) => {
               <Photo
                 src={item.image}
                 alt={t(item.title)}
+                loading="lazy"
+                decoding="async"
                 onLoad={() => handleImageLoad(item.id)}
                 loaded={loadedImages[item.id]}
               />
@@ -338,7 +340,6 @@ const Photo = styled.img`
   height: 100%;
   object-fit: cover;
   display: ${props => (props.loaded ? 'block' : 'none')};
-  loading: lazy;
 `;
 const YearBadge = styled.div`
   position: absolute;

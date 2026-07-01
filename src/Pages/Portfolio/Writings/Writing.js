@@ -193,7 +193,6 @@ const Card = styled(motion.div)`
   margin: 10px;
   flex: 1 1 calc(33% - 40px);
   padding: 0;
-      animation: wave44 3s infinite alternate;
 
   @media (max-width: 768px) {
     max-width: 90%;
@@ -281,7 +280,6 @@ const Button = styled.button`
   font-size: 1rem;
   transition: background 0.3s;
   margin: 10px auto;
-    animation: wave44 3s infinite alternate;
 
   &:hover {
     background: #018367;

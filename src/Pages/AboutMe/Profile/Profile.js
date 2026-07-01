@@ -1,6 +1,6 @@
 import React from "react";
-import Profileimage1 from "../../../Assets/Profile/Parsa.jpg";
-import SmallProfileImage from "../../../Assets/Profile/small.jpg";
+import Profileimage1 from "../../../Assets/Profile/profile-main.webp";
+import SmallProfileImage from "../../../Assets/Profile/profile-candid.webp";
 import "./Profile.css";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { FaLinkedin, FaTelegramPlane, FaYoutube } from "react-icons/fa";
@@ -49,16 +49,22 @@ export default function Profile() {
           </motion.span>
           <br />
           <span className="">
-            {t("A bookworm, a science nerd, and a dreamer at heart.")}
+            {t("A storyteller, a builder, and a lifelong learner.")}
           </span>
         </h1>
 
         <ProfileDescription lang={i18n.language}>
           <p>
             {t(
-              "With a foundation in computer engineering, I’ve spent the past two years exploring React JS/Native, weaving together art, storytelling, and data to craft meaningful digital experiences. My curiosity is endless — from writing and creating audiobooks, to analyzing data and designing intuitive interfaces. I bridge creativity and logic to transform ideas into something both beautiful and functional."
+              "I’m a final-year MSc Data Science student at the University of Messina, building real-time AI and big-data systems — from a hate-speech detection pipeline to modular biofeedback for VR therapy. But I didn’t start in data: my path runs from art and graphic design, through UI/UX and React development, into data science and now embedded systems and signals. That blend of design sensibility and engineering rigor is what I bring to every project."
             )}
           </p>
+
+          <ActionRow>
+            <CvButton href="/Parsa_Kazemi_CV.pdf" target="_blank" rel="noreferrer">
+              {t("Download CV")}
+            </CvButton>
+          </ActionRow>
 
           <SmallImageSection>
             <BackgroundShape />
@@ -106,7 +112,7 @@ export default function Profile() {
           <div className="social-icons">
             {[
               {
-                href: "https://www.instagram.com/parsak.exe/",
+                href: "https://www.instagram.com/parichka.e/",
                 icon: <AiOutlineInstagram />,
                 label: "Instagram Profile",
               },
@@ -221,6 +227,33 @@ const ProfileDescription = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem;
+`;
+
+const ActionRow = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (min-width: 992px) {
+    justify-content: flex-start;
+  }
+`;
+
+const CvButton = styled.a`
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  background: #018367;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s;
+  &:hover {
+    background: #00a37a;
+    transform: translateY(-2px);
+  }
 `;
 
 const BackgroundShape = styled.div`

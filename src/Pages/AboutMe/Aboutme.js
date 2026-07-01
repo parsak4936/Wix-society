@@ -1,9 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Profile from "./Profile/Profile";
 // import Profile2 from "./Profile/Profile2";
 import Education from "./Education/Education.js";
+import Journey from "./Journey/Journey";
 import Clients from "../../components/Clients/Clients";
 import Skills from "./Skills/SkillsAndHobbies";
+import Contact from "../../components/Contact/Contact";
 import headervideo from "../../Assets/backgrounds/Header4.mp4";
 import "./Aboutme.css"; // Import the CSS file
 import ProgressIndicator from "../../components/ProgressIndicator/ProgressIndicator";
@@ -13,6 +16,20 @@ import { useTranslation } from "react-i18next";
 const Aboutme = () => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const target = location.state && location.state.scrollTo;
+    if (!target) return;
+    const el = document.getElementById(target);
+    if (el) {
+      const id = setTimeout(
+        () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
+        500
+      );
+      return () => clearTimeout(id);
+    }
+  }, [location]);
 
   function handlePlay() {
     if (videoRef.current) {
@@ -22,9 +39,11 @@ const Aboutme = () => {
 
   const sections = [
     { id: "section-1", icon: "home" },
+    { id: "journey-section", icon: "journey" },
     { id: "education-section", icon: "education" },
     { id: "clients-section", icon: "clients" },
     { id: "skills-section", icon: "skills" },
+    { id: "contact-section", icon: "contact" },
   ];
 
   return (
@@ -72,6 +91,9 @@ const Aboutme = () => {
           </video>
         </div>
       </div>
+      <div id="journey-section">
+        <Journey />
+      </div>
       <div id="education-section">
         <Education />
       </div>
@@ -80,6 +102,9 @@ const Aboutme = () => {
       </div>
       <div id="skills-section">
         <Skills />
+      </div>
+      <div id="contact-section">
+        <Contact />
       </div>
     </div>
   );

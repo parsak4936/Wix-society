@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import React, { useEffect, useState, lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route, useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import RandomIcon from "./components/RandomIcon/RandomIcon ";
 import ScrollUp from "./components/ScrollUp/ScrollUp";
-import Aboutme from "./Pages/AboutMe/Aboutme";
-import Home from "./Pages/Home";
-import Portfolio from "./Pages/Portfolio/Portfolio";
 import "./Pages/Home.css";
-import Travels from "./Pages/Travel/Travels";
 import styled, { StyleSheetManager } from 'styled-components';
 
 import { AudioProvider } from "./Context/AudioContext";
@@ -16,6 +12,33 @@ import { createGlobalStyle } from "styled-components";
 import Header from "./components/Banner/Header";
 import LanguageSwitcher from "./components/translator/LanguageSwitcher ";
 import { useTranslation } from "react-i18next";
+
+// Route-level code splitting: heavy pages (e.g. the MapLibre travel map) load on demand
+const Home = lazy(() => import("./Pages/Home"));
+const Aboutme = lazy(() => import("./Pages/AboutMe/Aboutme"));
+const Portfolio = lazy(() => import("./Pages/Portfolio/Portfolio"));
+const Travels = lazy(() => import("./Pages/Travel/Travels"));
+
+const RouteFallback = styled.div`
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(1, 131, 103, 0.25);
+    border-top-color: #018367;
+    border-radius: 50%;
+    animation: app-spin 0.9s linear infinite;
+  }
+  @keyframes app-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
 const GlobalStyle = createGlobalStyle`
   @keyframes wave1 {
     0% { box-shadow: 0 0 0 0 rgba(1, 190, 150, 0.4); }
@@ -57,6 +80,16 @@ const GlobalStyle = createGlobalStyle`
     75% { box-shadow: 0 0 30px 30px rgba(255, 221, 51, 0.1); }
     100% { box-shadow: 0 0 40px 40px rgba(255, 221, 51, 0.4); }
   }
+
+  /* Respect users who prefer less motion — also a big paint/CPU saving */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 `;
 
 const pageTransition = {
@@ -72,11 +105,64 @@ const transitionEffect = {
   transition: { duration: 1, ease: "easeInOut" },
 };
 
+const ROUTE_TITLES = {
+  "/": "BetterWix — Parsa Kazemi",
+  "/Portfolio": "Portfolio — BetterWix",
+  "/travel": "Travels — BetterWix",
+  "/aboutme": "About Me — BetterWix",
+};
+
+const NotFoundWrap = styled.div`
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  gap: 0.5rem;
+  h1 {
+    font-size: clamp(4rem, 12vw, 8rem);
+    margin: 0;
+    color: #018367;
+  }
+  p {
+    color: #bbb;
+    font-size: 1.1rem;
+  }
+  a {
+    margin-top: 1rem;
+    padding: 0.7rem 1.4rem;
+    background: #018367;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  a:hover {
+    background: #00a37a;
+  }
+`;
+
+const NotFound = () => (
+  <NotFoundWrap>
+    <h1>404</h1>
+    <p>This page wandered off the map.</p>
+    <Link to="/">Back home</Link>
+  </NotFoundWrap>
+);
+
 const AnimatedRoutes = () => {
   const { scrollYProgress } = useScroll();
 
   const location = useLocation();
   const [showTransition, setShowTransition] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title =
+      ROUTE_TITLES[location.pathname] || "BetterWix — Parsa Kazemi";
+  }, [location.pathname]);
 
   return (
     <>
@@ -98,6 +184,7 @@ const AnimatedRoutes = () => {
         />
       )}
       {!showTransition && (
+        <Suspense fallback={<RouteFallback />}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route
@@ -152,8 +239,22 @@ const AnimatedRoutes = () => {
                 </motion.div>
               }
             />
+            <Route
+              path="*"
+              element={
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                  <NotFound />
+                </motion.div>
+              }
+            />
           </Routes>
         </AnimatePresence>
+        </Suspense>
       )}
     </>
   );

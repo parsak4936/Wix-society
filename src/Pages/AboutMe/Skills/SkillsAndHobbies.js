@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import ProfessionalSkills from "./ProfessionalSkills";
@@ -13,88 +7,36 @@ import { PiGuitarFill } from "react-icons/pi";
 import { FaUserSecret } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 
-const skillLevels = {
-  Beginner: 20,
-  Intermediate: 50,
-  Advanced: 75,
-  Expert: 100,
-};
+const INITIAL = 8;
 
 const SkillsAndHobbies = () => {
   const { t } = useTranslation();
   const [filter, setFilter] = useState("");
-  const [visibleSkills, setVisibleSkills] = useState([]);
   const [selectedTab, setSelectedTab] = useState("professional");
-  const observerRef = useRef();
-  const lastScrollY = useRef(0);
-  const [scrollDirection, setScrollDirection] = useState("down");
-
-  const skillsToShowInitially = 6;
-  const loadMoreSkillsCount = 6;
+  const [showAll, setShowAll] = useState(false);
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
+    setShowAll(false);
   };
 
-  const combineAndFilterSkills = useCallback(() => {
-    const combinedSkills =
+  const handleTab = (tab) => {
+    setSelectedTab(tab);
+    setShowAll(false);
+  };
+
+  const filteredSkills = useMemo(() => {
+    const list =
       selectedTab === "professional" ? ProfessionalSkills : PersonalSkills;
-    return combinedSkills.filter((skill) =>
+    return list.filter((skill) =>
       skill.name.toLowerCase().includes(filter.toLowerCase())
     );
   }, [filter, selectedTab]);
 
-  const filteredSkills = useMemo(
-    () => combineAndFilterSkills(),
-    [combineAndFilterSkills]
-  );
-
-  useEffect(() => {
-    setVisibleSkills(filteredSkills.slice(0, skillsToShowInitially));
-  }, [filteredSkills, skillsToShowInitially]);
-
-  const loadMoreSkills = useCallback(() => {
-    setVisibleSkills((prevVisibleSkills) => [
-      ...prevVisibleSkills,
-      ...filteredSkills.slice(
-        prevVisibleSkills.length,
-        prevVisibleSkills.length + loadMoreSkillsCount
-      ),
-    ]);
-  }, [filteredSkills, loadMoreSkillsCount]);
-
-  const unloadSkills = useCallback(() => {
-    setVisibleSkills((prevVisibleSkills) => {
-      if (prevVisibleSkills.length <= skillsToShowInitially)
-        return prevVisibleSkills;
-      const remainingSkills = prevVisibleSkills.slice(loadMoreSkillsCount);
-      return remainingSkills;
-    });
-  }, [loadMoreSkillsCount, skillsToShowInitially]);
-
-  const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY.current) {
-      setScrollDirection("down");
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 50
-      ) {
-        loadMoreSkills();
-      }
-    } else {
-      setScrollDirection("up");
-      if (window.scrollY < 50) {
-        unloadSkills();
-      }
-    }
-    lastScrollY.current = currentScrollY;
-  }, [loadMoreSkills, unloadSkills]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+  const visibleSkills = showAll
+    ? filteredSkills
+    : filteredSkills.slice(0, INITIAL);
+  const hasMore = filteredSkills.length > INITIAL;
 
   return (
     <SkillsContainer>
@@ -105,14 +47,14 @@ const SkillsAndHobbies = () => {
         </TitleContainer>
         <Tabs>
           <Tab
-            onClick={() => setSelectedTab("professional")}
+            onClick={() => handleTab("professional")}
             active={selectedTab === "professional"}
           >
             <FaUserSecret />
             {t("Professional")}
           </Tab>
           <Tab
-            onClick={() => setSelectedTab("personal")}
+            onClick={() => handleTab("personal")}
             active={selectedTab === "personal"}
           >
             <PiGuitarFill />
@@ -131,22 +73,14 @@ const SkillsAndHobbies = () => {
           {visibleSkills.length > 0 ? (
             visibleSkills.map((skill, index) => (
               <SkillCard
-                key={index}
-                initial={{
-                  opacity: 0,
-                  y: scrollDirection === "down" ? 50 : -50,
-                }}
+                key={skill.name}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: scrollDirection === "down" ? -50 : 50 }}
-                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, delay: (index % INITIAL) * 0.03 }}
               >
-                {/* <SkillIcon>
-                  <skill.icon />
-                </SkillIcon> */}
                 <SkillDetails>
                   <h3>{t(skill.name)}</h3>
-                  {/* <SkillLevel level={skillLevels[skill.level]} /> */}
-                  {/* <p>{t(skill.description)}</p> */}
                 </SkillDetails>
               </SkillCard>
             ))
@@ -155,7 +89,15 @@ const SkillsAndHobbies = () => {
           )}
         </AnimatePresence>
       </SkillsGrid>
-      <div ref={observerRef} />
+      {hasMore && (
+        <ButtonWrap>
+          <ShowMoreButton onClick={() => setShowAll((v) => !v)}>
+            {showAll
+              ? t("Show less")
+              : `${t("Show all")} (${filteredSkills.length})`}
+          </ShowMoreButton>
+        </ButtonWrap>
+      )}
     </SkillsContainer>
   );
 };
@@ -191,14 +133,8 @@ const Tabs = styled.div`
 const Tab = styled.button`
   border: none;
   border-radius: 10px 10px 10px 10px;
-  background: ${(props) =>
-    props.active
-      ? "#018367"
-      : "none"}; /* Change these colors to your desired background colors */
-  color: ${(props) =>
-    props.active
-      ? "#fff"
-      : "#fff"}; /* White for default and green for active */
+  background: ${(props) => (props.active ? "#018367" : "none")};
+  color: ${(props) => (props.active ? "#fff" : "#fff")};
   padding: 0.2rem 0.6rem;
   margin: 0.5rem;
   font-size: 1.2rem;
@@ -216,7 +152,7 @@ const SearchBar = styled.input`
   padding: 0.5rem;
   font-size: 1rem;
   margin-bottom: 2rem;
-  background: #f0f0f0; /* Change this to your desired background color */
+  background: #f0f0f0;
   border-radius: 5px;
   border: 1px solid #ccc;
 `;
@@ -228,28 +164,22 @@ const SkillsGrid = styled.div`
 `;
 
 const SkillCard = styled(motion.div)`
-  background: transparent; /* حذف پس‌زمینه */
+  background: transparent;
   padding: 0.8rem;
-  border: 2px solid #018367; /* حاشیه سبز رنگ */
+  border: 2px solid #018367;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* سایه اطراف کادر */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 `;
 
-const SkillIcon = styled.div`
-  font-size: 3rem;
-  color: #fff; /* رنگ سبز برای آیکون‌ها */
-  margin-bottom: 1rem;
-`;
-
 const SkillDetails = styled.div`
   h3 {
     margin: 0;
     font-size: 1.2rem;
-    color: #fff; /* تغییر رنگ عنوان به سبز */
+    color: #fff;
   }
 
   p {
@@ -258,27 +188,33 @@ const SkillDetails = styled.div`
   }
 `;
 
-const SkillLevel = styled.div`
-  width: 100%;
-  background: #eee;
-  height: 10px;
-  border-radius: 5px;
-  margin: 1rem 0;
-  &::after {
-    content: "";
-    display: block;
-    height: 100%;
-    background: #018367;
-    border-radius: 5px;
-    width: ${(props) => props.level}%;
-  }
-`;
-
 const NoSkillsFound = styled.p`
   grid-column: 1 / -1;
   text-align: center;
   font-size: 1.2rem;
   color: #666;
+`;
+
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+`;
+
+const ShowMoreButton = styled.button`
+  background: #018367;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.6rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  &:hover {
+    background: #00a37a;
+    transform: translateY(-2px);
+  }
 `;
 
 const TitleContainer = styled.div`

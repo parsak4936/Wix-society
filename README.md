@@ -1,6 +1,6 @@
-# Better Wix
+# BetterWix
 
-Better Wix is a personal and professional website that showcases my skills, projects, portfolio, and personal profile. It serves as a digital portfolio for potential clients, collaborators, and friends. The website demonstrates both my professional expertise and personal interests.
+BetterWix is a personal and professional website that showcases my skills, projects, portfolio, and personal profile. It serves as a digital portfolio for potential clients, collaborators, and friends. The website demonstrates both my professional expertise and personal interests.
 https://wix-society.netlify.app/
 ---
 
@@ -53,7 +53,7 @@ https://wix-society.netlify.app/
 
 ## Audience
 
-Better Wix is designed for:
+BetterWix is designed for:
 
 - Clients or employers looking to hire 
 - People interested in my professional projects
