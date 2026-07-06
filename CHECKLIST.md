@@ -21,7 +21,7 @@ Living roadmap for the BetterWix personal site. Check items off as we go.
 
 ### Rebrand decisions still open (need your call)
 - [ ] **Contact email** — still `Wixloop.contact@gmail.com` everywhere (kept as-is; it's a live inbox). Change to a `betterwix` address only if you create one.
-- [ ] **Domain** — site still deploys to `wix-society.netlify.app`. Rename the Netlify site (e.g. `betterwix.netlify.app`) or attach a custom domain, then update the two README links + the project card link in `Projects .js`.
+- [ ] **Domain** — site still deploys to `betterwix.netlify.app`. Rename the Netlify site (e.g. `betterwix.netlify.app`) or attach a custom domain, then update the two README links + the project card link in `Projects .js`.
 - [ ] **Asset file** `src/Assets/Portfolio/projects/Wixloop.webp` — kept (only the code variable was renamed). Rename later if you want it tidy.
 
 ## 2. Map update (Travel page)

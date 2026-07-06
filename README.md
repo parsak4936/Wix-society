@@ -1,7 +1,7 @@
 # BetterWix
 
 BetterWix is a personal and professional website that showcases my skills, projects, portfolio, and personal profile. It serves as a digital portfolio for potential clients, collaborators, and friends. The website demonstrates both my professional expertise and personal interests.
-https://wix-society.netlify.app/
+https://betterwix.netlify.app/
 ---
 
 ## Features
@@ -41,7 +41,7 @@ https://wix-society.netlify.app/
 
 ## How to Use
 
-1. Open the website in a web browser. https://wix-society.netlify.app/
+1. Open the website in a web browser. https://betterwix.netlify.app/
 2. Explore portfolio projects and designs.
 3. Browse the skills section and use search if needed.
 4. Switch languages using the language panel.

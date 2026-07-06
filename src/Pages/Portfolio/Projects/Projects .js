@@ -99,7 +99,7 @@ const Projects = ({ searchQuery, sortOrder }) => {
         startDate: t("May 2024"),
         endDate: t("End of my time"),
         Year: t("2024"),
-        link: "https://wix-society.netlify.app/",
+        link: "https://betterwix.netlify.app/",
       },
       {
         id: 2,
